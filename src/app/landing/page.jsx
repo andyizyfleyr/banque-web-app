@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,6 +28,28 @@ const LandingPage = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [showCountrySelector, setShowCountrySelector] = useState(false);
     const [openFaq, setOpenFaq] = useState(null);
+    const mobileVideoRef = useRef(null);
+    const desktopVideoRef = useRef(null);
+
+    useEffect(() => {
+        const attemptPlay = (videoElement) => {
+            if (videoElement) {
+                videoElement.muted = true;
+                videoElement.defaultMuted = true;
+                videoElement.play().catch(err => {
+                    console.log("Autoplay prevented, trying again on interaction", err);
+                });
+            }
+        };
+
+        // Petite attente pour s'assurer que le DOM est stable
+        const timer = setTimeout(() => {
+            attemptPlay(mobileVideoRef.current);
+            attemptPlay(desktopVideoRef.current);
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const navLinks = [
         { name: t('public_nav.home'), active: true, path: "/" },
@@ -204,6 +226,7 @@ const LandingPage = () => {
                 {/* Hero Section */}
                 <section className="relative w-full overflow-hidden flex flex-col items-center justify-center pt-24 lg:pt-32 pb-40 min-h-screen z-0">
                     <video
+                        ref={desktopVideoRef}
                         autoPlay
                         loop
                         muted
@@ -213,24 +236,17 @@ const LandingPage = () => {
                     >
                         <source src="/video-assets/Hero_Edit__1728x1117_Desktop.mp4" type="video/mp4" />
                     </video>
-                    {/* Hack pour mobile : dangerouslySetInnerHTML assure que 'muted' est bien présent au rendu initial du DOM */}
-                    <div
-                        className="absolute inset-0 w-full h-full -z-20 block md:hidden"
-                        dangerouslySetInnerHTML={{
-                            __html: `
-                                <video 
-                                    autoplay 
-                                    loop 
-                                    muted 
-                                    playsinline 
-                                    preload="auto"
-                                    class="w-full h-full object-cover"
-                                >
-                                    <source src="/video-assets/Hero_Edit__834x1194_Mobile.mp4" type="video/mp4">
-                                </video>
-                            `
-                        }}
-                    />
+                    <video
+                        ref={mobileVideoRef}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        className="absolute inset-0 w-full h-full object-cover -z-20 block md:hidden"
+                    >
+                        <source src="/video-assets/Hero_Edit__834x1194_Mobile.mp4" type="video/mp4" />
+                    </video>
 
                     <div className="absolute inset-0 bg-gradient-to-b from-[#e63746]/40 via-[#e63746]/30 to-[#e63746]/70 -z-10 mix-blend-multiply" />
                     <div className="absolute inset-0 bg-[#e63746]/20 -z-10" />
