@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Savings Goals &amp; Financial Projections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e63746",
+                        "navy": "#1D3557",
+                        "charcoal": "#2B2D42",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211112",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .circular-progress {
+            background: conic-gradient(var(--progress-color) calc(var(--percentage) * 1%), #e2e8f0 0);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #e63746;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-charcoal dark:text-gray-100 font-display min-h-screen">
+<!-- Header -->
+<header class="bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center space-x-8">
+<div class="flex items-center space-x-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white">account_balance_wallet</span>
+</div>
+<span class="text-xl font-bold text-navy dark:text-white">NeoBank</span>
+</div>
+<nav class="hidden md:flex space-x-6">
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary font-medium transition-colors" href="#">Accounts</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary font-medium transition-colors" href="#">Transfers</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Wealth &amp; Goals</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-primary font-medium transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-gray-400 hover:text-primary">
+<span class="material-icons">notifications</span>
+</button>
+<div class="flex items-center space-x-3 border-l pl-4 border-gray-200 dark:border-zinc-700">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-tight">Alex Rivera</p>
+<p class="text-xs text-gray-500">Premium Member</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary/20" data-alt="User profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiqdu0yrHjfI9_fqdQri26JBfhw8LId7l7EB5dRHUyKiiJQWPxuLkeXtHmMO9V6B6VV1dE8FziJPUx_gsB6BweL-ZyaKMalDtFP7NGIt7aIkK2ccPN5yD7ZZTsVv1j-WZzwgmuVIhpj7L-Q9PaSkIIjTeQxM68hbc4EG3r8h1lRk1vDdi77KPWtws8SabAQ2iHNVNnlHQiBSdeajd37iZeO1o1tW-ckUYBy_xygzFJ8dWnmTgEm3qntCbl0vFjsFsE3Vx3b5EGJK4"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Page Title & Summary -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold text-navy dark:text-white">Savings &amp; Projections</h1>
+<p class="text-gray-500 mt-1">Track your dreams and simulate your financial future.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-white dark:bg-zinc-900 p-4 rounded-lg shadow-sm border border-gray-100 dark:border-zinc-800 flex items-center space-x-4">
+<div class="bg-primary/10 p-2 rounded-full">
+<span class="material-icons text-primary">savings</span>
+</div>
+<div>
+<p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Total Goal Balance</p>
+<p class="text-xl font-bold text-navy dark:text-white">€24,250.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Savings Goals Grid -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-navy dark:text-white">Active Savings Goals</h2>
+<button class="text-primary font-semibold flex items-center gap-1 hover:underline">View All <span class="material-icons text-sm">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Goal: Vacation -->
+<div class="bg-white dark:bg-zinc-900 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-zinc-800 group hover:shadow-md transition-shadow">
+<div class="relative h-32">
+<img class="w-full h-full object-cover" data-alt="Tropical beach with blue water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQq53UzUN9vgq9RK1qBl4jxsM2cNu-mH-2kFi1YQ1kLGgYeMlJoxrs13LZ3xabMT93SsAAL5ZZg-rWUE4dsbpO-IEFDXP04U4YC9x2HR4jrHOkpRVOtvZIlVsNVsr7VRWdOOoTAz2MeQpAV50H-hXs-NcGKhyqBaKjIwfj5C0kSdDaRVCg1eEFYWK9AJ_kwF1E37mrx7HeikDQ-tTiUxtQ6kXbGPm3GlTwCnG-Ku1Q7XuxQEKAllW2OG35BH-tT4T61boj4bclwwk"/>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 text-[10px] font-bold text-navy uppercase">Travel</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-bold text-navy dark:text-white">Summer Vacation</h3>
+<p class="text-xs text-gray-500">Target: Aug 2024</p>
+</div>
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="text-gray-100 dark:text-zinc-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="65, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute text-[10px] font-bold text-navy dark:text-white">65%</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-navy dark:text-white">€3,250</span>
+<span class="text-gray-400">€5,000</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Goal: New Home -->
+<div class="bg-white dark:bg-zinc-900 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-zinc-800 group hover:shadow-md transition-shadow">
+<div class="relative h-32">
+<img class="w-full h-full object-cover" data-alt="Modern house architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx9UALMldqW5KIpLqam1S5r4BmMjucInfodsPxrn4ozgXdrlLS_IAGzPbT9my5oHollsFQhHxzDfIM2YoFCE03A-3pQ1JTKr7D9T70F93qZcI3ljyQe1o-yTDGj6g_Zupgy3DX5yVJtb4OXPY_2VaIUXp3YSBbJzqIz3x1al0dbHGRuJXszMhVh_to8WVhPAFhlY_9-_n-gHdjntHPzFpjRIsS0i-v8aPw8eNVmN0ZpervzClMpng9Z8jaxMYlP1E0D9iYvu9xGSc"/>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 text-[10px] font-bold text-navy uppercase">Property</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-bold text-navy dark:text-white">New Home Downpayment</h3>
+<p class="text-xs text-gray-500">Target: Dec 2026</p>
+</div>
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="text-gray-100 dark:text-zinc-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="12, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute text-[10px] font-bold text-navy dark:text-white">12%</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-navy dark:text-white">€12,000</span>
+<span class="text-gray-400">€100,000</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 12%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Goal: Emergency Fund -->
+<div class="bg-white dark:bg-zinc-900 rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-zinc-800 group hover:shadow-md transition-shadow">
+<div class="relative h-32">
+<img class="w-full h-full object-cover" data-alt="Abstract rainy day through glass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2C4mSagGYuksLtlSUHewZMzGfzIV33kG3eO_hxNbXiPfH06pZR0s6u3fvYj0MlFbVA4jzWuTmda1uGQwIZ8-EitGheoSCymjr6xoe9Gs6dpeYwQZsICdJCOzhAgB_yUauDT5mVcszjTy8QL9gvPg7RbZ3hBxrPtj8eRd1R1yBLG2iCiykyoGbZ1PPkA4m7scJBlE63ZhPyKC1YbilJ9PqnITjok82Fw4Bj3zXGq3EXPAK6Vwy4MNXKt0rRpK1Q4yYgOHfLWOkcIo"/>
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 text-[10px] font-bold text-navy uppercase">Safety</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-bold text-navy dark:text-white">Emergency Fund</h3>
+<p class="text-xs text-gray-500">Target: Completed</p>
+</div>
+<div class="relative w-12 h-12 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 36 36">
+<path class="text-gray-100 dark:text-zinc-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="90, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute text-[10px] font-bold text-navy dark:text-white">90%</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-navy dark:text-white">€9,000</span>
+<span class="text-gray-400">€10,000</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-zinc-800 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Goal -->
+<button class="bg-transparent border-2 border-dashed border-gray-300 dark:border-zinc-700 rounded-lg flex flex-col items-center justify-center p-8 hover:border-primary hover:bg-primary/5 transition-all group">
+<div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+<span class="material-icons text-primary group-hover:text-white">add</span>
+</div>
+<span class="font-bold text-navy dark:text-white">Add New Goal</span>
+<span class="text-xs text-gray-500 mt-1">Plan your next milestone</span>
+</button>
+</div>
+</section>
+<!-- Main Content Area: Automation & Projections -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Automation Tools (4 cols) -->
+<div class="lg:col-span-4 space-y-6">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-6">Automation Suite</h2>
+<!-- Round-up Rules -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-zinc-800">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center space-x-3">
+<div class="bg-indigo-50 dark:bg-indigo-900/30 p-2 rounded-lg">
+<span class="material-icons text-indigo-600 dark:text-indigo-400">change_history</span>
+</div>
+<h3 class="font-bold text-navy dark:text-white">Round-up Rules</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-sm text-gray-500 mb-4">Every cent from your daily transactions counts. We round up each purchase to the nearest €1.</p>
+<div class="bg-gray-50 dark:bg-zinc-800/50 p-3 rounded text-sm text-navy dark:text-gray-300 flex justify-between">
+<span>Saved this month:</span>
+<span class="font-bold">€42.80</span>
+</div>
+</div>
+<!-- Scheduled Savings -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-zinc-800">
+<div class="flex items-center space-x-3 mb-6">
+<div class="bg-emerald-50 dark:bg-emerald-900/30 p-2 rounded-lg">
+<span class="material-icons text-emerald-600 dark:text-emerald-400">event_repeat</span>
+</div>
+<h3 class="font-bold text-navy dark:text-white">Scheduled Savings</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<div>
+<p class="text-sm font-bold text-navy dark:text-white">Home Fund</p>
+<p class="text-[10px] text-gray-500">Every 1st of month</p>
+</div>
+</div>
+<span class="text-sm font-bold text-navy dark:text-white">€200.00</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+<div>
+<p class="text-sm font-bold text-navy dark:text-white">Summer Vacation</p>
+<p class="text-[10px] text-gray-500">Every Friday</p>
+</div>
+</div>
+<span class="text-sm font-bold text-navy dark:text-white">€50.00</span>
+</li>
+</ul>
+<button class="w-full mt-6 py-2 border border-primary/20 text-primary font-bold text-sm rounded hover:bg-primary/5 transition-colors">Manage Schedules</button>
+</div>
+<!-- 52-Week Challenge -->
+<div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-gray-100 dark:border-zinc-800 overflow-hidden relative">
+<div class="absolute -right-4 -top-4 opacity-5">
+<span class="material-icons text-9xl">emoji_events</span>
+</div>
+<div class="flex items-center space-x-3 mb-4">
+<div class="bg-amber-50 dark:bg-amber-900/30 p-2 rounded-lg">
+<span class="material-icons text-amber-600 dark:text-amber-400">trending_up</span>
+</div>
+<h3 class="font-bold text-navy dark:text-white">52-Week Challenge</h3>
+</div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs font-bold text-gray-500">WEEK 14 / 52</span>
+<span class="text-xs font-bold text-primary">On Track</span>
+</div>
+<!-- Roadmap Visual -->
+<div class="flex gap-1 h-8 mb-4">
+<div class="flex-1 bg-primary rounded-sm"></div>
+<div class="flex-1 bg-primary rounded-sm"></div>
+<div class="flex-1 bg-primary rounded-sm"></div>
+<div class="flex-1 bg-primary rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+<div class="flex-1 bg-primary/20 rounded-sm"></div>
+</div>
+<p class="text-xs text-gray-500">Deposit <span class="text-navy dark:text-white font-bold">€14.00</span> this week to maintain your streak.</p>
+</div>
+</div>
+<!-- Financial Projections (8 cols) -->
+<div class="lg:col-span-8">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-6">Future Projections</h2>
+<div class="bg-white dark:bg-zinc-900 rounded-lg shadow-sm border border-gray-100 dark:border-zinc-800 p-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+<div>
+<h3 class="text-2xl font-bold text-navy dark:text-white">Wealth Forecast</h3>
+<p class="text-sm text-gray-500">Projected completion: <span class="text-primary font-bold">October 2026</span></p>
+</div>
+<div class="bg-navy/5 dark:bg-white/5 p-4 rounded-lg min-w-[200px]">
+<p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Impact Simulator</p>
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-medium dark:text-gray-300">Extra Monthly</span>
+<span class="text-sm font-bold text-primary">+€150</span>
+</div>
+<input class="w-full h-1.5 bg-gray-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-primary" max="500" min="0" type="range" value="150"/>
+</div>
+</div>
+<!-- Graph Simulation (Pure CSS/SVG visualization) -->
+<div class="relative h-[300px] w-full mt-10">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 h-full flex flex-col justify-between text-[10px] text-gray-400 -ml-8">
+<span>€150k</span>
+<span>€100k</span>
+<span>€50k</span>
+<span>€0</span>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between border-l border-b border-gray-100 dark:border-zinc-800">
+<div class="w-full h-px bg-gray-100 dark:bg-zinc-800"></div>
+<div class="w-full h-px bg-gray-100 dark:bg-zinc-800"></div>
+<div class="w-full h-px bg-gray-100 dark:bg-zinc-800"></div>
+</div>
+<!-- Graph Line (Navy Path) -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<!-- Dashed Target Line -->
+<line stroke="#e2e8f0" stroke-dasharray="8 4" stroke-width="2" x1="0" x2="100%" y1="280" y2="50"></line>
+<!-- Main Projection Line -->
+<path class="drop-shadow-lg" d="M 0 280 Q 200 250, 400 220 T 800 100" fill="none" stroke="#1D3557" stroke-linecap="round" stroke-width="4"></path>
+<!-- Comparison Line (Light/Impact) -->
+<path d="M 0 280 Q 200 240, 400 180 T 800 40" fill="none" stroke="#e63746" stroke-dasharray="4" stroke-opacity="0.5" stroke-width="2"></path>
+<!-- Current Position Dot -->
+<circle cx="150" cy="260" fill="#e63746" r="6"></circle>
+<circle cx="150" cy="260" fill="#e63746" fill-opacity="0.2" r="12"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-[10px] text-gray-400 pt-4 translate-y-full">
+<span>JAN 2024</span>
+<span>JUL 2024</span>
+<span>JAN 2025</span>
+<span>JUL 2025</span>
+<span>JAN 2026</span>
+<span>JUL 2026</span>
+</div>
+</div>
+<!-- Projection Insights -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-100 dark:border-zinc-800">
+<div class="flex items-start space-x-3">
+<span class="material-icons text-primary">rocket_launch</span>
+<div>
+<p class="text-xs text-gray-500 font-bold uppercase">Time Saved</p>
+<p class="text-lg font-bold text-navy dark:text-white">4 Months</p>
+<p class="text-[10px] text-emerald-500 font-bold">With extra €150/mo</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="material-icons text-navy dark:text-primary">trending_up</span>
+<div>
+<p class="text-xs text-gray-500 font-bold uppercase">Interest Earned</p>
+<p class="text-lg font-bold text-navy dark:text-white">€3,412.50</p>
+<p class="text-[10px] text-gray-400">Est. APY 4.2%</p>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="material-icons text-navy dark:text-primary">verified_user</span>
+<div>
+<p class="text-xs text-gray-500 font-bold uppercase">Health Score</p>
+<p class="text-lg font-bold text-navy dark:text-white">Excellent</p>
+<p class="text-[10px] text-gray-400">92/100 Savings Efficiency</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="bg-navy text-white px-8 py-3 rounded-lg font-bold hover:bg-navy/90 transition-all flex items-center space-x-2">
+<span class="material-icons text-sm">auto_fix_high</span>
+<span>Optimise Savings Strategy</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 py-10 border-t border-gray-200 dark:border-zinc-800 text-center">
+<p class="text-gray-400 text-xs font-medium uppercase tracking-widest">© 2024 NeoBank Financial Services. Member FDIC.</p>
+</footer>
+</body></html>

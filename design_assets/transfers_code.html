@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Banking Transfers Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e63746",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211112",
+                        "off-white": "#EDF2F4",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e6374633;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-off-white dark:bg-background-dark min-h-screen text-slate-800 dark:text-slate-100">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-primary/20 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo & Menu -->
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-xl">account_balance</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white uppercase">Nexus<span class="text-primary">Bank</span></span>
+</div>
+<nav class="hidden md:flex space-x-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-medium text-sm" href="#">Dashboard</a>
+<a class="text-primary font-semibold text-sm border-b-2 border-primary pb-5 mt-5" href="#">Transfers</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-medium text-sm" href="#">Payments</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors font-medium text-sm" href="#">Settings</a>
+</nav>
+</div>
+<!-- Profile & Notifications -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary relative transition-colors">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 right-2 block h-2 w-2 rounded-full bg-primary ring-2 ring-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-700">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-tight">Alex Sterling</p>
+<p class="text-xs text-slate-500">Premium Member</p>
+</div>
+<img alt="Profile" class="h-9 w-9 rounded-full ring-2 ring-slate-100" data-alt="Professional portrait of a male user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs4AGF1WGGrdy0nMWdUTsH1TIoRDEp3aysMosF_ef5wsAH69xRD1EbmqUuDcBm5CktHKA2yvaUsRidOgtRKszNBhzpb7egAjDN5V_CJNnZNhcMWhEH8JpFbQka-l2xgWguPjrYK6MgXCVQebaF_UHQ0LAPLEMBCoNZ0bqGGvmKMtap8IUUe579MUE6O7W3p1saqlfMrUZ5VxVNN1v9U8x8aQCwRAdrmvOg5N-k8reObg1D0Xlf_4L2jcWmuPfaZHS-E5qb9k7zV2Y"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Transfer Form -->
+<div class="lg:col-span-8">
+<div class="bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-slate-200 dark:border-primary/10 overflow-hidden">
+<!-- Tabs -->
+<div class="flex border-b border-slate-100 dark:border-slate-800">
+<button class="flex-1 py-4 text-sm font-semibold text-primary border-b-2 border-primary">New Transfer</button>
+<button class="flex-1 py-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Scheduled</button>
+<button class="flex-1 py-4 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Beneficiaries</button>
+</div>
+<div class="p-8">
+<div class="space-y-8">
+<!-- Source Account -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Source Account</label>
+<div class="relative group">
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white">Main Checking Account</p>
+<p class="text-sm text-slate-500">**** 8291</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-lg font-bold text-slate-900 dark:text-white">€12,450.80</p>
+<p class="text-xs text-slate-400 uppercase">Available</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Beneficiary Autocomplete -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Beneficiary</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-icons text-slate-400">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-primary focus:border-primary text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Search by name, IBAN or email..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+<img alt="Avatar" class="w-8 h-8 rounded-full border-2 border-white shadow-sm" data-alt="Portrait of a female contact" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzlcq8T9UVjQi6LjGK082BaHVpFHAMToyIm9MieOC5W2OlyZZWZ0vddl_1bWmmm5czlFF9GWgBrhtTt7rjxfMpbY9LnEHEdE-ZXlpH4WGJAR8TUbB81M15i-ka0MtLGFut9DebCp9eepjkijdq3hRsZjUXjiQzInjLVkEFtG83i-1dGIusFyf17NENeBtKLHGjsZmASYO5tNrqzW0yFj9wF8XAKSEziAEozuJgUrTR7CxzcMm4FHxFZW-QP2jWZXQ8ch91LbVTnwY"/>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Sarah Jenkins</span>
+</div>
+</div>
+</div>
+<!-- XXL Amount Input -->
+<div class="py-8 border-y border-slate-100 dark:border-slate-800 flex flex-col items-center">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Transfer Amount</label>
+<div class="flex items-baseline gap-2 group">
+<span class="text-4xl font-light text-slate-400 group-focus-within:text-primary transition-colors">€</span>
+<input class="text-6xl font-bold text-center bg-transparent border-none focus:ring-0 p-0 text-slate-900 dark:text-white w-full max-w-xs" placeholder="0.00" type="text" value="0.00"/>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">+€50</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">+€100</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">+€500</button>
+</div>
+</div>
+<!-- Options Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Date</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-icons text-slate-400 text-sm">calendar_today</span>
+<input class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 rounded-lg text-sm" type="text" value="Today, Oct 24"/>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Frequency</label>
+<div class="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+<button class="flex-1 py-2 text-xs font-bold rounded-md bg-white dark:bg-slate-700 shadow-sm text-primary">One-time</button>
+<button class="flex-1 py-2 text-xs font-bold rounded-md text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">Recurring</button>
+</div>
+</div>
+<div class="md:col-span-2 space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Reason / Reference</label>
+<textarea class="w-full p-4 bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 rounded-lg text-sm resize-none focus:ring-primary focus:border-primary" placeholder="What's this for?" rows="2"></textarea>
+</div>
+</div>
+<!-- Toggle and Estimates -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4">
+<label class="flex items-center cursor-pointer group">
+<div class="relative">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-slate-200 dark:bg-slate-700 rounded-full peer peer-checked:bg-primary transition-colors"></div>
+<div class="dot absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform peer-checked:translate-x-5"></div>
+</div>
+<span class="ml-3 text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Save as favorite beneficiary</span>
+</label>
+<div class="flex gap-6 text-xs font-medium">
+<div class="flex flex-col">
+<span class="text-slate-400 uppercase">Est. Fee</span>
+<span class="text-slate-900 dark:text-white">€0.00</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 uppercase">Processing</span>
+<span class="text-primary font-bold">Instant (SEPA)</span>
+</div>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
+<span class="material-icons text-xl">send</span>
+                                Make Transfer
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Summary Card -->
+<div class="bg-primary p-6 rounded-lg text-white shadow-xl shadow-primary/20 relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<h3 class="text-sm font-bold uppercase tracking-widest opacity-80 mb-6">Real-time Summary</h3>
+<div class="space-y-4 relative z-10">
+<div class="flex justify-between items-center">
+<span class="text-white/70 text-sm">Recipient</span>
+<span class="font-semibold">Sarah Jenkins</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-white/70 text-sm">Amount</span>
+<span class="font-bold text-xl">€0.00</span>
+</div>
+<div class="pt-4 border-t border-white/20">
+<div class="flex justify-between items-center">
+<span class="text-white/70 text-sm">New Balance</span>
+<span class="font-semibold">€12,450.80</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Favorite Beneficiaries -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-lg border border-slate-200 dark:border-primary/10 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Favorites</h3>
+<button class="text-primary text-xs font-bold hover:underline">See all</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2 custom-scrollbar">
+<button class="flex-shrink-0 flex flex-col items-center gap-2 group">
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:border-primary group-hover:text-primary transition-all">
+<span class="material-icons">add</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Add</span>
+</button>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
+<img alt="Contact" class="w-12 h-12 rounded-full ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="Portrait of a smiling male contact" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1pV2I1fHZXdd6zdLTjTUvDO6ivfxWO-hy3NcCD79BRzEDUgarN8OBpY76JTD136Nqo3HfIZ8_sCHa0VSLRd4HD7sg8_DRJZP60rQgpQuoYiZ9tkxL8uZRILK5eNJgYfNycMqIu-J_5mAG2zujhc1HatN18hCV5nF-mgpKvqX3bQPFlYpXnWHb0L_T9BLLVsbwTStLCObO6J3xYyxfIhJXQWXg8M6BH9-06PamtaDTYAnOqxBoVCao_nqxpkgy9qUh3ikYmZPYu2c"/>
+<span class="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Marcus</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
+<img alt="Contact" class="w-12 h-12 rounded-full ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="Portrait of a professional woman contact" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq9uRoS3Ur9MQ5lx_C8rwz2OEnmG2C_pKrrI68of1dmhMfWXR7GqhkwlpQC7AFxadbFtThZFWM2viLyVdeFhh4O94z7EREeBkeaoBt7zKs38Y_6LZAtHkOUX0ramXiAQlffDXZB8owHY9l_1T6kY00DSwFeDEaXcrUgUuDYjR8YxxAMRWEEQNUQDMGZNDTgZUFCHBroY747YhrWBWF05rXDA8lYe6C691snRIkRvwQeLXyhf86RcX22Yaj7WKtEZuYqniKdPerXYo"/>
+<span class="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Elena</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
+<img alt="Contact" class="w-12 h-12 rounded-full ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="Portrait of a young male contact" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4tST3EoeiVcaXCiXLRQdxWvOQxiP22UBJ_7q0_Gi58UgqVA3aCwB3ci9osUSgo8B1c9LpX6xPAG3npR3u2ykI_yFXR542JTYNlWvZudA4hXMCkjZ2w43u4BhGJXdMuP8vJdbjIo0L_wGUtlSxbqPB_YbgTwPpTuxMdSRQmoOW5I50TboxHIyEdm1UbEhVe7nSb08d9COqC2n6ZK7c7z0IS5p6L9AdAkuR2wP8wlQxQ1ev1lp6evQJbsNOO2fRkWP1fwBAfGdl7Cg"/>
+<span class="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Julian</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 font-bold group-hover:bg-primary/10 group-hover:text-primary transition-all">JD</div>
+<span class="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">John D.</span>
+</div>
+</div>
+</div>
+<!-- Recent Transfers -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-lg border border-slate-200 dark:border-primary/10 shadow-sm">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-6">Recent Activity</h3>
+<div class="space-y-5">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600">
+<span class="material-icons text-xl">check_circle_outline</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Spotify Premium</p>
+<p class="text-[10px] text-slate-400 uppercase font-medium">Yesterday, 14:20</p>
+</div>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">-€9.99</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-green-50 dark:bg-green-900/20 flex items-center justify-center text-green-600">
+<span class="material-icons text-xl">check_circle_outline</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Rent Payment</p>
+<p class="text-[10px] text-slate-400 uppercase font-medium">Oct 20, 09:00</p>
+</div>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">-€1,250.00</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600">
+<span class="material-icons text-xl">schedule</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Savings Vault</p>
+<p class="text-[10px] text-slate-400 uppercase font-medium">Pending</p>
+</div>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-white">-€500.00</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 text-xs font-bold text-slate-500 hover:text-primary border border-slate-100 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        Full Statement
+                    </button>
+</div>
+<!-- Limits Tracker -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-lg border border-slate-200 dark:border-primary/10 shadow-sm">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Transfer Limits</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-500 font-medium">Daily Limit</span>
+<span class="text-slate-900 dark:text-white font-bold">€3,500 / €10,000</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 35%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-500 font-medium">Monthly Limit</span>
+<span class="text-slate-900 dark:text-white font-bold">€12,200 / €50,000</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full opacity-60 transition-all duration-1000" style="width: 24.4%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="p-5 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/10">
+<div class="flex gap-3">
+<span class="material-icons text-primary text-sm mt-0.5">info</span>
+<p class="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400">
+                            Transfers made before 4:00 PM CET are processed on the same business day. International transfers may take 1-3 business days.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer for context -->
+<footer class="mt-12 py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 opacity-50">
+<div class="w-6 h-6 bg-slate-400 rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">account_balance</span>
+</div>
+<span class="text-sm font-bold tracking-tight text-slate-900 dark:text-white uppercase">NexusBank</span>
+</div>
+<div class="flex gap-8 text-xs font-bold text-slate-400 uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Security</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<p class="text-[10px] text-slate-400 font-medium">© 2024 Nexus Financial Group. Member FDIC.</p>
+</div>
+</footer>
+</body></html>

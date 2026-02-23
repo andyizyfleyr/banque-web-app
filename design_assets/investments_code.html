@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Investment Portfolio | Market Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e63746",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a0d0e",
+                        "navy": "#1D3557",
+                        "charcoal": "#2B2D42",
+                        "surface": "#211112",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(230, 55, 70, 0.1) 0%, rgba(230, 55, 70, 0) 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e6374633;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Header Navigation -->
+<nav class="sticky top-0 z-50 border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-icons text-white">account_balance_wallet</span>
+</div>
+<span class="text-2xl font-bold tracking-tight">VISTA<span class="text-primary">CAPITAL</span></span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-primary font-semibold border-b-2 border-primary py-7" href="#">Portfolio</a>
+<a class="text-slate-500 hover:text-primary transition-colors py-7" href="#">Markets</a>
+<a class="text-slate-500 hover:text-primary transition-colors py-7" href="#">Analysis</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary/20 p-0.5 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2_BFmR07qifDKKJ4343Rp-Z3gdBeVlOIinjCUsRhtc8Tg517yVQMHBpJIJgPSAaxRy1zpqupDpTirDh9DDm1AQ311T-V87g1Twm2K0RQkg4YS-Uxy9q-kpebkYCyqp2d6XlN4Wq-bxy7SzRJpgk9wzPIxD9MGdVBiLwhI6JSetll07SV4TzrSOCv2CVb3xrVSW6_qlu3ym4ulkgwltBjE1neL-1lIxa4ofwV6eY3woz7BEC-9alVNwbJ6u2_knvlQoy1AOTvWJ4g"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Top Section: Hero Value & Performance -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<!-- Portfolio Overview Card -->
+<div class="lg:col-span-1 bg-white dark:bg-surface border border-primary/5 p-8 rounded-xl shadow-xl shadow-black/5 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-slate-500 dark:text-slate-400 font-medium">Total Portfolio Value</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Live Updates</span>
+</div>
+<h1 class="text-5xl font-extrabold mb-2 tracking-tight">$842,591<span class="text-2xl text-slate-400">.42</span></h1>
+<div class="flex items-center gap-2 mb-8">
+<div class="flex items-center text-emerald-500 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-lg">
+<span class="material-icons text-sm mr-1">trending_up</span>
+<span>+4.2%</span>
+</div>
+<span class="text-slate-500 text-sm">+$34,102.12 (24h)</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full transition-all shadow-lg shadow-primary/20">Invest More</button>
+<button class="bg-primary/10 hover:bg-primary/20 text-primary font-bold py-4 rounded-full transition-all">Withdraw</button>
+</div>
+</div>
+<!-- Main Performance Chart -->
+<div class="lg:col-span-2 bg-white dark:bg-surface border border-primary/5 p-8 rounded-xl shadow-xl shadow-black/5">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<h3 class="text-xl font-bold">Performance Analytics</h3>
+<div class="flex bg-slate-100 dark:bg-background-dark/50 p-1 rounded-full border border-primary/5">
+<button class="px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500 hover:text-primary">1D</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500 hover:text-primary">1W</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-md">1M</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500 hover:text-primary">1Y</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-bold transition-all text-slate-500 hover:text-primary">ALL</button>
+</div>
+</div>
+<div class="h-64 relative">
+<!-- Placeholder for Chart -->
+<div class="absolute inset-0 flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 100">
+<path d="M0,80 Q100,60 200,75 T400,40 T600,20 T800,45 T1000,10" fill="none" stroke="#e63746" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,80 Q100,60 200,75 T400,40 T600,20 T800,45 T1000,10 V100 H0 Z" fill="url(#chartGradient)" opacity="0.1"></path>
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#e63746;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#e63746;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Chart Grid Lines -->
+<div class="absolute inset-0 grid grid-cols-5 gap-0 opacity-5 pointer-events-none">
+<div class="border-r border-slate-500"></div>
+<div class="border-r border-slate-500"></div>
+<div class="border-r border-slate-500"></div>
+<div class="border-r border-slate-500"></div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full flex justify-between px-2 pt-4 text-[10px] uppercase font-bold text-slate-500 tracking-widest">
+<span>May 01</span>
+<span>May 08</span>
+<span>May 15</span>
+<span>May 22</span>
+<span>May 30</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Section: Allocation & Trending -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+<!-- Asset Allocation -->
+<div class="lg:col-span-1 bg-white dark:bg-surface border border-primary/5 p-6 rounded-xl shadow-xl shadow-black/5">
+<h3 class="text-lg font-bold mb-6">Asset Allocation</h3>
+<div class="relative flex justify-center items-center mb-6">
+<!-- Donut Chart -->
+<div class="w-40 h-40 rounded-full border-[16px] border-primary/10 flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border-[16px] border-primary border-t-transparent border-l-transparent transform -rotate-45"></div>
+<div class="absolute inset-0 rounded-full border-[16px] border-navy border-b-transparent border-r-transparent border-t-transparent transform rotate-12"></div>
+<div class="text-center">
+<span class="block text-2xl font-bold">4</span>
+<span class="block text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Asset Types</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-slate-500">Stocks</span>
+</div>
+<span class="font-bold">65%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-navy"></div>
+<span class="text-slate-500">Crypto</span>
+</div>
+<span class="font-bold">20%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-charcoal"></div>
+<span class="text-slate-500">Bonds</span>
+</div>
+<span class="font-bold">10%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-slate-400"></div>
+<span class="text-slate-500">Cash</span>
+</div>
+<span class="font-bold">5%</span>
+</div>
+</div>
+</div>
+<!-- Trending Assets Sparklines -->
+<div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Trending Card 1 -->
+<div class="bg-white dark:bg-surface border border-primary/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center">
+<span class="material-icons text-orange-500">currency_bitcoin</span>
+</div>
+<div>
+<h4 class="font-bold">Bitcoin</h4>
+<span class="text-xs text-slate-500 uppercase">BTC / USD</span>
+</div>
+</div>
+<span class="text-emerald-500 font-bold text-sm">+2.4%</span>
+</div>
+<div class="h-12 w-full mb-2">
+<svg class="w-full h-full" viewbox="0 0 200 40">
+<polyline fill="none" points="0,30 20,25 40,35 60,15 80,25 100,10 120,20 140,5 160,15 180,10 200,20" stroke="#10b981" stroke-width="2"></polyline>
+</svg>
+</div>
+<div class="text-xl font-extrabold">$68,241.12</div>
+</div>
+<!-- Trending Card 2 -->
+<div class="bg-white dark:bg-surface border border-primary/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+<span class="material-icons text-blue-500">apple</span>
+</div>
+<div>
+<h4 class="font-bold">Apple Inc.</h4>
+<span class="text-xs text-slate-500 uppercase">AAPL</span>
+</div>
+</div>
+<span class="text-rose-500 font-bold text-sm">-0.8%</span>
+</div>
+<div class="h-12 w-full mb-2">
+<svg class="w-full h-full" viewbox="0 0 200 40">
+<polyline fill="none" points="0,10 20,15 40,10 60,25 80,20 100,35 120,30 140,38 160,35 180,40 200,38" stroke="#e11d48" stroke-width="2"></polyline>
+</svg>
+</div>
+<div class="text-xl font-extrabold">$189.45</div>
+</div>
+<!-- Trending Card 3 -->
+<div class="bg-white dark:bg-surface border border-primary/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">electric_car</span>
+</div>
+<div>
+<h4 class="font-bold">Tesla</h4>
+<span class="text-xs text-slate-500 uppercase">TSLA</span>
+</div>
+</div>
+<span class="text-emerald-500 font-bold text-sm">+5.1%</span>
+</div>
+<div class="h-12 w-full mb-2">
+<svg class="w-full h-full" viewbox="0 0 200 40">
+<polyline fill="none" points="0,35 20,32 40,28 60,30 80,20 100,18 120,10 140,12 160,5 180,8 200,2" stroke="#10b981" stroke-width="2"></polyline>
+</svg>
+</div>
+<div class="text-xl font-extrabold">$174.22</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Holdings & News -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Holdings Table -->
+<div class="xl:col-span-2 bg-white dark:bg-surface border border-primary/5 rounded-xl shadow-xl shadow-black/5 overflow-hidden">
+<div class="p-6 border-b border-primary/5 flex justify-between items-center">
+<h3 class="text-xl font-bold">Your Holdings</h3>
+<div class="flex gap-2">
+<button class="text-slate-400 hover:text-primary p-2 transition-colors"><span class="material-icons">filter_list</span></button>
+<button class="text-slate-400 hover:text-primary p-2 transition-colors"><span class="material-icons">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-background-dark/30 text-slate-500 text-[10px] uppercase font-bold tracking-widest">
+<tr>
+<th class="px-6 py-4">Asset</th>
+<th class="px-6 py-4">Quantity</th>
+<th class="px-6 py-4">Avg Cost</th>
+<th class="px-6 py-4">Price</th>
+<th class="px-6 py-4">Returns</th>
+<th class="px-6 py-4">Allocation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<!-- Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">show_chart</span>
+</div>
+<div>
+<div class="font-bold">S&amp;P 500 ETF</div>
+<div class="text-xs text-slate-500 uppercase">VOO</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-sm">450.25</td>
+<td class="px-6 py-4 text-slate-500 text-sm">$392.10</td>
+<td class="px-6 py-4 font-bold text-sm">$458.12</td>
+<td class="px-6 py-4">
+<div class="text-emerald-500 font-bold text-sm">+$29,720</div>
+<div class="text-emerald-500 text-[10px] font-bold">+16.8%</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[42%]"></div>
+</div>
+<div class="text-[10px] mt-1 text-slate-500 font-bold uppercase">42% weight</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-navy/10 flex items-center justify-center text-navy group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">currency_bitcoin</span>
+</div>
+<div>
+<div class="font-bold">Bitcoin</div>
+<div class="text-xs text-slate-500 uppercase">BTC</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-sm">2.410</td>
+<td class="px-6 py-4 text-slate-500 text-sm">$28,500.00</td>
+<td class="px-6 py-4 font-bold text-sm">$68,241.12</td>
+<td class="px-6 py-4">
+<div class="text-emerald-500 font-bold text-sm">+$95,771</div>
+<div class="text-emerald-500 text-[10px] font-bold">+139.4%</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-navy h-full w-[20%]"></div>
+</div>
+<div class="text-[10px] mt-1 text-slate-500 font-bold uppercase">20% weight</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-charcoal/10 flex items-center justify-center text-charcoal group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">apartment</span>
+</div>
+<div>
+<div class="font-bold">Realty Income</div>
+<div class="text-xs text-slate-500 uppercase">O</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-medium text-sm">820.00</td>
+<td class="px-6 py-4 text-slate-500 text-sm">$62.45</td>
+<td class="px-6 py-4 font-bold text-sm">$54.12</td>
+<td class="px-6 py-4">
+<div class="text-rose-500 font-bold text-sm">-$6,830</div>
+<div class="text-rose-500 text-[10px] font-bold">-13.3%</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-charcoal h-full w-[15%]"></div>
+</div>
+<div class="text-[10px] mt-1 text-slate-500 font-bold uppercase">15% weight</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Financial News Feed -->
+<div class="xl:col-span-1 flex flex-col gap-6">
+<div class="bg-white dark:bg-surface border border-primary/5 rounded-xl shadow-xl shadow-black/5 overflow-hidden flex flex-col h-full">
+<div class="p-6 border-b border-primary/5">
+<h3 class="text-xl font-bold">Financial Insights</h3>
+</div>
+<div class="p-2 overflow-y-auto custom-scrollbar flex-grow">
+<!-- News Article 1 -->
+<div class="p-4 hover:bg-primary/5 rounded-xl transition-colors group cursor-pointer">
+<div class="flex gap-4 items-start">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Stock market electronic display screens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU-Th88FZnqDYJwtcROULTA20ekb3Ek_HCNVkwi-vm6bQgBEPQaw4qgWx4vZSJHJ0id9W1vgGMdu8OVa1TWr2Sf7uCDqxoRlGjxx0d9ShAjqk2JaWUVbZqv3eZaV-Yd1J5Ey9qeP5CHV7O0hsa4_TMAzohhzLXqO8hnPypy3_fIR700trkI8hqW5kKyevrztTDv_0z_9cvNJ2yR1Z5IhoYd_e2MNiUblCfZ9IxNlY0EYYSSz9bat1llFYOmY79qkZRiHwF6Uva8rQ"/>
+</div>
+<div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Market Watch</span>
+<h4 class="font-bold text-sm leading-tight mb-2 group-hover:text-primary transition-colors">Federal Reserve hints at potential rate cuts in late Q3.</h4>
+<span class="text-xs text-slate-500">2 hours ago • 5 min read</span>
+</div>
+</div>
+</div>
+<!-- News Article 2 -->
+<div class="p-4 hover:bg-primary/5 rounded-xl transition-colors group cursor-pointer">
+<div class="flex gap-4 items-start">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Futuristic digital city with high rise buildings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-L7vheKR590W7SDf8f3lH2SQHBwGKsN3K5QYzAZj3de29DrBE-MyvhV0Qg8KF9KujsCaAsnttOcBdbo8ecUOKYgkleW7WAxTfbi5o26xuCcicv_gOooqsWUsOzzGpfuXxo8nxwm5_vklDHnB2aynfCzlqIaWgH7t5fKWncUIkHjm69n4bRk8eTEVdK1fIaT95_EdvSrAEeiO3JVEUsHt0QlAMFCv8UOfy0qTePadfSIOA72MQMHzGSe_klOdmJfQYkXPcwKdKHjU"/>
+</div>
+<div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Tech Trends</span>
+<h4 class="font-bold text-sm leading-tight mb-2 group-hover:text-primary transition-colors">AI hardware demand pushes semiconductor stocks to all-time highs.</h4>
+<span class="text-xs text-slate-500">5 hours ago • 4 min read</span>
+</div>
+</div>
+</div>
+<!-- News Article 3 -->
+<div class="p-4 hover:bg-primary/5 rounded-xl transition-colors group cursor-pointer">
+<div class="flex gap-4 items-start">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cryptocurrency coins lying on electronic surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp2qccs0ubep57yXfEngN-xw3NNBjckUHb2_oaCfeGzEGkENnCZB_Df5JXXxAFC2TKnl6o_34wA3dTZlQMGpjrkZn8S6iqTWjm9WBBWeUvzssyimxtVxnfQIgiKmz0c82gA6zEKeSwBGUrzJ-4x_WtSRwnEaM6pv6m70AMOyvIrwSN2W5bZ26z8LDX7HieBnNBuQd3QshXLgY0oB07FEgvpb25IUCZru_vRh0pnd1zCv-67MFlniLOq1gZjQxeLSuaiyJ_kq5lZcc"/>
+</div>
+<div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Crypto Hub</span>
+<h4 class="font-bold text-sm leading-tight mb-2 group-hover:text-primary transition-colors">Institutional Bitcoin ETF inflows surpass $20B milestones.</h4>
+<span class="text-xs text-slate-500">8 hours ago • 6 min read</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-primary/5">
+<button class="w-full py-3 text-sm font-bold border border-primary/20 rounded-full hover:bg-primary hover:text-white transition-all">View All News Feed</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Action Bar (Mobile Only Style hidden on Desktop) -->
+<div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-primary/20 px-8 py-4 rounded-full shadow-2xl flex gap-8 items-center z-50">
+<span class="material-icons text-primary">pie_chart</span>
+<span class="material-icons text-slate-500">bar_chart</span>
+<span class="material-icons text-slate-500">settings</span>
+</div>
+</body></html>

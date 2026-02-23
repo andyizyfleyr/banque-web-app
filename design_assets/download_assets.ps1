@@ -1,0 +1,26 @@
+$assets = @(
+    @{ Name="investments"; Img="https://lh3.googleusercontent.com/aida/AOfcidWpFU4Bf-f3NHnE_jDcf82xCTYfSdKNekyMgYpkDXE5Y573Fnn0x8aRs6vJiPi4K8LRvsZUf2S4-yiVyRdUINyi3sY27zh3xZlhaL4otqdg4D36l3-kexqH1cCtfLh_ZEWRaWMkUXZG5XQIQ3qkAh5MQqbarF2UkiSNroAh7zorqY9eQEgKYMXN9Pwd3vlsaEn3Y5L2KnbO0e8Jsf-Cl-gDyJrm8lSOk3gWlqpg_2ojO6UAgsSFfva_KlA"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2VkYzM4ODg3Nzk1NzRiZWU4ZTgxMWFhN2QxYThiZTQxEgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="savings"; Img="https://lh3.googleusercontent.com/aida/AOfcidXd1rE7zPJ2JFx-gjohHQ36PFiCLzxVs9AF4rF-Wr1sp_JvRDG5SSBgMDc3_X5xLstSM1Oq1YLjGt3afM5-G-GYzJ4SGQN-QRNgKvbH2d0_xfwWkEBO6uWNwhp-8yUMt-Pxy2Bo9bnPESg5SuJ0dU8CcC7Sz5WSHi7QA1xB5eV4YyQRyFIo2glIcf9vM_JqD1_avnBer3XZ7A23aMFE4UBXtPbVlMiJ0d9XCJjBBfukCejzrugyyIM_EVg"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2I4YjM3NDA5MmQ4ZjQ4Yzk5N2Q0MDU0MTQ4OGEyYmMzEgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="transactions"; Img="https://lh3.googleusercontent.com/aida/AOfcidUaIUgvd7CCnq6zI6vRiwI9vTN0bakExJnTCF0hKpoL0dDWqQjvXwEGjeAsKev_JSQpJf5rQ7LZS8EUyuz45s4bKRdKBcyaaOYZsto8oG6LK_HfSd4P_U0DEs1Api2YVXe6XPIosqAooeo3E0oENbORtRHLR_1cHyFQvgcJJNgdPA3xU0D4P3P82h_DXsYlpjopY-VPs4aCTB2y1Oxiw6v6mk9LRxOMnP2uVo8wPbN7ZcWqtbJymkHqQI4"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzJjOTA4YjIxNzIyNjQ2MmViODJlNzM5YTg5MmE3MWNlEgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="loans"; Img="https://lh3.googleusercontent.com/aida/AOfcidWhIVtxtuq3nyPbY-w3cW8hN5c4kXf0SRNDJf8HfbsjzI86h6it1WDqHo7aLajvF-_tpNnEBFTmM-nuDQ05I0FhjqEOU5871NBhtiapTv1mIxmj6KTyY8YnT_rA7333O-yWoSMRmDbIvcq9MC9pRDMMTd25jGGMPvIdNr1wBpBUqdINj8osucUJ_wwCj5pEWxRiPvKp1CE8eKC79ZhFv7baimvmM5MdvvQhrfr87jJTk_nhpOFZnIo1xJQ"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QwMWNkMGZlZDIyMTQ5NDA4YTY4ZjdiMDBhOTc1NWVkEgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="dashboard"; Img="https://lh3.googleusercontent.com/aida/AOfcidUflCezs_53Zn4wqfnuwOV-VHFhJG7ZnnTHCjIxP9H9g01yd5d3yaHU9uMhydDNQESLh4TH0_kgHZOwynkcsFNU4rRg5_c3HB_qeVJrIvs37vyq8G8jbxqlu2qvaZqmc525hqugJMrQ5gRXFF80Fzh2icaZ9OoPKZ763U2tE5mmekl2IhBzF9BbStmKnh1wTbBQSoTHyiFsagE_arDUz6PIX0Jiklm1MbwS_NTdkT_-cgge49MaHfHXBig"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2RmNTY0NjNlNWQ4YjQwNGU4YjNkOTBhYTAyNzcwMjcxEgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="transfers"; Img="https://lh3.googleusercontent.com/aida/AOfcidWGI1ps7zaHr3GYtRjUcivZxGsQTMf4vOsjX25mvXXGu0DLfxEicwZ84Zozq9Qs8tdBWx5nsXRLoVAT16QNonkmQCut1hpW4dx5bqrXVY5PeezWUU9UcCgZteutTCExL7m5r6qnGwd7_fzLamwPcn7mNacdukOEBBTTnVD7TkSCbYF-GjNVYzT8wbRpD2reZFw3DsiZNgJg9EiSbVNGl7yCDrbBZvG_C1NKs56D7G-I_IOS2Zgzou35luk"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2YxMTYxNDcyMmQzZDQ5NTk4ZDU2MDdmMWFlZjg0OWI0EgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="cards"; Img="https://lh3.googleusercontent.com/aida/AOfcidU_BoXBNdqe2RRPUnUG-A9P7D1Nw7wyPehYKiiCFDk0ez9137ZkBU5Ql21Ad1wstbJ0AZvyNMznOHORhFmRxM3adlEBmf6AUpUYj2INSL5IJ7S9OYiP9Zpiq72H5WkY3srCfPy5zSS0eV3ML69NIpqZ5SfnBZwONjNow2SCDOhJm1d8qz7HpeybJY4hCTXnOWiIFO1rwiI8eE1FkJIps2EX8Wg926Ff0lWGwr5-j6PtD8xKAreo3Lembg"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzc0MDRmYWUzNmE3YTRmYjNhNjBjZWJjNzllMGJmMjQ2EgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" },
+    @{ Name="profile"; Img="https://lh3.googleusercontent.com/aida/AOfcidWomFO8KaI2OYPk27h_5IQgFQ7OwQiCjhbyWxqehnMzLyd29nShAizdWkhXbc5aZHuZ7kUltHTG8nlBD5BOWg-wgMm9oVGRGLK6LxgHEb-Dxg-6JbvLN_sYZZopuaxuQgD302VQaA4w9EfFxzfAXqnZC-cZy-3YBrVpHWwLwFNJl_-p3lXRhXrHero0W25CufNY8n0m_ogOpCnezT5aHo91NC-QIYtN5btWBfNRUIWlPj203PtRviq7QYM"; Html="https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2RlMmMxYzU3MGVjZTQzMDE5MjBhMDU3NGFjZDk4YjM2EgsSBxCputq-nAoYAZIBIwoKcHJvamVjdF9pZBIVQhM4MTMyNDA3MzIzODU2MTA4NDI2&filename=&opi=96797242" }
+)
+
+foreach ($asset in $assets) {
+    Write-Host "Processing $($asset.Name)..."
+    
+    # Download Screenshot
+    $imgFile = "$($asset.Name)_screenshot.png"
+    Write-Host "  Downloading image..."
+    curl.exe -L $asset.Img -o $imgFile
+    
+    # Download HTML
+    $htmlFile = "$($asset.Name)_code.html"
+    Write-Host "  Downloading HTML..."
+    curl.exe -L $asset.Html -o $htmlFile
+}
+
+Write-Host "All downloads complete."

@@ -1,0 +1,14 @@
+"use client";
+import { useState, useEffect } from 'react';
+
+export default function SafeHydration({ children }) {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) return null;
+
+    return <>{children}</>;
+}

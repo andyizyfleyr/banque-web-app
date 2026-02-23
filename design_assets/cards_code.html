@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Card Management and Security Controls</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e63746",
+                        "navy": "#1d3557",
+                        "charcoal": "#2b2d42",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#211112",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .card-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-charcoal dark:text-gray-100 min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-navy/10 dark:border-primary/20">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white">account_balance</span>
+</div>
+<span class="text-xl font-bold text-navy dark:text-white uppercase tracking-tight">ApexBank</span>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-navy/70 dark:text-gray-400 hover:text-primary transition-colors font-medium" href="#">Accounts</a>
+<a class="text-navy/70 dark:text-gray-400 hover:text-primary transition-colors font-medium" href="#">Transfers</a>
+<a class="text-primary font-semibold" href="#">Cards</a>
+<a class="text-navy/70 dark:text-gray-400 hover:text-primary transition-colors font-medium" href="#">Wealth</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-navy/70 dark:text-gray-400">
+<span class="material-icons">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-navy/10 flex items-center justify-center overflow-hidden border border-navy/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8KrJ1PpWtvZWDkarYKEV_ES6NVyAtF4ZrFyfpN-cRlnHr99M4gbGvQp3q6UdLDYRy77gGMKe72da73D8RxAmVKiiqBDlEeMD7HwAwOI9g3AxNdvPzwYS3s_hBs7h4ynnzvwb2p94KxkPUdlYb76MUaXIhpxHHXG1vYuB-_TBke3J-ThzlDufItMwNDQPGMAzRSesrOeZsFRSYX_pAAKjtHgPqVzGySxvoYaud7h_mtLUXaNmX4pj4xh2PvcHxKWT8UP60FOZ6pyM"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-10">
+<!-- Top Section: 3D Card Carousel -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-bold text-navy dark:text-white">Card Management</h1>
+<p class="text-navy/60 dark:text-gray-400 mt-1">Manage your active cards and security settings</p>
+</div>
+<button class="flex items-center gap-2 text-primary font-semibold hover:underline">
+<span class="material-icons text-sm">add_circle</span>
+                    Order New Card
+                </button>
+</div>
+<div class="flex overflow-x-auto gap-8 pb-10 no-scrollbar snap-x snap-mandatory px-4">
+<!-- Gold Physical Card -->
+<div class="flex-shrink-0 w-[400px] snap-center">
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative h-60 w-full rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-200 to-yellow-600 p-6 flex flex-col justify-between shadow-2xl transition-transform hover:-translate-y-2 border border-white/30">
+<div class="flex justify-between items-start">
+<span class="material-icons text-navy/80 text-4xl">contactless</span>
+<div class="bg-green-500/20 backdrop-blur-sm border border-green-500/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest">Active</div>
+</div>
+<div class="space-y-4">
+<div class="text-navy text-xl font-mono tracking-widest">**** **** **** 8829</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase text-navy/60 font-bold">Card Holder</p>
+<p class="text-sm font-semibold text-navy uppercase">Alexander Vance</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase text-navy/60 font-bold">Expires</p>
+<p class="text-sm font-semibold text-navy">09/27</p>
+</div>
+<div class="w-12 h-8 bg-white/20 rounded-md flex items-center justify-center font-bold text-navy/40 italic">VISA</div>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center mt-4 font-bold text-navy dark:text-white">Preferred Gold Visa</p>
+</div>
+<!-- Black Physical Card -->
+<div class="flex-shrink-0 w-[400px] snap-center">
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gradient-to-r from-charcoal to-navy rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative h-60 w-full rounded-xl bg-gradient-to-br from-charcoal via-navy to-black p-6 flex flex-col justify-between shadow-2xl transition-transform hover:-translate-y-2 border border-white/10">
+<div class="flex justify-between items-start">
+<span class="material-icons text-white/80 text-4xl">contactless</span>
+<div class="bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 text-orange-400 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest">In Transit</div>
+</div>
+<div class="space-y-4 text-white">
+<div class="text-xl font-mono tracking-widest">**** **** **** 0042</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase text-white/50 font-bold">Card Holder</p>
+<p class="text-sm font-semibold uppercase">Alexander Vance</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase text-white/50 font-bold">Expires</p>
+<p class="text-sm font-semibold">11/29</p>
+</div>
+<div class="w-12 h-8 bg-white/10 rounded-md flex items-center justify-center font-bold text-white/40 italic">MC</div>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center mt-4 font-bold text-navy dark:text-white">Private World Elite</p>
+</div>
+<!-- Red Virtual Card -->
+<div class="flex-shrink-0 w-[400px] snap-center">
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-rose-700 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative h-60 w-full rounded-xl bg-gradient-to-br from-primary to-rose-700 p-6 flex flex-col justify-between shadow-2xl transition-transform hover:-translate-y-2 border border-white/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="material-icons text-white/80 text-4xl">cloud</span>
+<span class="text-[10px] text-white/80 font-bold tracking-widest uppercase">Virtual Only</span>
+</div>
+<div class="bg-red-500/40 backdrop-blur-sm border border-white/30 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest">Blocked</div>
+</div>
+<div class="space-y-4 text-white">
+<div class="text-xl font-mono tracking-widest">**** **** **** 5510</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase text-white/70 font-bold">Digital ID</p>
+<p class="text-sm font-semibold uppercase">Online Spending Card</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase text-white/70 font-bold">CVV</p>
+<p class="text-sm font-semibold">***</p>
+</div>
+<div class="w-12 h-8 bg-white/10 rounded-md flex items-center justify-center font-bold text-white/60 italic">VISA</div>
+</div>
+</div>
+</div>
+</div>
+<p class="text-center mt-4 font-bold text-navy dark:text-white">E-Commerce Virtual</p>
+</div>
+</div>
+</section>
+<!-- Quick Actions Horizontal Array -->
+<section class="mb-12">
+<div class="bg-white dark:bg-charcoal/30 rounded-xl p-4 flex flex-wrap gap-4 items-center justify-around shadow-sm border border-navy/5 dark:border-white/5">
+<button class="flex-1 min-w-[150px] group flex items-center justify-center gap-3 py-4 rounded-lg bg-red-50 dark:bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all duration-300">
+<span class="material-icons">block</span>
+<span class="font-bold">Block Temporarily</span>
+<div class="w-8 h-4 bg-gray-300 rounded-full relative ml-2 group-hover:bg-white/30 transition-colors">
+<div class="absolute left-1 top-1 w-2 h-2 bg-white rounded-full"></div>
+</div>
+</button>
+<button class="flex-1 min-w-[150px] flex items-center justify-center gap-3 py-4 rounded-lg bg-navy/5 dark:bg-white/5 text-navy dark:text-white hover:bg-navy hover:text-white transition-all duration-300">
+<span class="material-icons">lock_open</span>
+<span class="font-bold">Change PIN</span>
+</button>
+<button class="flex-1 min-w-[150px] flex items-center justify-center gap-3 py-4 rounded-lg bg-navy/5 dark:bg-white/5 text-navy dark:text-white hover:bg-navy hover:text-white transition-all duration-300">
+<span class="material-icons">autorenew</span>
+<span class="font-bold">Order Replacement</span>
+</button>
+<button class="flex-1 min-w-[150px] flex items-center justify-center gap-3 py-4 rounded-lg bg-navy/5 dark:bg-white/5 text-navy dark:text-white hover:bg-navy hover:text-white transition-all duration-300">
+<span class="material-icons">visibility</span>
+<span class="font-bold">View Details</span>
+</button>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Card Controls -->
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white dark:bg-charcoal/30 rounded-xl p-8 shadow-sm border border-navy/5 dark:border-white/5">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-6 flex items-center gap-2">
+<span class="material-icons text-primary">security</span>
+                        Card Controls
+                    </h2>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-white/5">
+<div>
+<p class="font-bold text-navy dark:text-white">Contactless Payments</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Enable NFC for physical terminals</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-white/5">
+<div>
+<p class="font-bold text-navy dark:text-white">International Payments</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Transactions outside home country</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-white/5">
+<div>
+<p class="font-bold text-navy dark:text-white">Online Transactions</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Use card for web-based purchases</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-white/5">
+<div>
+<p class="font-bold text-navy dark:text-white">ATM Withdrawals</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Cash machine access</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Spending Limits Sliders -->
+<div class="bg-white dark:bg-charcoal/30 rounded-xl p-8 shadow-sm border border-navy/5 dark:border-white/5">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-8 flex items-center justify-between">
+<span class="flex items-center gap-2">
+<span class="material-icons text-primary">analytics</span>
+                            Spending Limits
+                        </span>
+<span class="text-xs font-medium text-navy/40 dark:text-white/40 uppercase tracking-widest">Adjust Sliders to Update</span>
+</h2>
+<div class="space-y-10">
+<!-- Daily Limit -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-bold text-navy dark:text-white">Daily Limit</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Spent: $1,240.00 / $2,500.00</p>
+</div>
+<span class="text-primary font-bold text-xl">$2,500</span>
+</div>
+<div class="relative h-2 w-full bg-navy/5 dark:bg-white/5 rounded-full overflow-hidden">
+<div class="absolute h-full bg-primary rounded-full" style="width: 50%;"></div>
+<div class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full top-1/2 -translate-y-1/2" style="left: 50%;"></div>
+</div>
+</div>
+<!-- Weekly Limit -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-bold text-navy dark:text-white">Weekly Limit</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Spent: $4,820.00 / $10,000.00</p>
+</div>
+<span class="text-primary font-bold text-xl">$10,000</span>
+</div>
+<div class="relative h-2 w-full bg-navy/5 dark:bg-white/5 rounded-full overflow-hidden">
+<div class="absolute h-full bg-primary rounded-full" style="width: 48%;"></div>
+<div class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full top-1/2 -translate-y-1/2" style="left: 48%;"></div>
+</div>
+</div>
+<!-- Monthly Limit -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-bold text-navy dark:text-white">Monthly Limit</p>
+<p class="text-sm text-navy/60 dark:text-gray-400">Spent: $18,300.00 / $25,000.00</p>
+</div>
+<span class="text-primary font-bold text-xl">$25,000</span>
+</div>
+<div class="relative h-2 w-full bg-navy/5 dark:bg-white/5 rounded-full overflow-hidden">
+<div class="absolute h-full bg-primary rounded-full" style="width: 73%;"></div>
+<div class="absolute h-4 w-4 bg-white border-2 border-primary rounded-full top-1/2 -translate-y-1/2" style="left: 73%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Column -->
+<div class="space-y-8">
+<!-- Advanced Settings (Checklist) -->
+<div class="bg-white dark:bg-charcoal/30 rounded-xl p-8 shadow-sm border border-navy/5 dark:border-white/5">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-6">Advanced</h2>
+<div class="space-y-6">
+<div>
+<p class="text-xs font-bold text-navy/40 dark:text-white/40 uppercase tracking-widest mb-4">Merchant Categories</p>
+<div class="space-y-3">
+<label class="flex items-center gap-3 p-3 rounded-lg bg-background-light dark:bg-white/5 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-primary border-navy/20" type="checkbox"/>
+<span class="material-icons text-navy/60 dark:text-gray-400 text-lg">restaurant</span>
+<span class="font-medium text-navy dark:text-white">Dining &amp; Bars</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-background-light dark:bg-white/5 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-primary border-navy/20" type="checkbox"/>
+<span class="material-icons text-navy/60 dark:text-gray-400 text-lg">shopping_bag</span>
+<span class="font-medium text-navy dark:text-white">Retail Stores</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-background-light dark:bg-white/5 cursor-pointer">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary border-navy/20" type="checkbox"/>
+<span class="material-icons text-navy/60 dark:text-gray-400 text-lg">movie</span>
+<span class="font-medium text-navy dark:text-white">Entertainment</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-lg bg-background-light dark:bg-white/5 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded text-primary focus:ring-primary border-navy/20" type="checkbox"/>
+<span class="material-icons text-navy/60 dark:text-gray-400 text-lg">flight</span>
+<span class="font-medium text-navy dark:text-white">Travel &amp; Flights</span>
+</label>
+</div>
+</div>
+<div class="pt-6 border-t border-navy/10 dark:border-white/10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary text-xl">notifications_active</span>
+<span class="font-bold text-navy dark:text-white">Alerts</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-xs text-navy/60 dark:text-gray-400 mt-2">Get push notifications for every transaction</p>
+</div>
+</div>
+</div>
+<!-- Recent Recurring Payments -->
+<div class="bg-white dark:bg-charcoal/30 rounded-xl p-8 shadow-sm border border-navy/5 dark:border-white/5">
+<h2 class="text-xl font-bold text-navy dark:text-white mb-6">Subscriptions</h2>
+<div class="space-y-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+<span class="material-icons text-red-600">movie</span>
+</div>
+<div>
+<p class="font-bold text-navy dark:text-white">Netflix</p>
+<p class="text-[10px] text-navy/40 dark:text-white/40 uppercase font-bold">Monthly Plan</p>
+</div>
+</div>
+<span class="font-bold text-navy dark:text-white">$15.99</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+<span class="material-icons text-green-600">music_note</span>
+</div>
+<div>
+<p class="font-bold text-navy dark:text-white">Spotify</p>
+<p class="text-[10px] text-navy/40 dark:text-white/40 uppercase font-bold">Family Premium</p>
+</div>
+</div>
+<span class="font-bold text-navy dark:text-white">$12.50</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+<span class="material-icons text-blue-600">cloud</span>
+</div>
+<div>
+<p class="font-bold text-navy dark:text-white">Adobe CC</p>
+<p class="text-[10px] text-navy/40 dark:text-white/40 uppercase font-bold">Individual</p>
+</div>
+</div>
+<span class="font-bold text-navy dark:text-white">$52.99</span>
+</div>
+<div class="flex items-center justify-between opacity-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
+<span class="material-icons text-orange-600">shopping_cart</span>
+</div>
+<div>
+<p class="font-bold text-navy dark:text-white">Amazon Prime</p>
+<p class="text-[10px] text-navy/40 dark:text-white/40 uppercase font-bold">Annual</p>
+</div>
+</div>
+<span class="font-bold text-navy dark:text-white">$139.00</span>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-lg border border-dashed border-navy/20 dark:border-white/20 text-navy/60 dark:text-white/40 font-bold text-sm hover:border-primary hover:text-primary transition-all">
+                        Manage Subscriptions
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-navy/10 dark:border-white/10 py-10 bg-white dark:bg-charcoal/30">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-navy rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">account_balance</span>
+</div>
+<span class="font-bold text-navy dark:text-white tracking-tight uppercase">ApexBank</span>
+</div>
+<div class="flex gap-8 text-sm text-navy/60 dark:text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<p class="text-sm text-navy/40 dark:text-white/20">© 2024 Apex Financial Group. Member FDIC.</p>
+</div>
+</footer>
+</body></html>

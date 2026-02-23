@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Red Banking Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#e63746",
+              "primary-dark": "#C1121F",
+              "navy": "#1D3557",
+              "navy-light": "#2B2D42",
+              "background-light": "#f8f6f6",
+              "background-dark": "#211112",
+              "neutral-bg": "#EDF2F4",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-navy-light dark:text-white/90 min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white">account_balance</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-navy dark:text-white">RED<span class="text-primary">BANK</span></span>
+</div>
+<nav class="hidden lg:flex items-center space-x-6">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="hover:text-primary transition-colors" href="#">Virements</a>
+<a class="hover:text-primary transition-colors" href="#">Prêts</a>
+<a class="hover:text-primary transition-colors" href="#">Cartes</a>
+<a class="hover:text-primary transition-colors" href="#">Épargne</a>
+<a class="hover:text-primary transition-colors" href="#">Investissements</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-primary/10 text-navy-light dark:text-white/70 relative">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full ring-2 ring-white"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 text-navy-light dark:text-white/70">
+<span class="material-icons">search</span>
+</button>
+<div class="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200 dark:border-white/10">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold">Alex Rivers</p>
+<p class="text-xs text-navy-light/60 dark:text-white/50">Premium Member</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKjgc0ybYm0eE0dEJNNwixleVCe2Y3gMbaAfqHTdGgtnDBwdkksyy3ada0capx5JoYDOe8gzxwzBtsRiCo3INKz11HjBjymg98YtwuxJ2Ra2FmcSNJaRxjvV7kp17NYjuShBb99lMx1CbqtSy2n8sZ-f3CcVFHHNsLKU-YDON_9B_aZrLyui8EC5qDbq2lRYe7-fdpqnEMa6_zDSgEZp4vEnukCBPt6C1Fqd2ae1BH7R4zp_YpxE8MgRz6J64151AQX30DbDcYvqk"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 py-8">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+<div class="lg:col-span-8 bg-gradient-to-br from-[#E63946] to-[#F77F00] rounded-xl p-8 text-white shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[280px]">
+<div class="relative z-10">
+<p class="text-white/80 font-medium mb-1">Available Balance</p>
+<h1 class="text-5xl font-bold mb-4 tracking-tight">$24,560.00</h1>
+<p class="text-sm font-mono tracking-widest text-white/70">XXXX 4590</p>
+</div>
+<div class="mt-8 flex flex-wrap gap-4 relative z-10">
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-neutral-bg transition-colors shadow-lg">
+<span class="material-icons text-sm">swap_horiz</span> Transfer
+                    </button>
+<button class="bg-primary-dark/30 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dark/50 transition-colors">
+<span class="material-icons text-sm">request_quote</span> Request
+                    </button>
+<button class="bg-primary-dark/30 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dark/50 transition-colors">
+<span class="material-icons text-sm">add</span> Add Funds
+                    </button>
+</div>
+<!-- Abstract sparkline decoration -->
+<div class="absolute bottom-0 right-0 w-1/2 opacity-30 pointer-events-none">
+<svg class="w-full" fill="none" viewbox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 120C50 110 80 140 120 100C160 60 200 110 250 80C300 50 350 70 400 20" stroke="white" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+</div>
+<div class="lg:col-span-4 grid grid-cols-1 gap-6">
+<!-- Savings Card -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm flex items-center justify-between">
+<div>
+<p class="text-sm text-navy-light/60 dark:text-white/50 font-medium">Savings</p>
+<h3 class="text-2xl font-bold text-navy dark:text-white">$12,840.12</h3>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-xs font-bold text-green-500 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded">+4.5%</span>
+<span class="text-xs text-navy-light/40 dark:text-white/30">this month</span>
+</div>
+</div>
+<div class="w-12 h-12 bg-green-100 dark:bg-green-500/20 text-green-600 rounded-full flex items-center justify-center">
+<span class="material-icons">savings</span>
+</div>
+</div>
+<!-- Investment Card -->
+<div class="bg-navy p-6 rounded-xl shadow-lg flex items-center justify-between text-white relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-white/60 text-sm font-medium">Investment Portfolio</p>
+<h3 class="text-2xl font-bold">$64,320.00</h3>
+<p class="text-xs text-primary mt-2 font-bold tracking-wide">ACTIVE PORTFOLIO</p>
+</div>
+<div class="w-12 h-12 bg-primary/20 text-primary rounded-full flex items-center justify-center relative z-10">
+<span class="material-icons">trending_up</span>
+</div>
+<!-- Subtle background pattern -->
+<div class="absolute -right-4 -bottom-4 opacity-5">
+<span class="material-icons text-9xl">insights</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Accounts Grid -->
+<section class="mb-8">
+<h2 class="text-xl font-bold mb-6 text-navy dark:text-white flex items-center gap-2">
+<span class="w-2 h-6 bg-primary rounded-full"></span> My Accounts
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Checking -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border-2 border-primary shadow-lg group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold px-3 py-1 bg-primary text-white rounded-full">CHECKING</span>
+<span class="material-icons text-navy-light/40 dark:text-white/40">more_horiz</span>
+</div>
+<p class="text-navy-light/60 dark:text-white/50 text-sm">Account Number</p>
+<p class="font-mono text-sm mb-4">4590 1209 4583 0092</p>
+<h4 class="text-3xl font-bold text-navy dark:text-white mb-1">$8,240.50</h4>
+<p class="text-sm text-gray-400">Main Account</p>
+</div>
+<!-- Secondary -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold px-3 py-1 bg-navy/10 text-navy-light dark:text-white dark:bg-white/10 rounded-full">RESERVE</span>
+<span class="material-icons text-navy-light/40 dark:text-white/40">more_horiz</span>
+</div>
+<p class="text-navy-light/60 dark:text-white/50 text-sm">Account Number</p>
+<p class="font-mono text-sm mb-4">4590 8821 3491 5562</p>
+<h4 class="text-3xl font-bold text-navy dark:text-white mb-1">$3,450.00</h4>
+<p class="text-sm text-gray-400">Shared Account</p>
+</div>
+<!-- Savings Goals -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold px-3 py-1 bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400 rounded-full">GOALS</span>
+<span class="material-icons text-navy-light/40 dark:text-white/40">more_horiz</span>
+</div>
+<p class="text-navy-light/60 dark:text-white/50 text-sm">New Tesla Model S</p>
+<div class="mt-2 mb-4">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>65% Reach</span>
+<span>$42,000 / $65,000</span>
+</div>
+<div class="w-full h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[65%] rounded-full"></div>
+</div>
+</div>
+<h4 class="text-3xl font-bold text-navy dark:text-white mb-1">$12,869.50</h4>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Side: Analytics & Transactions -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Financial Overview -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-lg font-bold">Financial Overview</h3>
+<p class="text-xs text-navy-light/60 dark:text-white/40">Your income vs expenses comparison</p>
+</div>
+<select class="bg-neutral-bg dark:bg-white/5 border-none rounded-lg text-sm px-4 py-2 outline-none">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<div class="h-64 flex items-end gap-2 px-2">
+<!-- Mockup Bar/Line Chart Container -->
+<div class="flex-1 flex flex-col justify-end gap-1 group h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[40%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[60%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">Jan</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[55%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[45%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">Feb</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[70%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[30%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">Mar</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[45%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[80%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">Apr</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[90%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[40%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">May</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full">
+<div class="flex gap-1 h-full items-end px-2">
+<div class="w-1/2 bg-primary rounded-t-sm h-[65%]"></div>
+<div class="w-1/2 bg-navy rounded-t-sm h-[55%]"></div>
+</div>
+<span class="text-[10px] text-center text-gray-400">Jun</span>
+</div>
+</div>
+<div class="flex justify-center gap-6 mt-6">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-xs font-medium">Income</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-navy rounded-full"></div>
+<span class="text-xs font-medium">Expenses</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="bg-white dark:bg-navy-light rounded-xl border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-gray-50 dark:border-white/5 flex justify-between items-center">
+<h3 class="text-lg font-bold">Recent Activity</h3>
+<button class="text-sm font-bold text-primary hover:underline">View All</button>
+</div>
+<div class="divide-y divide-gray-50 dark:divide-white/5">
+<!-- Transaction Items -->
+<div class="p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-500/20 text-orange-600 flex items-center justify-center">
+<span class="material-icons text-xl">shopping_cart</span>
+</div>
+<div>
+<p class="text-sm font-bold">Apple Store</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">24 Oct 2023 • Electronics</p>
+</div>
+</div>
+<span class="font-bold text-primary">-$1,299.00</span>
+</div>
+<div class="p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 flex items-center justify-center">
+<span class="material-icons text-xl">payments</span>
+</div>
+<div>
+<p class="text-sm font-bold">Salary Deposit</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">22 Oct 2023 • Payroll</p>
+</div>
+</div>
+<span class="font-bold text-green-500">+$6,400.00</span>
+</div>
+<div class="p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 flex items-center justify-center">
+<span class="material-icons text-xl">electric_bolt</span>
+</div>
+<div>
+<p class="text-sm font-bold">Utility Bill - Electric</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">20 Oct 2023 • Bills</p>
+</div>
+</div>
+<span class="font-bold text-primary">-$142.50</span>
+</div>
+<div class="p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-500/20 text-purple-600 flex items-center justify-center">
+<span class="material-icons text-xl">restaurant</span>
+</div>
+<div>
+<p class="text-sm font-bold">The Steakhouse</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">19 Oct 2023 • Food &amp; Drink</p>
+</div>
+</div>
+<span class="font-bold text-primary">-$86.00</span>
+</div>
+<div class="p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 flex items-center justify-center">
+<span class="material-icons text-xl">local_taxi</span>
+</div>
+<div>
+<p class="text-sm font-bold">Uber Trip</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">18 Oct 2023 • Transport</p>
+</div>
+</div>
+<span class="font-bold text-primary">-$24.20</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Donut Chart & Widgets -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Spending by Category -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm">
+<h3 class="text-lg font-bold mb-6">Spending by Category</h3>
+<div class="relative w-48 h-48 mx-auto mb-8">
+<!-- Mock Donut Chart using multiple circles/conic gradient would be complex, using simple circles -->
+<div class="w-full h-full rounded-full border-[16px] border-primary border-r-transparent border-b-transparent rotate-45"></div>
+<div class="absolute inset-0 w-full h-full rounded-full border-[16px] border-navy border-l-transparent border-t-transparent -rotate-12"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<p class="text-2xl font-bold">$4.2k</p>
+<p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Spent</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">Housing</span>
+</div>
+<span class="text-sm font-bold">45%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-navy"></div>
+<span class="text-sm font-medium">Food &amp; Drinks</span>
+</div>
+<span class="text-sm font-bold">25%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#F77F00]"></div>
+<span class="text-sm font-medium">Transport</span>
+</div>
+<span class="text-sm font-bold">15%</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Payments -->
+<div class="bg-white dark:bg-navy-light p-6 rounded-xl border border-gray-100 dark:border-white/5 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold">Upcoming</h3>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded">3 PENDING</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-neutral-bg dark:bg-white/5 flex flex-col items-center justify-center text-[10px] font-bold">
+<span class="text-primary">OCT</span>
+<span>01</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Monthly Rent</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">Home Property Inc.</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$2,100</p>
+<p class="text-[10px] text-orange-500 font-bold">AUTOPAY</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-neutral-bg dark:bg-white/5 flex flex-col items-center justify-center text-[10px] font-bold">
+<span class="text-primary">OCT</span>
+<span>05</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Netflix</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">Subscription Service</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$15.99</p>
+<p class="text-[10px] text-gray-400 font-bold">MANUAL</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-neutral-bg dark:bg-white/5 flex flex-col items-center justify-center text-[10px] font-bold">
+<span class="text-primary">OCT</span>
+<span>12</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Car Insurance</p>
+<p class="text-xs text-navy-light/50 dark:text-white/40">SafeDrive Co.</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$245.00</p>
+<p class="text-[10px] text-orange-500 font-bold">AUTOPAY</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl text-sm font-bold text-gray-400 hover:border-primary hover:text-primary transition-all">
+                        + Add Schedule
+                    </button>
+</div>
+<!-- Help/Support Ad -->
+<div class="bg-primary p-6 rounded-xl text-white relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-bold mb-2">Need a higher limit?</h4>
+<p class="text-xs text-white/80 mb-4 leading-relaxed">Upgrade to Platinum status and enjoy up to $50k daily transfers.</p>
+<button class="bg-white text-primary text-xs font-bold px-4 py-2 rounded-lg hover:shadow-lg transition-shadow">
+                            Learn More
+                        </button>
+</div>
+<span class="material-icons absolute -bottom-4 -right-4 text-white/10 text-9xl transform -rotate-12 group-hover:scale-110 transition-transform">verified_user</span>
+</div>
+</div>
+</div>
+</main>
+<footer class="max-w-7xl mx-auto px-4 py-8 mt-12 border-t border-primary/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-navy-light/40 dark:text-white/30 text-xs">
+<p>© 2023 REDBANK Financial Services. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Security</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

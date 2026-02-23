@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e63746;
+  --color-primary-red: #e63746;
+  --color-primary-dark: #C1121F;
+  --color-primary-light: #FF858D;
+  --color-navy: #1D3557;
+  --color-navy-light: #457B9D;
+  --color-charcoal: #2B2D42;
+  --color-off-white: #EDF2F4;
+  --color-mint: #06FFA5;
+  --color-orange: #F77F00;
+  --color-background-light: #f8f6f6;
+  --color-background-dark: #211112;
+  --color-success: #2D6A4F;
+
+  --font-display: 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+
+  /* Material Design Elevations */
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --elevation-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --elevation-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --elevation-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  --shadow-card: var(--elevation-1);
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-navy {
+    color: var(--color-navy);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .bg-navy {
+    background-color: var(--color-navy);
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--elevation-1);
+    padding: 1rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:active {
+    box-shadow: var(--elevation-2);
+    transform: scale(0.98);
+  }
+
+  .tap-feedback {
+    @apply active:opacity-70 transition-opacity;
+  }
+
+  .mobile-font-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .mobile-font-base {
+    @apply text-sm sm:text-base;
+  }
+}
+
+@layer base {
+  html {
+    font-size: 14px;
+  }
+
+  @screen sm {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  /* Disable auto-zoom on iOS by ensuring 16px font size for inputs */
+  input,
+  select,
+  textarea {
+    @apply text-base;
+    font-size: 16px !important;
+  }
+
+  @screen sm {
+
+    input,
+    select,
+    textarea {
+      font-size: inherit !important;
+    }
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-off-white);
+  color: var(--color-charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-primary-red);
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
