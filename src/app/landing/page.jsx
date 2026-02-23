@@ -42,13 +42,29 @@ const LandingPage = () => {
             }
         };
 
-        // Petite attente pour s'assurer que le DOM est stable
+        // Tentative de lecture automatique
         const timer = setTimeout(() => {
             attemptPlay(mobileVideoRef.current);
             attemptPlay(desktopVideoRef.current);
         }, 100);
 
-        return () => clearTimeout(timer);
+        // Hack ultime : Lancer la lecture au premier toucher de l'écran
+        // Certains navigateurs mobiles physiques exigent une interaction utilisateur
+        const handleFirstTouch = () => {
+            attemptPlay(mobileVideoRef.current);
+            attemptPlay(desktopVideoRef.current);
+            window.removeEventListener('touchstart', handleFirstTouch);
+            window.removeEventListener('click', handleFirstTouch);
+        };
+
+        window.addEventListener('touchstart', handleFirstTouch);
+        window.addEventListener('click', handleFirstTouch);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('touchstart', handleFirstTouch);
+            window.removeEventListener('click', handleFirstTouch);
+        };
     }, []);
 
     const navLinks = [
