@@ -208,6 +208,7 @@ const LandingPage = () => {
                     </video>
                     <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-20 block md:hidden">
                         <source src="/video-assets/Hero_Edit__834x1194_Mobile.webm" type="video/webm" />
+                        <source src="/video-assets/Hero_Edit__1728x1117_Desktop.mp4" type="video/mp4" />
                     </video>
 
                     <div className="absolute inset-0 bg-gradient-to-b from-[#e63746]/40 via-[#e63746]/30 to-[#e63746]/70 -z-10 mix-blend-multiply" />
