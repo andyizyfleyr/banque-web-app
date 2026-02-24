@@ -13,6 +13,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
+import { supabase } from '@/lib/supabase';
 
 const ADMIN_EMAILS = ['admin@financer.com', 'jacques@financer.com'];
 const ADMIN_PASSWORD = 'Financer2026!';
@@ -42,6 +43,7 @@ const AdminPage = () => {
     const [activeConversation, setActiveConversation] = useState(null);
     const [adminReply, setAdminReply] = useState('');
     const chatScrollRef = useRef(null);
+    const activeConversationRef = useRef(null);
 
     // Filters
     const [searchQuery, setSearchQuery] = useState('');
@@ -70,6 +72,51 @@ const AdminPage = () => {
     useEffect(() => {
         if (adminAuth) fetchAllData();
     }, [adminAuth]);
+
+    // Keep ref in sync with state for realtime callback
+    useEffect(() => {
+        activeConversationRef.current = activeConversation;
+    }, [activeConversation]);
+
+    // Supabase Realtime for instant messaging
+    useEffect(() => {
+        if (!adminAuth || !user) return;
+        const channel = supabase
+            .channel('admin-messages-realtime')
+            .on('postgres_changes', {
+                event: 'INSERT',
+                schema: 'public',
+                table: 'messages'
+            }, (payload) => {
+                const newMsg = payload.new;
+                // Ignore messages sent by admin (already added optimistically)
+                if (newMsg.sender_id === user.id) return;
+                // Determine conversation user ID
+                const convUserId = newMsg.sender_id;
+                // Add to messages
+                setMessages(prev => [...prev, newMsg]);
+                // Add to conversations
+                setConversations(prev => {
+                    const updated = { ...prev };
+                    if (!updated[convUserId]) updated[convUserId] = [];
+                    updated[convUserId] = [newMsg, ...updated[convUserId]];
+                    return updated;
+                });
+                // Update unread count if not in this conversation
+                if (activeConversationRef.current !== convUserId) {
+                    setStats(prev => ({ ...prev, unreadMessages: (prev.unreadMessages || 0) + 1 }));
+                } else {
+                    // Auto-mark as read if currently viewing this conversation
+                    adminApiCall('markMessagesRead', { senderUserId: convUserId });
+                    // Scroll to bottom
+                    setTimeout(() => {
+                        if (chatScrollRef.current) chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+                    }, 50);
+                }
+            })
+            .subscribe();
+        return () => { supabase.removeChannel(channel); };
+    }, [adminAuth, user]);
 
     const handleAdminLogin = (e) => {
         e.preventDefault();

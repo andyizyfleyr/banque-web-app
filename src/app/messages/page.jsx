@@ -48,10 +48,18 @@ const MessagesPage = () => {
             .on('postgres_changes', {
                 event: 'INSERT',
                 schema: 'public',
-                table: 'messages',
-                filter: `receiver_id=eq.${user.id}`
+                table: 'messages'
             }, (payload) => {
-                setMessages(prev => [...prev, payload.new]);
+                const newMsg = payload.new;
+                // Only process messages from admin (not our own - those are added optimistically)
+                if (newMsg.sender_id === user.id) return;
+                // Only process messages intended for this user
+                if (newMsg.receiver_id !== user.id) return;
+                // Avoid duplicates
+                setMessages(prev => {
+                    if (prev.some(m => m.id === newMsg.id)) return prev;
+                    return [...prev, newMsg];
+                });
             })
             .subscribe();
         return () => { supabase.removeChannel(channel); };
@@ -66,18 +74,33 @@ const MessagesPage = () => {
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (!newMessage.trim() || isSending || !user) return;
+        const content = newMessage.trim();
+        setNewMessage('');
+        // Optimistically add message to UI instantly
+        const tempId = 'temp-' + Date.now();
+        const optimisticMsg = {
+            id: tempId,
+            sender_id: user.id,
+            receiver_id: null,
+            content: content,
+            is_read: false,
+            created_at: new Date().toISOString()
+        };
+        setMessages(prev => [...prev, optimisticMsg]);
         setIsSending(true);
         try {
             const { data, error } = await supabase
                 .from('messages')
-                .insert([{ sender_id: user.id, content: newMessage.trim() }])
+                .insert([{ sender_id: user.id, content: content }])
                 .select()
                 .single();
             if (error) throw error;
-            setMessages(prev => [...prev, data]);
-            setNewMessage('');
+            // Replace optimistic message with real one
+            setMessages(prev => prev.map(m => m.id === tempId ? data : m));
         } catch (error) {
             toast.error(t('common.error'));
+            // Remove optimistic message on error
+            setMessages(prev => prev.filter(m => m.id !== tempId));
             console.error('Error sending message:', error);
         } finally {
             setIsSending(false);
@@ -176,8 +199,8 @@ const MessagesPage = () => {
                                     >
                                         <div
                                             className={`relative max-w-[82%] px-2.5 py-1.5 rounded-lg shadow-sm text-[14px] leading-[19px] ${isMine
-                                                    ? 'bg-[#D9FDD3] text-[#111B21] rounded-tr-none'
-                                                    : 'bg-white text-[#111B21] rounded-tl-none'
+                                                ? 'bg-[#D9FDD3] text-[#111B21] rounded-tr-none'
+                                                : 'bg-white text-[#111B21] rounded-tl-none'
                                                 }`}
                                         >
                                             {!isMine && (
