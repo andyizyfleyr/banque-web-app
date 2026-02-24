@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { countries } from '@/config/countries';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -41,6 +41,7 @@ const AdminPage = () => {
     const [conversations, setConversations] = useState({});
     const [activeConversation, setActiveConversation] = useState(null);
     const [adminReply, setAdminReply] = useState('');
+    const chatScrollRef = useRef(null);
 
     // Filters
     const [searchQuery, setSearchQuery] = useState('');
@@ -321,21 +322,66 @@ const AdminPage = () => {
     const handleAdminReply = async (e) => {
         e.preventDefault();
         if (!adminReply.trim() || !activeConversation) return;
-        setActionLoading(true);
+        const content = adminReply.trim();
+        setAdminReply('');
+        // Optimistically add message to local state
+        const optimisticMsg = {
+            id: 'temp-' + Date.now(),
+            sender_id: user.id,
+            receiver_id: activeConversation,
+            content: content,
+            is_read: false,
+            created_at: new Date().toISOString()
+        };
+        setConversations(prev => {
+            const updated = { ...prev };
+            if (!updated[activeConversation]) updated[activeConversation] = [];
+            updated[activeConversation] = [optimisticMsg, ...updated[activeConversation]];
+            return updated;
+        });
+        setMessages(prev => [...prev, optimisticMsg]);
+        // Scroll to bottom
+        setTimeout(() => {
+            if (chatScrollRef.current) chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+        }, 50);
         try {
             const res = await adminApiCall('sendMessage', {
                 receiverId: activeConversation,
-                content: adminReply,
+                content: content,
                 senderId: user.id
             });
             if (res.error) throw new Error(res.error);
-            toast.success("Message envoyé");
-            setAdminReply('');
-            fetchAllData();
         } catch (e) {
             toast.error("Erreur d'envoi");
         }
-        setActionLoading(false);
+    };
+
+    const handleOpenConversation = async (userId) => {
+        setActiveConversation(userId);
+        // Mark messages from this user as read locally
+        setConversations(prev => {
+            const updated = { ...prev };
+            if (updated[userId]) {
+                updated[userId] = updated[userId].map(m =>
+                    m.sender_id === userId && !m.is_read ? { ...m, is_read: true } : m
+                );
+            }
+            return updated;
+        });
+        setMessages(prev => prev.map(m =>
+            m.sender_id === userId && !m.is_read ? { ...m, is_read: true } : m
+        ));
+        // Update unread count in stats
+        setStats(prev => {
+            const unreadInConv = (conversations[userId] || []).filter(m => !m.is_read && m.sender_id !== user.id).length;
+            return { ...prev, unreadMessages: Math.max(0, prev.unreadMessages - unreadInConv) };
+        });
+        // Scroll to bottom after render
+        setTimeout(() => {
+            if (chatScrollRef.current) chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
+        }, 100);
+        // Mark as read on backend (fire and forget)
+        adminApiCall('markMessagesRead', { senderUserId: userId });
     };
 
     const NavItem = ({ id, icon: Icon, label, badge = 0 }) => (
@@ -454,7 +500,7 @@ const AdminPage = () => {
                                             return (
                                                 <button
                                                     key={userId}
-                                                    onClick={() => setActiveConversation(userId)}
+                                                    onClick={() => handleOpenConversation(userId)}
                                                     className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all ${activeConversation === userId ? 'bg-[#1D3557] text-white shadow-lg' : 'hover:bg-gray-50 text-[#1D3557]'}`}
                                                 >
                                                     <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-lg font-bold flex-shrink-0 text-[#1D3557]">
@@ -493,7 +539,7 @@ const AdminPage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50/30">
+                                        <div ref={chatScrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50/30">
                                             {[...(conversations[activeConversation] || [])].reverse().map((m, i) => (
                                                 <div key={i} className={`flex ${m.sender_id === user.id ? 'justify-end' : 'justify-start'}`}>
                                                     <div className={`max-w-[80%] p-4 rounded-2xl shadow-sm text-sm ${m.sender_id === user.id ? 'bg-[#1D3557] text-white rounded-tr-none' : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'}`}>

@@ -296,6 +296,17 @@ export async function POST(request) {
                 return NextResponse.json({ success: true, message: data });
             }
 
+            case 'markMessagesRead': {
+                const { senderUserId } = payload;
+                const { error } = await supabaseAdmin
+                    .from('messages')
+                    .update({ is_read: true })
+                    .eq('sender_id', senderUserId)
+                    .eq('is_read', false);
+                if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+                return NextResponse.json({ success: true });
+            }
+
             default:
                 return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
         }
