@@ -71,6 +71,8 @@ const LandingPage = () => {
         { name: t('public_nav.home'), active: true, path: "/" },
         { name: t('public_nav.about'), active: false, path: "/about" },
         { name: t('public_nav.services'), active: false, path: "/services" },
+        { name: t('publicFooter.personalLoan'), active: false, path: "/pret" },
+        { name: t('publicFooter.creditBuyback'), active: false, path: "/rachat-credits" },
         { name: t('public_nav.contact'), active: false, path: "/contact" }
     ];
 
