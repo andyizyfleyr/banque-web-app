@@ -22,6 +22,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import CountrySelector from '@/components/CountrySelector';
 import PublicFooter from '@/components/PublicFooter';
+import LoanStepForm from '@/components/LoanStepForm';
 
 const LandingPage = () => {
     const { t, fc, language } = useLocale();
@@ -440,26 +441,16 @@ const LandingPage = () => {
                                 ))}
                             </ul>
 
-                            <button className="bg-[#e63746] hover:bg-[#C1121F] text-white px-12 py-5 rounded-full font-bold text-[15px] transition shadow-[0_8px_20px_rgba(230,55,70,0.3)] mt-8 hover:-translate-y-1 active:scale-95 uppercase tracking-widest">
-                                {t('landing.loanSimulate')}
-                            </button>
+
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative h-full min-h-[450px] w-full flex items-center justify-center">
                             <div className="absolute inset-0 bg-[radial-gradient(circle,#fdf5f6,transparent)] rounded-full blur-[100px] -z-10 opacity-70" />
-                            <div className="relative w-full aspect-[4/3] rounded-[3rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.15)] border-[10px] border-white z-10 mx-auto max-w-lg group">
-                                <Image src="/landing-page-assert/loan.jpeg" fill className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" alt="Rapid Loan" />
+                            <div className="relative w-full z-10 mx-auto max-w-lg">
+                                <LoanStepForm />
                             </div>
 
-                            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="absolute -bottom-8 lg:bottom-10 -left-6 lg:-left-12 bg-white px-8 py-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] flex items-center gap-6 z-20 border border-gray-100 uppercase">
-                                <div className="w-16 h-16 bg-[#FFB800]/10 rounded-2xl flex items-center justify-center shadow-inner">
-                                    <Zap className="text-[#FFB800] fill-[#FFB800]" size={32} />
-                                </div>
-                                <div>
-                                    <h4 className="font-black text-[#1D3557] text-3xl mb-1">{t('landing.fromRate')}</h4>
-                                    <p className="text-gray-400 font-bold text-[13px] tracking-[0.1em]">{t('landing.fixedApr')}</p>
-                                </div>
-                            </motion.div>
+
                         </motion.div>
                     </div>
                 </section>
