@@ -42,7 +42,7 @@ const FraudeBancaire = () => {
             icon: ShieldAlert,
             color: "text-red-500",
             bg: "bg-red-50",
-            image: "https://images.prismic.io/bforbank/589ab500-a8b6-4567-8247-b9a425dfb08c_medias_1x.webp?auto=compress%2Cformat&width=2048"
+            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80"
         },
         {
             title: t('fraudPage.fraud2Title'),
@@ -51,7 +51,7 @@ const FraudeBancaire = () => {
             icon: Wifi,
             color: "text-orange-500",
             bg: "bg-orange-50",
-            image: "https://images.prismic.io/bforbank/98a69c0b-c95e-452a-bec3-ef94e6ec5f0c_7d1daa2e-c2c6-49a8-874f-cd99f7a49c11_medias.webp?auto=compress%2Cformat&width=2048"
+            image: "https://images.unsplash.com/photo-1521931961826-fe48677230a5?auto=format&fit=crop&w=1200&q=80"
         },
         {
             title: t('fraudPage.fraud3Title'),
@@ -60,7 +60,7 @@ const FraudeBancaire = () => {
             icon: Copy,
             color: "text-blue-500",
             bg: "bg-blue-50",
-            image: "https://images.prismic.io/bforbank/3a7ad921-c4f3-4b09-b2f3-9e3a4ca95e1c_2d4d6ca9-69ae-42dc-9e5f-70d28ea59e5d_medias.webp?auto=compress%2Cformat&width=2048"
+            image: "https://images.unsplash.com/photo-1614064641938-3bbee5294247?auto=format&fit=crop&w=1200&q=80"
         },
         {
             title: t('fraudPage.fraud4Title'),
@@ -69,7 +69,7 @@ const FraudeBancaire = () => {
             icon: CreditCard,
             color: "text-purple-500",
             bg: "bg-purple-50",
-            image: "https://images.prismic.io/bforbank/ZvwZQLVsGrYSwPXf_multiple_image_square_personal_loan_1_1x.webp?auto=format%2Ccompress&width=2048"
+            image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1200&q=80"
         }
     ];
 
@@ -172,7 +172,7 @@ const FraudeBancaire = () => {
                 {/* Hero Section */}
                 <section className="relative w-full min-h-[70vh] flex items-center py-20 overflow-hidden bg-gradient-to-br from-[#1D3557] to-[#14243A]">
                     <div className="absolute inset-0 z-0">
-                        <img src="https://images.prismic.io/bforbank/589ab500-a8b6-4567-8247-b9a425dfb08c_medias_1x.webp?auto=compress%2Cformat&width=2048"
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2000&q=80"
                             alt="Fraud prevention" className="w-full h-full object-cover opacity-20 mix-blend-overlay" />
                     </div>
                     <div className="max-w-[1400px] mx-auto px-6 lg:px-16 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
@@ -243,7 +243,7 @@ const FraudeBancaire = () => {
 
                             {/* Security Shield Card */}
                             <div className="bg-gradient-to-br from-[#1D3557] to-[#2A4b7C] p-10 rounded-[2rem] shadow-xl text-white flex flex-col justify-center items-center text-center relative overflow-hidden">
-                                <div className="absolute inset-0 bg-[url('https://images.prismic.io/bforbank/98a69c0b-c95e-452a-bec3-ef94e6ec5f0c_7d1daa2e-c2c6-49a8-874f-cd99f7a49c11_medias.webp')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+                                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
                                 <Lock size={48} className="mb-6 text-white/80 relative z-10" />
                                 <h3 className="text-2xl font-black mb-2 relative z-10">{t('fraudPage.secureApp')}</h3>
                                 <p className="text-blue-100 relative z-10 font-light">{t('fraudPage.encryptedData')}</p>
