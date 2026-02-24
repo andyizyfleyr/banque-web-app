@@ -185,7 +185,7 @@ const RachatCredits = () => {
                     <div className="absolute inset-0 z-0">
                         <img
                             src="https://images.prismic.io/bforbank/9ff348ec-6f7a-4fc4-ac5a-019763de496c_rachat+de+credit+banque+bforbank.webp?auto=compress%2Cformat&rect=0%2C146%2C1347%2C606&width=2048"
-                            alt="Rachat de Crédits"
+                            alt={t('loans.creditBuyback')}
                             className="w-full h-full object-cover opacity-20 mix-blend-overlay"
                         />
                     </div>
@@ -193,18 +193,18 @@ const RachatCredits = () => {
                     <div className="max-w-[1400px] mx-auto px-6 lg:px-16 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-8 text-white">
                             <span className="px-4 py-1.5 rounded-full text-xs font-bold tracking-widest bg-[#E63746] text-white uppercase inline-block shadow-lg shadow-red-500/30">
-                                Simplicité & Liberté
+                                {t('buybackPage.badge')}
                             </span>
                             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1]">
-                                Regroupez tous vos crédits <br className="hidden md:block" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-[#E63746]">au même endroit</span>
+                                {t('buybackPage.heroTitle1')} <br className="hidden md:block" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-[#E63746]">{t('buybackPage.heroTitle2')}</span>
                             </h1>
                             <p className="text-lg md:text-xl text-blue-100/90 max-w-xl leading-relaxed font-light">
-                                La vie est trop courte pour perdre du temps à gérer ses mensualités de prêts. En passant par un rachat de crédit, tous vos prêts ne font plus qu'un : une seule mensualité, un seul remboursement, un seul interlocuteur.
+                                {t('buybackPage.heroDesc')}
                             </p>
 
                             <div className="pt-4 flex flex-wrap gap-4">
                                 <Link href="/login" className="bg-[#E63746] hover:bg-red-600 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-red-500/20 flex items-center gap-3 group text-lg">
-                                    Faire ma demande
+                                    {t('buybackPage.applyNow')}
                                     <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
@@ -216,7 +216,7 @@ const RachatCredits = () => {
                 <section className="py-24 bg-gray-50/50">
                     <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
                         <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-black text-[#1D3557] leading-tight">Le rachat de crédit en ligne :<br /><span className="text-[#E63746]">3 raisons de se lancer</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-black text-[#1D3557] leading-tight">{t('buybackPage.advantagesTitle1')}<br /><span className="text-[#E63746]">{t('buybackPage.advantagesTitle2')}</span></h2>
                             <div className="w-24 h-1.5 bg-gradient-to-r from-[#1D3557] to-[#E63746] mx-auto rounded-full"></div>
                         </div>
 
@@ -226,9 +226,9 @@ const RachatCredits = () => {
                                 <div className="w-20 h-20 bg-blue-50/50 rounded-3xl flex items-center justify-center text-[#1D3557] mb-8 group-hover:scale-110 group-hover:bg-[#1D3557] group-hover:text-white transition-all duration-300 shadow-sm">
                                     <PiggyBank size={36} strokeWidth={1.5} />
                                 </div>
-                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">Une seule mensualité, un seul interlocuteur</h3>
+                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">{t('buybackPage.adv1Title')}</h3>
                                 <p className="text-gray-500 leading-relaxed text-lg">
-                                    Avec le rachat de crédit, gérez vos dépenses plus facilement en évitant de multiplier les remboursements chaque mois. Vous ne pourrez pas faire plus simple !
+                                    {t('buybackPage.adv1Desc')}
                                 </p>
                             </div>
 
@@ -237,9 +237,9 @@ const RachatCredits = () => {
                                 <div className="w-20 h-20 bg-emerald-50/50 rounded-3xl flex items-center justify-center text-emerald-600 mb-8 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-sm">
                                     <Clock size={36} strokeWidth={1.5} />
                                 </div>
-                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">Un remboursement à la carte</h3>
+                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">{t('buybackPage.adv2Title')}</h3>
                                 <p className="text-gray-500 leading-relaxed text-lg">
-                                    Vos mensualités sont modulables et vous pouvez même mettre votre remboursement sur pause tous les 6 mois. Que demander de plus ?
+                                    {t('buybackPage.adv2Desc')}
                                 </p>
                             </div>
 
@@ -248,9 +248,9 @@ const RachatCredits = () => {
                                 <div className="w-20 h-20 bg-red-50/50 rounded-3xl flex items-center justify-center text-[#E63746] mb-8 group-hover:scale-110 group-hover:bg-[#E63746] group-hover:text-white transition-all duration-300 shadow-sm">
                                     <UserCircle size={36} strokeWidth={1.5} />
                                 </div>
-                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">Un accompagnement sans faille</h3>
+                                <h3 className="text-2xl font-black text-[#1D3557] mb-4">{t('buybackPage.adv3Title')}</h3>
                                 <p className="text-gray-500 leading-relaxed text-lg">
-                                    Chez nous, vous êtes autonome. Mais vous n'êtes jamais seul ! Un conseiller vous accompagne dans votre démarche de rachat de crédit.
+                                    {t('buybackPage.adv3Desc')}
                                 </p>
                             </div>
                         </div>
@@ -267,32 +267,32 @@ const RachatCredits = () => {
 
                                 <div className="space-y-6 pt-16 relative z-10">
                                     <div className="rounded-[2rem] overflow-hidden shadow-2xl hover:scale-[1.03] transition-transform duration-500">
-                                        <img src="https://images.prismic.io/bforbank/ZvwaHrVsGrYSwPY2_multiple_image_square_debt_consolidation_1_1x.webp?auto=format%2Ccompress&width=2048" alt="Etape 1" className="w-full aspect-[4/5] object-cover" />
+                                        <img src="https://images.prismic.io/bforbank/ZvwaHrVsGrYSwPY2_multiple_image_square_debt_consolidation_1_1x.webp?auto=format%2Ccompress&width=2048" alt="Step 1" className="w-full aspect-[4/5] object-cover" />
                                     </div>
                                 </div>
                                 <div className="space-y-6 relative z-10">
                                     <div className="rounded-[2rem] overflow-hidden shadow-2xl hover:scale-[1.03] transition-transform duration-500">
-                                        <img src="https://images.prismic.io/bforbank/ZvwaPLVsGrYSwPZQ_multiple_image_square_debt_consolidation_2_3x.webp?auto=format%2Ccompress&width=2048" alt="Etape 2" className="w-full aspect-square object-cover" />
+                                        <img src="https://images.prismic.io/bforbank/ZvwaPLVsGrYSwPZQ_multiple_image_square_debt_consolidation_2_3x.webp?auto=format%2Ccompress&width=2048" alt="Step 2" className="w-full aspect-square object-cover" />
                                     </div>
                                     <div className="rounded-[2rem] overflow-hidden shadow-2xl hover:scale-[1.03] transition-transform duration-500">
-                                        <img src="https://images.prismic.io/bforbank/ZvwaU7VsGrYSwPZl_multiple_image_square_debt_consolidation_3_1x.webp?auto=format%2Ccompress&width=2048" alt="Etape 3" className="w-full aspect-square object-cover" />
+                                        <img src="https://images.prismic.io/bforbank/ZvwaU7VsGrYSwPZl_multiple_image_square_debt_consolidation_3_1x.webp?auto=format%2Ccompress&width=2048" alt="Step 3" className="w-full aspect-square object-cover" />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="order-1 lg:order-2 space-y-12">
                                 <div className="space-y-4">
-                                    <span className="text-[#E63746] font-bold tracking-widest uppercase text-sm">Mode d'emploi</span>
-                                    <h2 className="text-4xl md:text-5xl font-black text-[#1D3557] leading-tight">Un partenariat en<br />4 étapes simples</h2>
-                                    <p className="text-gray-500 text-xl font-light">Le fonctionnement du rachat de crédit en ligne pour regrouper tous vos crédits rapidement.</p>
+                                    <span className="text-[#E63746] font-bold tracking-widest uppercase text-sm">{t('buybackPage.howToLabel')}</span>
+                                    <h2 className="text-4xl md:text-5xl font-black text-[#1D3557] leading-tight">{t('buybackPage.howToTitle1')}<br />{t('buybackPage.howToTitle2')}</h2>
+                                    <p className="text-gray-500 text-xl font-light">{t('buybackPage.howToDesc')}</p>
                                 </div>
 
                                 <div className="space-y-8">
                                     {[
-                                        { title: "Téléchargez l'appli", desc: "Pour nous rejoindre et devenir client." },
-                                        { title: "Ouvrez votre compte courant", desc: "Quelques clics et le tour est joué." },
-                                        { title: "Faites votre demande", desc: "Vous avez de suite une réponse de principe." },
-                                        { title: "Envoyez vos documents", desc: "Pour recevoir une réponse définitive." }
+                                        { title: t('buybackPage.step1Title'), desc: t('buybackPage.step1Desc') },
+                                        { title: t('buybackPage.step2Title'), desc: t('buybackPage.step2Desc') },
+                                        { title: t('buybackPage.step3Title'), desc: t('buybackPage.step3Desc') },
+                                        { title: t('buybackPage.step4Title'), desc: t('buybackPage.step4Desc') }
                                     ].map((step, idx) => (
                                         <div key={idx} className="flex gap-6 group">
                                             <div className="w-14 h-14 bg-white border border-gray-200 text-[#1D3557] rounded-2xl flex items-center justify-center font-black text-2xl shrink-0 shadow-lg shadow-gray-100 group-hover:bg-[#E63746] group-hover:border-[#E63746] group-hover:text-white transition-all duration-300">
@@ -315,13 +315,13 @@ const RachatCredits = () => {
                     <div className="absolute inset-0 z-0 opacity-10 bg-[url('https://images.prismic.io/bforbank/9ff348ec-6f7a-4fc4-ac5a-019763de496c_rachat+de+credit+banque+bforbank.webp')] bg-cover bg-center mix-blend-overlay"></div>
 
                     <div className="max-w-4xl mx-auto space-y-10 relative z-10">
-                        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">Prêt à reprendre le contrôle<br />de vos finances ?</h2>
+                        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">{t('buybackPage.ctaTitle1')}<br />{t('buybackPage.ctaTitle2')}</h2>
                         <p className="text-blue-100 text-xl md:text-2xl font-light max-w-2xl mx-auto">
-                            Découvrez une nouvelle application plus ergonomique, et profitez d'un rachat de crédit adapté à vos besoins.
+                            {t('buybackPage.ctaDesc')}
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-6 pt-4">
                             <Link href="/login" className="bg-white text-[#1D3557] hover:bg-gray-50 px-10 py-5 rounded-2xl font-black transition-all shadow-2xl flex items-center justify-center gap-3 text-lg group">
-                                Voir nos offres
+                                {t('buybackPage.viewOffers')}
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
