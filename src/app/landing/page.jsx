@@ -539,8 +539,8 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                {/* Testimonials Section - Dark Mode Layout Redesign */}
-                <section className="bg-black py-24 lg:py-40 relative overflow-hidden">
+                {/* Testimonials Section - Light Mode Layout Redesign */}
+                <section className="bg-white py-24 lg:py-40 relative overflow-hidden">
                     <div className="max-w-[1400px] mx-auto px-6 lg:px-16 flex flex-col lg:flex-row gap-20">
                         {/* Left Side: Content */}
                         <div className="lg:w-[40%] flex flex-col justify-center gap-8 relative z-10">
@@ -548,7 +548,7 @@ const LandingPage = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="text-gray-500 font-bold text-[13px] tracking-[0.2em] uppercase"
+                                className="text-[#e63746] font-bold text-[13px] tracking-[0.2em] bg-[#FDECEC] px-6 py-2.5 rounded-full inline-block uppercase shadow-sm w-fit"
                             >
                                 {t('landing.testimonialsTag')}
                             </motion.span>
@@ -558,7 +558,7 @@ const LandingPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="text-5xl md:text-6xl lg:text-[72px] font-black text-white tracking-tight leading-[1.1]"
+                                className="text-5xl md:text-6xl lg:text-[72px] font-black text-[#1D3557] tracking-tight leading-[1.1]"
                             >
                                 {t('landing.testimonialsHeading')}
                             </motion.h2>
@@ -568,7 +568,7 @@ const LandingPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 }}
-                                className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-md"
+                                className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-md font-medium"
                             >
                                 {t('landing.testimonialsDesc')}
                             </motion.p>
@@ -582,7 +582,7 @@ const LandingPage = () => {
                             >
                                 <Link
                                     href="/about"
-                                    className="inline-flex items-center gap-3 bg-white text-black px-10 py-5 rounded-full font-black text-lg hover:bg-gray-200 transition-all hover:gap-5"
+                                    className="inline-flex items-center gap-3 bg-[#e63746] text-white px-10 py-5 rounded-full font-black text-lg hover:bg-[#c92d3a] transition-all hover:gap-5 shadow-lg shadow-[#e63746]/20"
                                 >
                                     {t('landing.learnMore')} <ArrowRight size={22} />
                                 </Link>
@@ -600,23 +600,23 @@ const LandingPage = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: i * 0.1 }}
-                                        className="bg-[#111111] border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-[#1a1a1a] transition-all duration-300"
+                                        className="bg-gray-50 border border-gray-100 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-white hover:shadow-xl hover:shadow-black/5 transition-all duration-300 group"
                                     >
                                         <div className="flex items-center gap-2 text-[#FFB800]">
                                             <span className="text-xl">★</span>
-                                            <span className="font-black text-lg">{rev.rating}.0</span>
+                                            <span className="font-black text-lg text-[#1D3557]">{rev.rating}.0</span>
                                         </div>
-                                        <p className="text-white/80 text-[17px] leading-[1.6] font-medium">
+                                        <p className="text-[#1D3557] text-[17px] leading-[1.6] font-bold italic">
                                             "{rev.text}"
                                         </p>
-                                        <div className="h-[1px] bg-white/5 w-full" />
+                                        <div className="h-[1px] bg-gray-200 w-full" />
                                         <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full relative overflow-hidden ring-2 ring-white/5">
+                                            <div className="w-12 h-12 rounded-full relative overflow-hidden shadow-sm">
                                                 <Image src={rev.image} alt={rev.author} fill className="object-cover" />
                                             </div>
                                             <div>
-                                                <p className="text-white font-black text-lg leading-tight">{rev.author}</p>
-                                                <p className="text-gray-500 text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
+                                                <p className="text-[#1D3557] font-black text-lg leading-tight">{rev.author}</p>
+                                                <p className="text-[#e63746] text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
                                             </div>
                                         </div>
                                     </motion.div>
@@ -632,23 +632,23 @@ const LandingPage = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: (i + 3) * 0.1 }}
-                                        className="bg-[#111111] border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-[#1a1a1a] transition-all duration-300"
+                                        className="bg-gray-50 border border-gray-100 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-white hover:shadow-xl hover:shadow-black/5 transition-all duration-300 group"
                                     >
                                         <div className="flex items-center gap-2 text-[#FFB800]">
                                             <span className="text-xl">★</span>
-                                            <span className="font-black text-lg">{rev.rating}.0</span>
+                                            <span className="font-black text-lg text-[#1D3557]">{rev.rating}.0</span>
                                         </div>
-                                        <p className="text-white/80 text-[17px] leading-[1.6] font-medium">
+                                        <p className="text-[#1D3557] text-[17px] leading-[1.6] font-bold italic">
                                             "{rev.text}"
                                         </p>
-                                        <div className="h-[1px] bg-white/5 w-full" />
+                                        <div className="h-[1px] bg-gray-200 w-full" />
                                         <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full relative overflow-hidden ring-2 ring-white/5">
+                                            <div className="w-12 h-12 rounded-full relative overflow-hidden shadow-sm">
                                                 <Image src={rev.image} alt={rev.author} fill className="object-cover" />
                                             </div>
                                             <div>
-                                                <p className="text-white font-black text-lg leading-tight">{rev.author}</p>
-                                                <p className="text-gray-500 text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
+                                                <p className="text-[#1D3557] font-black text-lg leading-tight">{rev.author}</p>
+                                                <p className="text-[#e63746] text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
                                             </div>
                                         </div>
                                     </motion.div>
