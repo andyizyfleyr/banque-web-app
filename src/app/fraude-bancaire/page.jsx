@@ -60,7 +60,7 @@ const FraudeBancaire = () => {
             icon: Copy,
             color: "text-blue-500",
             bg: "bg-blue-50",
-            image: "https://images.unsplash.com/photo-1614064641938-3bbee5294247?auto=format&fit=crop&w=1200&q=80"
+            image: "https://images.unsplash.com/photo-1624969862293-b749659ccc4e?auto=format&fit=crop&w=1200&q=80"
         },
         {
             title: t('fraudPage.fraud4Title'),
