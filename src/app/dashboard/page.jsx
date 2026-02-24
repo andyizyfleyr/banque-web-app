@@ -625,7 +625,7 @@ const Dashboard = () => {
                 });
 
                 // Compute cumulative balance trend
-                let runningBalance = totalBalance;
+                let runningBalance = totalCheckingBalance;
                 // Move backwards to find starting balance 30 days ago
                 const sortedTxs = [...allTransactions].sort((a, b) => new Date(b.date) - new Date(a.date));
                 sortedTxs.forEach(tx => {
