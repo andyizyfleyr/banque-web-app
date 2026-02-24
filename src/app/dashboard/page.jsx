@@ -499,29 +499,7 @@ const Dashboard = () => {
                                             animate={{ opacity: 1, scale: 1, y: 0 }}
                                             className="absolute right-0 top-12 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-[40] overflow-hidden"
                                         >
-                                            <button
-                                                onClick={async (e) => {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    const { error } = await supabase.rpc('deposit_demo', {
-                                                        input_account_id: acc.id,
-                                                        input_amount: 100000
-                                                    });
 
-                                                    if (error) {
-                                                        console.error(error);
-                                                        toast.error(t('common.error'));
-                                                    } else {
-                                                        toast.success(`+${fc(100000, acc.currency)} ✓`);
-                                                        fetchDashboardData();
-                                                    }
-                                                    setActiveMenu(null);
-                                                }}
-                                                className="w-full px-4 py-3 text-left text-xs font-black text-emerald-600 hover:bg-emerald-50 flex items-center gap-3 transition-colors border-b border-gray-50"
-                                            >
-                                                <Plus size={16} />
-                                                +100K (Test)
-                                            </button>
                                             <button
                                                 onClick={(e) => {
                                                     e.preventDefault();
