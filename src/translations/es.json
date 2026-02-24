@@ -7,6 +7,7 @@
         "savings": "Ahorros",
         "transactions": "Transacciones",
         "notifications": "Notificaciones",
+        "messages": "Mensajes",
         "profile": "Perfil",
         "logout": "Cerrar sesión"
     },
@@ -1018,5 +1019,15 @@
         "securedTransactions": "Transacciones seguras",
         "copyright": "© 2026 Financer. Todos los derechos reservados.",
         "privacy": "Privacidad"
+    },
+    "messages": {
+        "supportAgent": "Soporte REDBANK",
+        "secureChat": "Chat Seguro",
+        "secureChatDesc": "Sus conversaciones están protegidas por cifrado de extremo a extremo.",
+        "placeholder": "Escriba su mensaje...",
+        "noMessages": "No hay mensajes aún",
+        "startConversation": "Inicie una conversación con nuestro soporte",
+        "sentJustNow": "Ahora mismo",
+        "typing": "Escribiendo..."
     }
 }

@@ -1031,5 +1031,15 @@
         "securedTransactions": "Transactions sécurisées",
         "copyright": "© 2026 Financer. Tous droits réservés.",
         "privacy": "Confidentialité"
+    },
+    "messages": {
+        "supportAgent": "Support REDBANK",
+        "secureChat": "Conversation Sécurisée",
+        "secureChatDesc": "Vos échanges sont protégés par un cryptage de bout en bout.",
+        "placeholder": "Écrivez votre message...",
+        "noMessages": "Aucun message pour le moment",
+        "startConversation": "Commencez une conversation avec notre support",
+        "sentJustNow": "À l'instant",
+        "typing": "En train d'écrire..."
     }
 }

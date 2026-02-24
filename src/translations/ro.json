@@ -7,6 +7,7 @@
         "savings": "Economii",
         "transactions": "Tranzacții",
         "notifications": "Notificări",
+        "messages": "Mesaje",
         "profile": "Profil",
         "logout": "Deconectare"
     },
@@ -1017,5 +1018,15 @@
         "securedTransactions": "Tranzacții securizate",
         "copyright": "© 2026 Financer. Toate drepturile rezervate.",
         "privacy": "Confidențialitate"
+    },
+    "messages": {
+        "supportAgent": "Suport REDBANK",
+        "secureChat": "Chat Securizat",
+        "secureChatDesc": "Conversațiile dumneavoastră sunt protejate prin criptare end-to-end.",
+        "placeholder": "Scrieți mesajul...",
+        "noMessages": "Niciun mesaj încă",
+        "startConversation": "Începeți o conversație cu suportul nostru",
+        "sentJustNow": "Chiar acum",
+        "typing": "Scrie..."
     }
 }

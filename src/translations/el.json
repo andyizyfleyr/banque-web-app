@@ -7,6 +7,7 @@
         "savings": "Αποταμιεύσεις",
         "transactions": "Συναλλαγές",
         "notifications": "Ειδοποιήσεις",
+        "messages": "Μηνύματα",
         "profile": "Προφίλ",
         "logout": "Αποσύνδεση"
     },
@@ -1019,5 +1020,15 @@
         "securedTransactions": "Ασφαλείς συναλλαγές",
         "copyright": "© 2026 Financer. Με επιφύλαξη παντός δικαιώματος.",
         "privacy": "Απόρρητο"
+    },
+    "messages": {
+        "supportAgent": "Υποστήριξη REDBANK",
+        "secureChat": "Ασφαλής Συνομιλία",
+        "secureChatDesc": "Οι συνομιλίες σας προστατεύονται με κρυπτογράφηση από άκρη σε άκρη.",
+        "placeholder": "Γράψτε το μήνυμά σας...",
+        "noMessages": "Δεν υπάρχουν μηνύματα ακόμα",
+        "startConversation": "Ξεκινήστε μια συνομιλία με την υποστήριξή μας",
+        "sentJustNow": "Μόλις τώρα",
+        "typing": "Γράφει..."
     }
 }
