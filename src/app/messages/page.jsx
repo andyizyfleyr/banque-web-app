@@ -11,7 +11,8 @@ import {
     Smile,
     ArrowLeft,
     CheckCheck,
-    Loader2
+    Loader2,
+    Shield
 } from 'lucide-react';
 import { PageWrapper } from '@/components/PageWrapper';
 import { supabase } from '@/lib/supabase';
@@ -159,8 +160,8 @@ const MessagesPage = () => {
                             >
                                 <div className={`max-w-[80%] sm:max-w-[70%] flex flex-col ${isMine ? 'items-end' : 'items-start'}`}>
                                     <div className={`p-4 rounded-2xl shadow-sm text-sm font-medium leading-relaxed ${isMine
-                                            ? 'bg-[#1D3557] text-white rounded-tr-none'
-                                            : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'
+                                        ? 'bg-[#1D3557] text-white rounded-tr-none'
+                                        : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'
                                         }`}>
                                         {msg.content}
                                     </div>
