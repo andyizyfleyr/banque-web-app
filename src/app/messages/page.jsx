@@ -113,9 +113,9 @@ const MessagesPage = () => {
     }
 
     return (
-        <PageWrapper className="h-[calc(100vh-120px)] flex flex-col gap-6">
+        <PageWrapper className="flex flex-col h-[calc(100vh-64px)] md:h-[calc(100vh-120px)] pb-0">
             {/* Header */}
-            <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex-shrink-0">
+            <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex-shrink-0 mx-4 mt-4 md:mx-0 md:mt-0">
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-[#E63746] rounded-2xl flex items-center justify-center shadow-lg shadow-red-200">
                         <MessageSquare className="text-white" size={24} />
@@ -138,7 +138,7 @@ const MessagesPage = () => {
             {/* Chat Area */}
             <div
                 ref={scrollRef}
-                className="flex-grow overflow-y-auto custom-scrollbar p-6 bg-gray-50/50 rounded-3xl border border-gray-100 flex flex-col gap-4"
+                className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-6 mx-4 md:mx-0 mt-4 bg-gray-50/50 rounded-3xl md:rounded-3xl border border-gray-100 flex flex-col gap-4 min-h-0"
             >
                 <div className="flex flex-col items-center justify-center py-10 opacity-50">
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
@@ -180,10 +180,10 @@ const MessagesPage = () => {
                 </AnimatePresence>
             </div>
 
-            {/* Input Area */}
+            {/* Input Area - Fixed above bottom nav on mobile */}
             <form
                 onSubmit={handleSendMessage}
-                className="bg-white p-3 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 flex items-center gap-3 flex-shrink-0"
+                className="bg-white p-3 border-t border-gray-100 md:border md:rounded-2xl md:shadow-xl md:shadow-gray-200/50 flex items-center gap-3 flex-shrink-0 mx-0 md:mx-0 md:mt-4 md:mb-0"
             >
                 <button type="button" className="p-2.5 rounded-xl text-gray-400 hover:bg-gray-50 transition-colors">
                     <Paperclip size={20} />
