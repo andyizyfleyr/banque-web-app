@@ -17,7 +17,9 @@ import {
     X,
     TrendingUp,
     Shield,
-    Lock
+    Lock,
+    Quote,
+    ArrowRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CountrySelector from '@/components/CountrySelector';
@@ -86,12 +88,48 @@ const LandingPage = () => {
     ];
 
     const reviews = [
-        { text: t('landing.rev1_text'), author: "Sarah Jenkins", role: t('landing.rev1_role'), rating: 5 },
-        { text: t('landing.rev2_text'), author: "Michael Chen", role: t('landing.rev2_role'), rating: 5 },
-        { text: t('landing.rev3_text'), author: "Elena Rodriguez", role: t('landing.rev3_role'), rating: 5 },
-        { text: t('landing.rev4_text'), author: "David Schmidt", role: t('landing.rev4_role'), rating: 5 },
-        { text: t('landing.rev5_text'), author: "Aisha Mohammed", role: t('landing.rev5_role'), rating: 5 },
-        { text: t('landing.rev6_text'), author: "James Wilson", role: t('landing.rev6_role'), rating: 5 }
+        {
+            text: t('landing.rev1_text'),
+            author: "Sarah Jenkins",
+            role: t('landing.rev1_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            text: t('landing.rev2_text'),
+            author: "Michael Chen",
+            role: t('landing.rev2_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            text: t('landing.rev3_text'),
+            author: "Elena Rodriguez",
+            role: t('landing.rev3_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            text: t('landing.rev4_text'),
+            author: "David Schmidt",
+            role: t('landing.rev4_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            text: t('landing.rev5_text'),
+            author: "Aisha Mohammed",
+            role: t('landing.rev5_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80"
+        },
+        {
+            text: t('landing.rev6_text'),
+            author: "James Wilson",
+            role: t('landing.rev6_role'),
+            rating: 5,
+            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+        }
     ];
 
     const fadeInUp = {
@@ -501,50 +539,121 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                {/* Marquee Testimonials */}
-                <section className="bg-gray-50 py-24 lg:py-32 overflow-hidden border-y border-gray-100">
-                    <div className="max-w-[1400px] mx-auto px-6 lg:px-16 text-center mb-20 space-y-6">
-                        <span className="text-[#e63746] font-bold text-[13px] tracking-[0.15em] bg-[#FDECEC] px-5 py-2 rounded-full inline-block shadow-sm uppercase">{t('landing.testimonialsTag')}</span>
-                        <h2 className="text-4xl md:text-6xl font-black text-[#1D3557] tracking-tight">{t('landing.testimonialsHeading')}</h2>
-                    </div>
+                {/* Testimonials Section - Dark Mode Layout Redesign */}
+                <section className="bg-black py-24 lg:py-40 relative overflow-hidden">
+                    <div className="max-w-[1400px] mx-auto px-6 lg:px-16 flex flex-col lg:flex-row gap-20">
+                        {/* Left Side: Content */}
+                        <div className="lg:w-[40%] flex flex-col justify-center gap-8 relative z-10">
+                            <motion.span
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="text-gray-500 font-bold text-[13px] tracking-[0.2em] uppercase"
+                            >
+                                {t('landing.testimonialsTag')}
+                            </motion.span>
 
-                    <div className="flex flex-col gap-10">
-                        {/* Row 1 */}
-                        <div className="flex gap-10 whitespace-nowrap animate-marquee">
-                            {[...reviews, ...reviews].map((rev, i) => (
-                                <div key={i} className="inline-block w-[400px] bg-white p-10 rounded-[3rem] shadow-sm border border-gray-50 flex flex-col justify-between whitespace-normal group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                                    <div className="flex gap-1 mb-6">
-                                        {[...Array(rev.rating)].map((_, j) => <span key={j} className="text-[#FFB800] text-xl">★</span>)}
-                                    </div>
-                                    <p className="text-[#1D3557] text-lg font-bold italic mb-8 leading-relaxed">"{rev.text}"</p>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-[#1D3557] text-white rounded-full flex items-center justify-center font-black text-xl">{rev.author.charAt(0)}</div>
-                                        <div>
-                                            <h5 className="font-black text-[#1D3557]">{rev.author}</h5>
-                                            <p className="text-xs text-[#e63746] font-bold uppercase tracking-widest">{rev.role}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="text-5xl md:text-6xl lg:text-[72px] font-black text-white tracking-tight leading-[1.1]"
+                            >
+                                {t('landing.testimonialsHeading')}
+                            </motion.h2>
+
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-md"
+                            >
+                                {t('landing.testimonialsDesc')}
+                            </motion.p>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="mt-4"
+                            >
+                                <Link
+                                    href="/about"
+                                    className="inline-flex items-center gap-3 bg-white text-black px-10 py-5 rounded-full font-black text-lg hover:bg-gray-200 transition-all hover:gap-5"
+                                >
+                                    {t('landing.learnMore')} <ArrowRight size={22} />
+                                </Link>
+                            </motion.div>
                         </div>
 
-                        {/* Row 2 Reverse */}
-                        <div className="flex gap-10 whitespace-nowrap animate-marquee-reverse">
-                            {[...reviews, ...reviews].reverse().map((rev, i) => (
-                                <div key={i} className="inline-block w-[400px] bg-white p-10 rounded-[3rem] shadow-sm border border-gray-50 flex flex-col justify-between whitespace-normal group hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                                    <div className="flex gap-1 mb-6">
-                                        {[...Array(rev.rating)].map((_, j) => <span key={j} className="text-[#FFB800] text-xl">★</span>)}
-                                    </div>
-                                    <p className="text-[#1D3557] text-lg font-bold italic mb-8 leading-relaxed">"{rev.text}"</p>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-[#e63746] text-white rounded-full flex items-center justify-center font-black text-xl">{rev.author.charAt(0)}</div>
-                                        <div>
-                                            <h5 className="font-black text-[#1D3557]">{rev.author}</h5>
-                                            <p className="text-xs text-[#e63746] font-bold uppercase tracking-widest">{rev.role}</p>
+                        {/* Right Side: Cards Grid */}
+                        <div className="lg:w-[60%] grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                            {/* Column 1 */}
+                            <div className="flex flex-col gap-8">
+                                {reviews.slice(0, 3).map((rev, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="bg-[#111111] border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-[#1a1a1a] transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-2 text-[#FFB800]">
+                                            <span className="text-xl">★</span>
+                                            <span className="font-black text-lg">{rev.rating}.0</span>
                                         </div>
-                                    </div>
-                                </div>
-                            ))}
+                                        <p className="text-white/80 text-[17px] leading-[1.6] font-medium">
+                                            "{rev.text}"
+                                        </p>
+                                        <div className="h-[1px] bg-white/5 w-full" />
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-full relative overflow-hidden ring-2 ring-white/5">
+                                                <Image src={rev.image} alt={rev.author} fill className="object-cover" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-black text-lg leading-tight">{rev.author}</p>
+                                                <p className="text-gray-500 text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Column 2 - Offset slightly on desktop */}
+                            <div className="flex flex-col gap-8 md:mt-16">
+                                {reviews.slice(3, 6).map((rev, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: (i + 3) * 0.1 }}
+                                        className="bg-[#111111] border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 hover:bg-[#1a1a1a] transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-2 text-[#FFB800]">
+                                            <span className="text-xl">★</span>
+                                            <span className="font-black text-lg">{rev.rating}.0</span>
+                                        </div>
+                                        <p className="text-white/80 text-[17px] leading-[1.6] font-medium">
+                                            "{rev.text}"
+                                        </p>
+                                        <div className="h-[1px] bg-white/5 w-full" />
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-full relative overflow-hidden ring-2 ring-white/5">
+                                                <Image src={rev.image} alt={rev.author} fill className="object-cover" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-black text-lg leading-tight">{rev.author}</p>
+                                                <p className="text-gray-500 text-sm font-bold uppercase tracking-wider mt-1">{rev.role}</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -581,22 +690,8 @@ const LandingPage = () => {
             {/* Footer */}
             <PublicFooter />
 
-            {/* Custom Animations Styles */}
             <style jsx global>{`
-                 @keyframes marquee {
-                      0% { transform: translateX(0); }
-                      100% { transform: translateX(-50%); }
-                 }
-                 @keyframes marquee-reverse {
-                      0% { transform: translateX(-50%); }
-                      100% { transform: translateX(0); }
-                 }
-                 .animate-marquee {
-                      animation: marquee 60s linear infinite;
-                 }
-                 .animate-marquee-reverse {
-                      animation: marquee-reverse 60s linear infinite;
-                 }
+                 /* Custom styles if needed */
             `}</style>
         </div>
     );
