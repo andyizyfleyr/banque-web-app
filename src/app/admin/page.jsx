@@ -154,10 +154,19 @@ const AdminPage = () => {
             // Organize messages by user (conversation)
             const convs = {};
             msgs.forEach(m => {
-                const userId = m.sender_id === user.id ? m.receiver_id : m.sender_id;
-                if (!userId) return; // Special case for system messages
-                if (!convs[userId]) convs[userId] = [];
-                convs[userId].push(m);
+                // Determine the "other user" in the conversation
+                // If receiver_id is null, the message was sent TO admin, so group by sender_id
+                // If sender is admin (user.id), group by receiver_id
+                // Otherwise group by sender_id
+                let conversationUserId;
+                if (m.sender_id === user.id) {
+                    conversationUserId = m.receiver_id;
+                } else {
+                    conversationUserId = m.sender_id;
+                }
+                if (!conversationUserId) return; // Skip if still null (admin sent to no one)
+                if (!convs[conversationUserId]) convs[conversationUserId] = [];
+                convs[conversationUserId].push(m);
             });
             setConversations(convs);
 
@@ -167,7 +176,7 @@ const AdminPage = () => {
                 totalBalance: acc.reduce((s, a) => s + Number(a.balance || 0), 0),
                 pendingLoans: l.filter(lo => lo.status === 'pending_approval').length,
                 pendingTransfers: tx.filter(t => t.status === 'pending_approval').length,
-                unreadMessages: msgs.filter(m => !m.is_read && m.receiver_id === user.id).length
+                unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== user.id && (m.receiver_id === user.id || m.receiver_id === null)).length
             });
         } catch (e) { console.error(e); toast.error('Erreur de chargement'); }
         setLoading(false);
@@ -441,7 +450,7 @@ const AdminPage = () => {
                                         Object.entries(conversations).map(([userId, msgs]) => {
                                             const lastMsg = msgs[0]; // Ordered by created_at desc
                                             const u = users.find(usr => usr.id === userId);
-                                            const unread = msgs.filter(m => !m.is_read && m.receiver_id === user.id).length;
+                                            const unread = msgs.filter(m => !m.is_read && m.sender_id !== user.id && (m.receiver_id === user.id || m.receiver_id === null)).length;
                                             return (
                                                 <button
                                                     key={userId}

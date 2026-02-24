@@ -275,7 +275,7 @@ export async function POST(request) {
             case 'fetchMessages': {
                 const { data: messages, error } = await supabaseAdmin
                     .from('messages')
-                    .select('*, sender:profiles!messages_sender_id_fkey(full_name, email), receiver:profiles!messages_receiver_id_fkey(full_name, email)')
+                    .select('*, sender:profiles!messages_sender_id_fkey(id, full_name, email)')
                     .order('created_at', { ascending: false });
                 if (error) return NextResponse.json({ error: error.message }, { status: 500 });
                 return NextResponse.json({ messages });
