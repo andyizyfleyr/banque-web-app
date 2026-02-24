@@ -7,7 +7,8 @@ import {
     ArrowLeftRight,
     CreditCard,
     PiggyBank,
-    FileText
+    FileText,
+    MessageSquare
 } from 'lucide-react';
 import { useLocale } from '@/contexts/LocaleContext';
 
@@ -19,7 +20,7 @@ const MobileBottomNav = () => {
         { icon: LayoutDashboard, label: t('nav.dashboard') === 'Tableau de Bord' ? 'Accueil' : t('nav.dashboard'), path: '/dashboard' },
         { icon: ArrowLeftRight, label: t('nav.transfers'), path: '/transfers' },
         { icon: CreditCard, label: t('nav.cards'), path: '/cards' },
-        { icon: PiggyBank, label: t('nav.savings'), path: '/savings' },
+        { icon: MessageSquare, label: t('nav.messages'), path: '/messages' },
         { icon: FileText, label: t('nav.loans'), path: '/loans' },
     ];
 

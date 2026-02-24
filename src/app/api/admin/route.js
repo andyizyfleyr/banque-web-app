@@ -272,6 +272,30 @@ export async function POST(request) {
                 return NextResponse.json({ success: true });
             }
 
+            case 'fetchMessages': {
+                const { data: messages, error } = await supabaseAdmin
+                    .from('messages')
+                    .select('*, sender:profiles!messages_sender_id_fkey(full_name, email), receiver:profiles!messages_receiver_id_fkey(full_name, email)')
+                    .order('created_at', { ascending: false });
+                if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+                return NextResponse.json({ messages });
+            }
+
+            case 'sendMessage': {
+                const { receiverId, content, senderId } = payload;
+                const { data, error } = await supabaseAdmin
+                    .from('messages')
+                    .insert([{
+                        sender_id: senderId,
+                        receiver_id: receiverId,
+                        content: content
+                    }])
+                    .select()
+                    .single();
+                if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+                return NextResponse.json({ success: true, message: data });
+            }
+
             default:
                 return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
         }

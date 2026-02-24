@@ -12,7 +12,8 @@ import {
     User,
     FileText,
     Landmark,
-    LogOut
+    LogOut,
+    MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useConfirm } from '@/contexts/ConfirmContext';
@@ -32,6 +33,7 @@ const Sidebar = () => {
         { icon: CreditCard, label: t('nav.cards'), path: '/cards' },
         { icon: PiggyBank, label: t('nav.savings'), path: '/savings' },
         { icon: Landmark, label: t('nav.transactions'), path: '/transactions' },
+        { icon: MessageSquare, label: t('nav.messages'), path: '/messages' },
         { icon: User, label: t('nav.profile'), path: '/profile' },
     ];
 

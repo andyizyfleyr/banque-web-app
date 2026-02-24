@@ -9,7 +9,8 @@ import {
     ChevronDown, Search, MoreHorizontal, CheckCircle, XCircle,
     Clock, Eye, EyeOff, Ban, Trash2, Shield, LogOut, TrendingUp, AlertTriangle,
     RefreshCw, Filter, ChevronLeft, ChevronRight, Menu, X, Wallet,
-    History, UserCog, Trash, Settings, Plus, UserPlus, Lock, CreditCard as CardIcon
+    History, UserCog, Trash, Settings, Plus, UserPlus, Lock, CreditCard as CardIcon,
+    MessageSquare
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 
@@ -35,7 +36,11 @@ const AdminPage = () => {
     const [cards, setCards] = useState([]);
     const [transactions, setTransactions] = useState([]);
     const [accounts, setAccounts] = useState([]);
-    const [stats, setStats] = useState({ users: 0, loans: 0, cards: 0, transfers: 0, totalBalance: 0, pendingLoans: 0 });
+    const [messages, setMessages] = useState([]);
+    const [stats, setStats] = useState({ users: 0, loans: 0, cards: 0, transfers: 0, totalBalance: 0, pendingLoans: 0, unreadMessages: 0 });
+    const [conversations, setConversations] = useState({});
+    const [activeConversation, setActiveConversation] = useState(null);
+    const [adminReply, setAdminReply] = useState('');
 
     // Filters
     const [searchQuery, setSearchQuery] = useState('');
@@ -141,14 +146,28 @@ const AdminPage = () => {
             const c = data.cards || [];
             const tx = data.transactions || [];
             const acc = data.accounts || [];
+            const msgData = await adminApiCall('fetchMessages');
+            const msgs = msgData.messages || [];
 
-            setUsers(u); setLoans(l); setCards(c); setTransactions(tx); setAccounts(acc);
+            setUsers(u); setLoans(l); setCards(c); setTransactions(tx); setAccounts(acc); setMessages(msgs);
+
+            // Organize messages by user (conversation)
+            const convs = {};
+            msgs.forEach(m => {
+                const userId = m.sender_id === user.id ? m.receiver_id : m.sender_id;
+                if (!userId) return; // Special case for system messages
+                if (!convs[userId]) convs[userId] = [];
+                convs[userId].push(m);
+            });
+            setConversations(convs);
+
             setStats({
                 users: u.length, loans: l.length, cards: c.length,
                 transfers: tx.filter(t => t.type === 'transfer' || t.type === 'external').length,
                 totalBalance: acc.reduce((s, a) => s + Number(a.balance || 0), 0),
                 pendingLoans: l.filter(lo => lo.status === 'pending_approval').length,
-                pendingTransfers: tx.filter(t => t.status === 'pending_approval').length
+                pendingTransfers: tx.filter(t => t.status === 'pending_approval').length,
+                unreadMessages: msgs.filter(m => !m.is_read && m.receiver_id === user.id).length
             });
         } catch (e) { console.error(e); toast.error('Erreur de chargement'); }
         setLoading(false);
@@ -290,12 +309,44 @@ const AdminPage = () => {
         return <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase ${s.bg}`}>{s.icon}{status?.replace('_', ' ')}</span>;
     };
 
+    const handleAdminReply = async (e) => {
+        e.preventDefault();
+        if (!adminReply.trim() || !activeConversation) return;
+        setActionLoading(true);
+        try {
+            const res = await adminApiCall('sendMessage', {
+                receiverId: activeConversation,
+                content: adminReply,
+                senderId: user.id
+            });
+            if (res.error) throw new Error(res.error);
+            toast.success("Message envoyé");
+            setAdminReply('');
+            fetchAllData();
+        } catch (e) {
+            toast.error("Erreur d'envoi");
+        }
+        setActionLoading(false);
+    };
+
+    const NavItem = ({ id, icon: Icon, label, badge = 0 }) => (
+        <button
+            onClick={() => { setActiveTab(id); setSidebarOpen(false); }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-all ${activeTab === id ? 'bg-[#E63746] text-white shadow-lg shadow-red-900/20' : 'text-white/60 hover:bg-white/5 hover:text-white'}`}
+        >
+            <Icon size={18} />
+            {label}
+            {badge > 0 && <span className="ml-auto bg-[#E63746] text-white text-[10px] px-2 py-0.5 rounded-full ring-2 ring-black">{badge}</span>}
+        </button>
+    );
+
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { id: 'users', label: 'Utilisateurs', icon: Users },
         { id: 'loans', label: 'Prêts', icon: Landmark },
         { id: 'transfers', label: 'Virements', icon: ArrowLeftRight },
         { id: 'cards', label: 'Cartes', icon: CreditCard },
+        { id: 'messages', label: 'Messages', icon: MessageSquare },
     ];
 
     if (loading) return (
@@ -331,12 +382,18 @@ const AdminPage = () => {
                 </div>
                 <nav className="p-4 space-y-1">
                     {navItems.map(item => (
-                        <button key={item.id} onClick={() => { setActiveTab(item.id); setSidebarOpen(false); }}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === item.id ? 'bg-[#E63746] text-white shadow-lg shadow-red-900/30' : 'text-white/60 hover:text-white hover:bg-white/5'}`}>
-                            <item.icon size={18} />{item.label}
-                            {item.id === 'loans' && stats.pendingLoans > 0 && <span className="ml-auto bg-amber-400 text-black text-[10px] font-black px-2 py-0.5 rounded-full">{stats.pendingLoans}</span>}
-                            {item.id === 'transfers' && stats.pendingTransfers > 0 && <span className="ml-auto bg-amber-400 text-black text-[10px] font-black px-2 py-0.5 rounded-full">{stats.pendingTransfers}</span>}
-                        </button>
+                        <NavItem
+                            key={item.id}
+                            id={item.id}
+                            icon={item.icon}
+                            label={item.label}
+                            badge={
+                                item.id === 'loans' ? stats.pendingLoans :
+                                    item.id === 'transfers' ? stats.pendingTransfers :
+                                        item.id === 'messages' ? stats.unreadMessages :
+                                            0
+                            }
+                        />
                     ))}
                 </nav>
                 <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
@@ -364,6 +421,108 @@ const AdminPage = () => {
                     </button>
                 </header>
                 <div className="p-4 lg:p-8">
+                    {/* MESSAGES */}
+                    {activeTab === 'messages' && (
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-180px)] animate-fade-in">
+                            {/* Conversations List */}
+                            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+                                <div className="p-6 border-b border-gray-100 bg-gray-50/50">
+                                    <h3 className="font-black text-[#1D3557] flex items-center gap-2">
+                                        <MessageSquare size={18} className="text-[#E63746]" />
+                                        Conversations
+                                    </h3>
+                                </div>
+                                <div className="flex-1 overflow-y-auto p-4 space-y-2">
+                                    {Object.keys(conversations).length === 0 ? (
+                                        <div className="text-center py-10">
+                                            <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">Aucun message</p>
+                                        </div>
+                                    ) : (
+                                        Object.entries(conversations).map(([userId, msgs]) => {
+                                            const lastMsg = msgs[0]; // Ordered by created_at desc
+                                            const u = users.find(usr => usr.id === userId);
+                                            const unread = msgs.filter(m => !m.is_read && m.receiver_id === user.id).length;
+                                            return (
+                                                <button
+                                                    key={userId}
+                                                    onClick={() => setActiveConversation(userId)}
+                                                    className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all ${activeConversation === userId ? 'bg-[#1D3557] text-white shadow-lg' : 'hover:bg-gray-50 text-[#1D3557]'}`}
+                                                >
+                                                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-lg font-bold flex-shrink-0 text-[#1D3557]">
+                                                        {u?.full_name?.charAt(0) || '?'}
+                                                    </div>
+                                                    <div className="flex-1 text-left min-w-0">
+                                                        <p className="font-bold truncate">{u?.full_name || 'Utilisateur inconnu'}</p>
+                                                        <p className={`text-xs truncate ${activeConversation === userId ? 'text-white/60' : 'text-gray-400'}`}>
+                                                            {lastMsg.content}
+                                                        </p>
+                                                    </div>
+                                                    {unread > 0 && (
+                                                        <span className="w-5 h-5 bg-[#E63746] text-white text-[10px] flex items-center justify-center rounded-full font-black animate-pulse">
+                                                            {unread}
+                                                        </span>
+                                                    )}
+                                                </button>
+                                            );
+                                        })
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Active Discussion */}
+                            <div className="lg:col-span-2 bg-white rounded-3xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+                                {activeConversation ? (
+                                    <>
+                                        <div className="p-6 border-b border-gray-100 bg-white flex items-center justify-between">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-blue-50 text-[#1D3557] flex items-center justify-center font-bold border border-blue-100 shadow-sm">
+                                                    {users.find(u => u.id === activeConversation)?.full_name?.charAt(0)}
+                                                </div>
+                                                <div>
+                                                    <p className="font-black text-[#1D3557]">{users.find(u => u.id === activeConversation)?.full_name}</p>
+                                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{users.find(u => u.id === activeConversation)?.email}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50/30">
+                                            {[...(conversations[activeConversation] || [])].reverse().map((m, i) => (
+                                                <div key={i} className={`flex ${m.sender_id === user.id ? 'justify-end' : 'justify-start'}`}>
+                                                    <div className={`max-w-[80%] p-4 rounded-2xl shadow-sm text-sm ${m.sender_id === user.id ? 'bg-[#1D3557] text-white rounded-tr-none' : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'}`}>
+                                                        {m.content}
+                                                        <p className={`text-[9px] mt-2 font-bold uppercase opacity-50 ${m.sender_id === user.id ? 'text-right' : ''}`}>
+                                                            {new Date(m.created_at).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <form onSubmit={handleAdminReply} className="p-4 border-t border-gray-100 flex gap-2">
+                                            <input
+                                                type="text"
+                                                value={adminReply}
+                                                onChange={(e) => setAdminReply(e.target.value)}
+                                                placeholder="Répondre à l'utilisateur..."
+                                                className="flex-1 py-3 px-5 bg-gray-50 border-0 focus:ring-2 focus:ring-[#E63746]/20 rounded-xl text-sm font-medium"
+                                            />
+                                            <button
+                                                disabled={!adminReply.trim() || actionLoading}
+                                                type="submit"
+                                                className="px-6 py-3 bg-[#E63746] text-white rounded-xl font-bold text-sm hover:bg-[#C1121F] shadow-lg shadow-red-900/20 disabled:opacity-50 transition-all active:scale-95"
+                                            >
+                                                Envoyer
+                                            </button>
+                                        </form>
+                                    </>
+                                ) : (
+                                    <div className="flex-1 flex flex-col items-center justify-center text-center p-10 grayscale opacity-30">
+                                        <MessageSquare size={60} className="mb-4" />
+                                        <h4 className="text-xl font-black text-[#1D3557]">Sélectionnez une conversation</h4>
+                                        <p className="text-sm text-gray-500 max-w-xs mt-2 font-medium">Cliquez sur un utilisateur à gauche pour commencer à discuter avec lui.</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                     {/* DASHBOARD */}
                     {activeTab === 'dashboard' && (
                         <div className="space-y-8 animate-fade-in">
@@ -768,7 +927,7 @@ const AdminPage = () => {
                     </div>
                 )}
             </main>
-        </div>
+        </div >
     );
 };
 
