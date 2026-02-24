@@ -10,6 +10,13 @@
         "profile": "Perfil",
         "logout": "Cerrar sesión"
     },
+    "simulator": {
+        "step1Title": "Su Proyecto",
+        "step1Desc": "Elija el tipo de proyecto que le interese.",
+        "back": "VOLVER",
+        "submit": "SOLICITAR ESTE PRÉSTAMO",
+        "instantResponse": "Respuesta de principio inmediata"
+    },
     "common": {
         "save": "Guardar",
         "cancel": "Cancelar",
@@ -287,7 +294,9 @@
         "mortgageLoan": "Préstamo Hipotecario",
         "autoLoan": "Préstamo Auto",
         "businessLoan": "Préstamo Profesional",
-        "startingFrom": "Desde",
+        "creditBuyback": "Recompra de créditos",
+        "studentLoan": "Préstamo Estudiantil",
+        "startingFrom": "A partir de",
         "customizeLoan": "Personalice su préstamo",
         "loanAmount": "Monto del Préstamo",
         "durationMonths": "Duración (meses)",

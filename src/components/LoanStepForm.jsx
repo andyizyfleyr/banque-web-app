@@ -10,7 +10,9 @@ import {
     ChevronLeft,
     CheckCircle2,
     Zap,
-    ArrowRight
+    ArrowRight,
+    RefreshCw,
+    GraduationCap
 } from 'lucide-react';
 import { useLocale } from '@/contexts/LocaleContext';
 
@@ -28,7 +30,9 @@ const LoanStepForm = () => {
         { id: 'personal', label: t('loans.personalLoan'), icon: Users, rate: 0.02, color: 'text-blue-600', bg: 'bg-blue-50' },
         { id: 'mortgage', label: t('loans.mortgageLoan'), icon: Home, rate: 0.02, color: 'text-emerald-600', bg: 'bg-emerald-50' },
         { id: 'auto', label: t('loans.autoLoan'), icon: Car, rate: 0.02, color: 'text-orange-600', bg: 'bg-orange-50' },
-        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.02, color: 'text-indigo-600', bg: 'bg-indigo-50' }
+        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.02, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+        { id: 'creditBuyback', label: t('loans.creditBuyback'), icon: RefreshCw, rate: 0.03, color: 'text-purple-600', bg: 'bg-purple-50' },
+        { id: 'studentLoan', label: t('loans.studentLoan'), icon: GraduationCap, rate: 0.015, color: 'text-pink-600', bg: 'bg-pink-50' }
     ];
 
     const currentType = loanTypes.find(t => t.id === selectedType) || loanTypes[0];
@@ -59,8 +63,8 @@ const LoanStepForm = () => {
                             className="space-y-6"
                         >
                             <div className="space-y-2">
-                                <h3 className="text-2xl font-black text-[#1D3557]">{t('loans.stepCategory')}</h3>
-                                <p className="text-gray-400 text-sm font-medium">Choisissez le type de projet qui vous tient à cœur.</p>
+                                <h3 className="text-2xl font-black text-[#1D3557]">{t('simulator.step1Title')}</h3>
+                                <p className="text-gray-400 text-sm font-medium">{t('simulator.step1Desc')}</p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
@@ -71,15 +75,15 @@ const LoanStepForm = () => {
                                             setSelectedType(type.id);
                                             nextStep();
                                         }}
-                                        className={`p-6 rounded-3xl border-2 text-left transition-all ${selectedType === type.id
+                                        className={`p-4 md:p-6 rounded-3xl border-2 text-left transition-all ${selectedType === type.id
                                             ? 'border-[#E63746] bg-red-50/20'
-                                            : 'border-gray-50 hober:border-gray-200 hover:bg-gray-50/50'
+                                            : 'border-gray-50 hover:border-gray-200 hover:bg-gray-50/50'
                                             }`}
                                     >
-                                        <div className={`w-12 h-12 rounded-xl ${type.bg} ${type.color} flex items-center justify-center mb-3`}>
+                                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${type.bg} ${type.color} flex items-center justify-center mb-3`}>
                                             <type.icon size={24} />
                                         </div>
-                                        <span className="font-bold text-[#1D3557] text-sm block leading-tight">{type.label}</span>
+                                        <span className="font-bold text-[#1D3557] text-xs md:text-sm block leading-tight">{type.label}</span>
                                     </button>
                                 ))}
                             </div>
@@ -95,7 +99,7 @@ const LoanStepForm = () => {
                             <div className="flex items-center justify-between">
                                 <button onClick={prevStep} className="flex items-center gap-2 text-gray-400 hover:text-[#1D3557] font-bold text-xs transition-colors group">
                                     <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                                    RETOUR
+                                    {t('simulator.back')}
                                 </button>
                                 <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-[#E63746] text-white">
                                     {currentType.label}
@@ -112,7 +116,7 @@ const LoanStepForm = () => {
                                     <input
                                         type="range"
                                         min="1000"
-                                        max="100000"
+                                        max="150000"
                                         step="1000"
                                         value={amount}
                                         onChange={(e) => setAmount(Number(e.target.value))}
@@ -129,7 +133,7 @@ const LoanStepForm = () => {
                                     <input
                                         type="range"
                                         min="6"
-                                        max="84"
+                                        max="120"
                                         step="6"
                                         value={months}
                                         onChange={(e) => setMonths(Number(e.target.value))}
@@ -144,9 +148,9 @@ const LoanStepForm = () => {
                                     </div>
                                     <div className="relative z-10 space-y-1">
                                         <span className="text-blue-300 text-[10px] font-black uppercase tracking-[0.2em]">{t('loans.monthlyPayment')}</span>
-                                        <div className="text-4xl font-black text-white flex items-baseline gap-2">
+                                        <div className="text-3xl md:text-4xl font-black text-white flex items-baseline gap-2">
                                             {fc(monthlyPayment)}
-                                            <span className="text-blue-300 text-sm font-bold capitalize">/ {t('loans.monthsUnit')}</span>
+                                            <span className="text-blue-300 text-xs md:text-sm font-bold capitalize">/ {t('loans.monthsUnit')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +162,7 @@ const LoanStepForm = () => {
                                 className="w-full bg-[#E63746] hover:bg-[#C1121F] text-white py-5 rounded-2xl font-black text-sm transition-all shadow-lg shadow-red-200 uppercase tracking-widest flex items-center justify-center gap-3"
                                 onClick={() => router.push('/loans')}
                             >
-                                DEMANDER CE PRÊT
+                                {t('simulator.submit')}
                                 <ArrowRight size={18} />
                             </motion.button>
                         </motion.div>
@@ -170,7 +174,7 @@ const LoanStepForm = () => {
             {step === 1 && (
                 <div className="px-8 pb-8 pt-0 flex items-center gap-2 text-green-500">
                     <CheckCircle2 size={16} />
-                    <span className="text-[10px] font-black uppercase tracking-[0.1em]">Réponse de principe immédiate</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.1em]">{t('simulator.instantResponse')}</span>
                 </div>
             )}
         </div>

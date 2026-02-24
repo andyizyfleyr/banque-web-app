@@ -10,6 +10,13 @@
         "profile": "Profil",
         "logout": "Wyloguj"
     },
+    "simulator": {
+        "step1Title": "Twój Projekt",
+        "step1Desc": "Wybierz rodzaj projektu, który jest Ci bliski.",
+        "back": "POWRÓT",
+        "submit": "ZŁÓŻ WNIOSEK O TĘ POŻYCZKĘ",
+        "instantResponse": "Natychmiastowa odpowiedź wstępna"
+    },
     "common": {
         "save": "Zapisz",
         "cancel": "Anuluj",
@@ -288,6 +295,8 @@
         "mortgageLoan": "Kredyt Hipoteczny",
         "autoLoan": "Kredyt Samochodowy",
         "businessLoan": "Kredyt Firmowy",
+        "creditBuyback": "Wykup kredytów",
+        "studentLoan": "Pożyczka studencka",
         "startingFrom": "Od",
         "customizeLoan": "Dostosuj swój kredyt",
         "loanAmount": "Kwota Kredytu",

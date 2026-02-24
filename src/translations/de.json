@@ -10,6 +10,13 @@
         "profile": "Profil",
         "logout": "Abmelden"
     },
+    "simulator": {
+        "step1Title": "Ihr Projekt",
+        "step1Desc": "Wählen Sie die Art des Projekts, das Ihnen am Herzen liegt.",
+        "back": "ZURÜCK",
+        "submit": "DIESEN KREDIT ANFRAGEN",
+        "instantResponse": "Sofortige Antwort im Prinzip"
+    },
     "common": {
         "save": "Speichern",
         "cancel": "Abbrechen",
@@ -288,6 +295,8 @@
         "mortgageLoan": "Hypothek",
         "autoLoan": "Autokredit",
         "businessLoan": "Geschäftskredit",
+        "creditBuyback": "Kreditumschuldung",
+        "studentLoan": "Studentenkredit",
         "startingFrom": "Ab",
         "customizeLoan": "Passen Sie Ihren Kredit an",
         "loanAmount": "Kreditbetrag",

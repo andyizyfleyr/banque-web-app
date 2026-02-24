@@ -10,6 +10,13 @@
         "profile": "Profile",
         "logout": "Log Out"
     },
+    "simulator": {
+        "step1Title": "Your Project",
+        "step1Desc": "Choose the type of project close to your heart.",
+        "back": "BACK",
+        "submit": "APPLY FOR THIS LOAN",
+        "instantResponse": "Immediate principle response"
+    },
     "common": {
         "save": "Save",
         "cancel": "Cancel",
@@ -297,6 +304,8 @@
         "mortgageLoan": "Mortgage",
         "autoLoan": "Auto Loan",
         "businessLoan": "Business Loan",
+        "creditBuyback": "Credit Buyback",
+        "studentLoan": "Student Loan",
         "startingFrom": "Starting from",
         "customizeLoan": "Customize your loan",
         "loanAmount": "Loan Amount",

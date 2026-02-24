@@ -10,6 +10,13 @@
         "profile": "Perfil",
         "logout": "Sair"
     },
+    "simulator": {
+        "step1Title": "Seu Projeto",
+        "step1Desc": "Escolha o tipo de projeto que lhe interessa.",
+        "back": "VOLTAR",
+        "submit": "PEDIR ESTE EMPRÉSTIMO",
+        "instantResponse": "Resposta de princípio imediata"
+    },
     "common": {
         "save": "Guardar",
         "cancel": "Cancelar",
@@ -288,6 +295,8 @@
         "mortgageLoan": "Crédito Habitação",
         "autoLoan": "Crédito Automóvel",
         "businessLoan": "Crédito Profissional",
+        "creditBuyback": "Recompra de créditos",
+        "studentLoan": "Empréstimo Estudantil",
         "startingFrom": "A partir de",
         "customizeLoan": "Personalize o seu crédito",
         "loanAmount": "Montante do Crédito",

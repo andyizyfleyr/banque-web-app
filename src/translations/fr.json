@@ -10,6 +10,13 @@
         "profile": "Profil",
         "logout": "Déconnexion"
     },
+    "simulator": {
+        "step1Title": "Votre Projet",
+        "step1Desc": "Choisissez le type de projet qui vous tient à cœur.",
+        "back": "RETOUR",
+        "submit": "DEMANDER CE PRÊT",
+        "instantResponse": "Réponse de principe immédiate"
+    },
     "common": {
         "save": "Sauvegarder",
         "cancel": "Annuler",
@@ -297,6 +304,8 @@
         "mortgageLoan": "Prêt Immobilier",
         "autoLoan": "Prêt Auto",
         "businessLoan": "Prêt Professionnel",
+        "creditBuyback": "Rachat de crédits",
+        "studentLoan": "Prêt Étudiant",
         "startingFrom": "À partir de",
         "customizeLoan": "Personnalisez votre prêt",
         "loanAmount": "Montant du Prêt",

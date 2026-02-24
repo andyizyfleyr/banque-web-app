@@ -10,6 +10,13 @@
         "profile": "Profilo",
         "logout": "Esci"
     },
+    "simulator": {
+        "step1Title": "Il Tuo Progetto",
+        "step1Desc": "Scegli il tipo di progetto che ti sta a cuore.",
+        "back": "INDIETRO",
+        "submit": "RICHIEDI QUESTO PRESTITO",
+        "instantResponse": "Risposta di principio immediata"
+    },
     "common": {
         "save": "Salva",
         "cancel": "Annulla",
@@ -288,6 +295,8 @@
         "mortgageLoan": "Mutuo Ipotecario",
         "autoLoan": "Prestito Auto",
         "businessLoan": "Prestito Professionale",
+        "creditBuyback": "Riacquisto crediti",
+        "studentLoan": "Prestito Studentesco",
         "startingFrom": "A partire da",
         "customizeLoan": "Personalizza il tuo prestito",
         "loanAmount": "Importo del Prestito",

@@ -10,6 +10,13 @@
         "profile": "Profil",
         "logout": "Deconectare"
     },
+    "simulator": {
+        "step1Title": "Proiectul Tău",
+        "step1Desc": "Alegeți tipul de proiect care vă este drag.",
+        "back": "ÎNAPOI",
+        "submit": "SOLICITĂ ACEST ÎMPRUMUT",
+        "instantResponse": "Răspuns de principiu imediat"
+    },
     "common": {
         "save": "Salvează",
         "cancel": "Anulează",
@@ -288,6 +295,8 @@
         "mortgageLoan": "Credit Ipotecar",
         "autoLoan": "Credit Auto",
         "businessLoan": "Credit Profesional",
+        "creditBuyback": "Răscumpărare credite",
+        "studentLoan": "Împrumut pentru studenți",
         "startingFrom": "Începând de la",
         "customizeLoan": "Personalizați-vă creditul",
         "loanAmount": "Suma Creditului",
