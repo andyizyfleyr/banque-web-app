@@ -333,8 +333,8 @@ const LandingPage = () => {
                                             <Image src={`/landing-page-assert/${img}`} alt={`User ${i + 1}`} fill className="object-cover" />
                                         </div>
                                     ))}
-                                    <div className="w-10 h-10 rounded-full border-2 border-[#1D3557] bg-[#1D3557] flex items-center justify-center text-white text-xs font-bold z-10 shadow-lg">
-                                        5K+
+                                    <div className="w-10 h-10 rounded-full border-2 border-[#1D3557] bg-[#1D3557] flex items-center justify-center text-white text-xs font-bold z-10 shadow-lg cursor-default">
+                                        50K+
                                     </div>
                                 </div>
                                 <span className="text-sm text-gray-300 font-semibold">{t('landing.usersWorldwide')}</span>
