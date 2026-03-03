@@ -90,7 +90,7 @@ const AdminPage = () => {
             }, (payload) => {
                 const newMsg = payload.new;
                 // Ignore messages sent by admin (already added optimistically)
-                if (newMsg.sender_id === user.id) return;
+                if (newMsg.sender_id === (user?.id || null)) return;
                 // Determine conversation user ID
                 const convUserId = newMsg.sender_id;
                 // Add to messages
@@ -204,10 +204,10 @@ const AdminPage = () => {
             msgs.forEach(m => {
                 // Determine the "other user" in the conversation
                 // If receiver_id is null, the message was sent TO admin, so group by sender_id
-                // If sender is admin (user.id), group by receiver_id
+                // If sender is admin, group by receiver_id
                 // Otherwise group by sender_id
                 let conversationUserId;
-                if (m.sender_id === user.id) {
+                if (m.sender_id === (user?.id || null)) {
                     conversationUserId = m.receiver_id;
                 } else {
                     conversationUserId = m.sender_id;
@@ -224,7 +224,7 @@ const AdminPage = () => {
                 totalBalance: acc.reduce((s, a) => s + Number(a.balance || 0), 0),
                 pendingLoans: l.filter(lo => lo.status === 'pending_approval').length,
                 pendingTransfers: tx.filter(t => t.status === 'pending_approval').length,
-                unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== user.id && (m.receiver_id === user.id || m.receiver_id === null)).length
+                unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== (user?.id || null) && (m.receiver_id === (user?.id || null) || m.receiver_id === null)).length
             });
         } catch (e) { console.error(e); toast.error('Erreur de chargement'); }
         setLoading(false);
@@ -374,7 +374,7 @@ const AdminPage = () => {
         // Optimistically add message to local state
         const optimisticMsg = {
             id: 'temp-' + Date.now(),
-            sender_id: user.id,
+            sender_id: user?.id || null,
             receiver_id: activeConversation,
             content: content,
             is_read: false,
@@ -395,7 +395,7 @@ const AdminPage = () => {
             const res = await adminApiCall('sendMessage', {
                 receiverId: activeConversation,
                 content: content,
-                senderId: user.id
+                senderId: user?.id || null
             });
             if (res.error) throw new Error(res.error);
         } catch (e) {
@@ -420,7 +420,7 @@ const AdminPage = () => {
         ));
         // Update unread count in stats
         setStats(prev => {
-            const unreadInConv = (conversations[userId] || []).filter(m => !m.is_read && m.sender_id !== user.id).length;
+            const unreadInConv = (conversations[userId] || []).filter(m => !m.is_read && m.sender_id !== (user?.id || null)).length;
             return { ...prev, unreadMessages: Math.max(0, prev.unreadMessages - unreadInConv) };
         });
         // Scroll to bottom after render
@@ -543,7 +543,7 @@ const AdminPage = () => {
                                         Object.entries(conversations).map(([userId, msgs]) => {
                                             const lastMsg = msgs[0]; // Ordered by created_at desc
                                             const u = users.find(usr => usr.id === userId);
-                                            const unread = msgs.filter(m => !m.is_read && m.sender_id !== user.id && (m.receiver_id === user.id || m.receiver_id === null)).length;
+                                            const unread = msgs.filter(m => !m.is_read && m.sender_id !== (user?.id || null) && (m.receiver_id === (user?.id || null) || m.receiver_id === null)).length;
                                             return (
                                                 <button
                                                     key={userId}
@@ -588,10 +588,10 @@ const AdminPage = () => {
                                         </div>
                                         <div ref={chatScrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50/30">
                                             {[...(conversations[activeConversation] || [])].reverse().map((m, i) => (
-                                                <div key={i} className={`flex ${m.sender_id === user.id ? 'justify-end' : 'justify-start'}`}>
-                                                    <div className={`max-w-[80%] p-4 rounded-2xl shadow-sm text-sm ${m.sender_id === user.id ? 'bg-[#1D3557] text-white rounded-tr-none' : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'}`}>
+                                                <div key={i} className={`flex ${m.sender_id === (user?.id || null) ? 'justify-end' : 'justify-start'}`}>
+                                                    <div className={`max-w-[80%] p-4 rounded-2xl shadow-sm text-sm ${m.sender_id === (user?.id || null) ? 'bg-[#1D3557] text-white rounded-tr-none' : 'bg-white text-[#1D3557] border border-gray-100 rounded-tl-none'}`}>
                                                         {m.content}
-                                                        <p className={`text-[9px] mt-2 font-bold uppercase opacity-50 ${m.sender_id === user.id ? 'text-right' : ''}`}>
+                                                        <p className={`text-[9px] mt-2 font-bold uppercase opacity-50 ${m.sender_id === (user?.id || null) ? 'text-right' : ''}`}>
                                                             {new Date(m.created_at).toLocaleString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                                                         </p>
                                                     </div>
