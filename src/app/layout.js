@@ -1,13 +1,10 @@
 import "./globals.css";
 import Layout from "@/components/Layout";
-import { Inter } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ConfirmProvider } from "@/contexts/ConfirmContext";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { Toaster } from "react-hot-toast";
 import SafeHydration from "@/components/SafeHydration";
-
-const inter = Inter({ subsets: ["latin", "latin-ext", "greek"] });
 
 export const metadata = {
   title: "REDBANK - Your Modern Bank",
@@ -23,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" suppressHydrationWarning={true}>
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning={true}>
+      <body className="antialiased" suppressHydrationWarning={true}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
