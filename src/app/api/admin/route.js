@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { countries } from '@/config/countries';
 
 const ADMIN_PASSWORD = 'Financer2026!';
 
@@ -67,8 +68,6 @@ export async function POST(request) {
                     country: countryCode || 'FR'
                 }]);
 
-                // Determine IBAN/Account prefix based on country
-                const { countries } = require('@/config/countries');
                 const c = countries.find(x => x.code === (countryCode || 'FR'));
                 let finalIban = 'FR76 3000 6000 0102 1234 5678 901'; // Default fallback
 
