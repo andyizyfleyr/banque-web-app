@@ -735,34 +735,38 @@ const AdminPage = () => {
                                 ))}
                             </div>
                             <div className="grid gap-4">
-                                {filteredLoans.map(loan => (
-                                    <div key={loan.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow">
-                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center"><Landmark size={20} className="text-blue-600" /></div>
-                                                <div>
-                                                    <p className="font-bold text-[#1D3557] text-lg">{fc(loan.amount)}</p>
-                                                    <p className="text-xs text-gray-500">{loan.type} • {loan.duration_months} mois • {loan.interest_rate}%</p>
-                                                    <p className="text-[11px] text-gray-400">ID: {loan.user_id?.slice(0, 8)}... • {fd(loan.created_at)}</p>
+                                {filteredLoans.map(loan => {
+                                    const loanUser = users.find(u => u.id === loan.user_id);
+                                    const userName = loanUser ? (loanUser.full_name || loanUser.email) : 'Utilisateur inconnu';
+                                    return (
+                                        <div key={loan.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow">
+                                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center"><Landmark size={20} className="text-blue-600" /></div>
+                                                    <div>
+                                                        <p className="font-bold text-[#1D3557] text-lg">{fc(loan.amount)} <span className="text-sm font-medium text-gray-500 ml-2">par {userName}</span></p>
+                                                        <p className="text-xs text-gray-500">{loan.type} • {loan.duration_months} mois • {loan.interest_rate}%</p>
+                                                        <p className="text-[11px] text-gray-400">ID: {loan.user_id?.slice(0, 8)}... • Date: {fd(loan.created_at)}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    {statusBadge(loan.status)}
+                                                    {loan.status === 'pending_approval' && (
+                                                        <div className="flex gap-2">
+                                                            <button onClick={() => updateLoanStatus(loan.id, 'active')} className="px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 flex items-center gap-1"><CheckCircle size={14} />Approuver</button>
+                                                            <button onClick={() => updateLoanStatus(loan.id, 'rejected')} className="px-4 py-2 bg-red-500 text-white rounded-xl text-xs font-bold hover:bg-red-600 flex items-center gap-1"><XCircle size={14} />Rejeter</button>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
-                                            <div className="flex items-center gap-2 flex-wrap">
-                                                {statusBadge(loan.status)}
-                                                {loan.status === 'pending_approval' && (
-                                                    <div className="flex gap-2">
-                                                        <button onClick={() => updateLoanStatus(loan.id, 'active')} className="px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 flex items-center gap-1"><CheckCircle size={14} />Approuver</button>
-                                                        <button onClick={() => updateLoanStatus(loan.id, 'rejected')} className="px-4 py-2 bg-red-500 text-white rounded-xl text-xs font-bold hover:bg-red-600 flex items-center gap-1"><XCircle size={14} />Rejeter</button>
-                                                    </div>
-                                                )}
+                                            <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-50">
+                                                <div><p className="text-[10px] text-gray-400 uppercase font-bold">Mensualité</p><p className="font-bold text-[#1D3557]">{fc(loan.monthly_payment)}</p></div>
+                                                <div><p className="text-[10px] text-gray-400 uppercase font-bold">Revenu</p><p className="font-bold text-[#1D3557]">{fc(loan.monthly_income)}</p></div>
+                                                <div><p className="text-[10px] text-gray-400 uppercase font-bold">Devise</p><p className="font-bold text-[#1D3557]">{loan.currency || 'EUR'}</p></div>
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-50">
-                                            <div><p className="text-[10px] text-gray-400 uppercase font-bold">Mensualité</p><p className="font-bold text-[#1D3557]">{fc(loan.monthly_payment)}</p></div>
-                                            <div><p className="text-[10px] text-gray-400 uppercase font-bold">Revenu</p><p className="font-bold text-[#1D3557]">{fc(loan.monthly_income)}</p></div>
-                                            <div><p className="text-[10px] text-gray-400 uppercase font-bold">Devise</p><p className="font-bold text-[#1D3557]">{loan.currency || 'EUR'}</p></div>
-                                        </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                                 {filteredLoans.length === 0 && <div className="text-center py-12 text-gray-400">Aucun prêt trouvé</div>}
                             </div>
                         </div>
