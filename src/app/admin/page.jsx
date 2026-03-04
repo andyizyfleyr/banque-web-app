@@ -359,9 +359,6 @@ const AdminPage = () => {
         setActionLoading(false);
     };
 
-    const fc = (n) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n || 0);
-    const fd = (d) => d ? new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
-
     const statusBadge = (status) => {
         const map = {
             active: { bg: 'bg-emerald-100 text-emerald-700', icon: <CheckCircle size={12} /> },

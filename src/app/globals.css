@@ -76,7 +76,7 @@
     font-size: 14px;
   }
 
-  @screen sm {
+  @media (min-width: 640px) {
     html {
       font-size: 16px;
     }
@@ -90,7 +90,7 @@
     font-size: 16px !important;
   }
 
-  @screen sm {
+  @media (min-width: 640px) {
 
     input,
     select,
