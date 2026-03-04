@@ -1073,5 +1073,18 @@
         "step2Desc": "Geschätzte Zeit: 24 bis 48 Geschäftsstunden",
         "step3Title": "Endgültige Validierung",
         "required": "Bitte schließen Sie Ihre Identitätsüberprüfung ab, um auf diese Finanzfunktion zugreifen zu können."
+    },
+    "admin": {
+        "title": "Administration Panel",
+        "usersCount": "Users",
+        "kycPending": "Pending KYC",
+        "loansActive": "Active Loans",
+        "cardsActive": "Active Cards",
+        "totalBalance": "Total Balance",
+        "latestTransactions": "Latest Transactions",
+        "selectConvo": "Select a conversation",
+        "clickUser": "Click on a user on the left to start chatting.",
+        "send": "Send",
+        "markAsRead": "Mark as read"
     }
 }

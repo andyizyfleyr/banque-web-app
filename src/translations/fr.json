@@ -1084,5 +1084,18 @@
         "step2Desc": "Délai estimé : 24 à 48h ouvrées",
         "step3Title": "Validation finale",
         "required": "Veuillez finaliser votre vérification d'identité pour accéder à cette fonctionnalité."
+    },
+    "admin": {
+        "title": "Panel d'Administration",
+        "usersCount": "Utilisateurs",
+        "kycPending": "KYC en attente",
+        "loansActive": "Prêts en cours",
+        "cardsActive": "Cartes actives",
+        "totalBalance": "Solde total",
+        "latestTransactions": "Dernières transactions",
+        "selectConvo": "Sélectionnez une conversation",
+        "clickUser": "Cliquez sur un utilisateur à gauche pour commencer à discuter avec lui.",
+        "send": "Envoyer",
+        "markAsRead": "Marquer comme lu"
     }
 }

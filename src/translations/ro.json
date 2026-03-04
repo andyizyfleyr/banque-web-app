@@ -1071,5 +1071,18 @@
         "step2Desc": "Timp estimat: 24 până la 48 de ore lucrătoare",
         "step3Title": "Validare finală",
         "required": "Vă rugăm să finalizați verificarea identității pentru a accesa această funcție financiară."
+    },
+    "admin": {
+        "title": "Administration Panel",
+        "usersCount": "Users",
+        "kycPending": "Pending KYC",
+        "loansActive": "Active Loans",
+        "cardsActive": "Active Cards",
+        "totalBalance": "Total Balance",
+        "latestTransactions": "Latest Transactions",
+        "selectConvo": "Select a conversation",
+        "clickUser": "Click on a user on the left to start chatting.",
+        "send": "Send",
+        "markAsRead": "Mark as read"
     }
 }

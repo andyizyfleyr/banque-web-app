@@ -1073,5 +1073,18 @@
         "step2Desc": "Tempo estimado: 24 a 48 horas úteis",
         "step3Title": "Validação final",
         "required": "Por favor, finalize sua verificação de identidade para acessar este recurso financeiro."
+    },
+    "admin": {
+        "title": "Administration Panel",
+        "usersCount": "Users",
+        "kycPending": "Pending KYC",
+        "loansActive": "Active Loans",
+        "cardsActive": "Active Cards",
+        "totalBalance": "Total Balance",
+        "latestTransactions": "Latest Transactions",
+        "selectConvo": "Select a conversation",
+        "clickUser": "Click on a user on the left to start chatting.",
+        "send": "Send",
+        "markAsRead": "Mark as read"
     }
 }

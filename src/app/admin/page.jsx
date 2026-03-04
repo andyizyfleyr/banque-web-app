@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const ADMIN_EMAILS = ['admin@financer.com', 'jacques@financer.com'];
 const ADMIN_PASSWORD = 'Financer2026!';
@@ -21,6 +22,7 @@ const ADMIN_PASSWORD = 'Financer2026!';
 const AdminPage = () => {
     const { user, signOut } = useAuth();
     const router = useRouter();
+    const { t, fc, fd } = useLocale();
     const [activeTab, setActiveTab] = useState('dashboard');
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -139,18 +141,18 @@ const AdminPage = () => {
                     <div className="w-16 h-16 bg-[#E63746] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-900/30">
                         <Shield size={32} className="text-white" />
                     </div>
-                    <h1 className="text-3xl font-black text-white">Admin Panel</h1>
-                    <p className="text-white/40 text-sm mt-2">Financer Group — Accès restreint</p>
+                    <h1 className="text-3xl font-black text-white">{t('admin.title') || 'Admin Panel'}</h1>
+                    <p className="text-white/40 text-sm mt-2">Financer Group — {t('admin.restrictedAccess') || 'Accès restreint'}</p>
                 </div>
                 <form onSubmit={handleAdminLogin} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
                     <div className="space-y-2">
-                        <label className="text-xs font-bold text-white/60 uppercase tracking-wider">Mot de passe administrateur</label>
+                        <label className="text-xs font-bold text-white/60 uppercase tracking-wider">{t('admin.passwordLabel') || 'Mot de passe administrateur'}</label>
                         <div className="relative">
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 value={adminPassword}
                                 onChange={(e) => { setAdminPassword(e.target.value); setPasswordError(''); }}
-                                placeholder="Entrez le mot de passe..."
+                                placeholder={t('admin.passwordPlaceholder') || 'Entrez le mot de passe...'}
                                 className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/20 outline-none focus:border-[#E63746]/50 focus:ring-2 focus:ring-[#E63746]/20 transition-all text-sm"
                                 autoFocus
                             />
@@ -160,14 +162,14 @@ const AdminPage = () => {
                         </div>
                         {passwordError && (
                             <p className="text-red-400 text-xs font-bold flex items-center gap-1 mt-1">
-                                <XCircle size={14} />{passwordError}
+                                <XCircle size={14} />{t('admin.incorrectPassword') || 'Mot de passe incorrect'}
                             </p>
                         )}
                     </div>
                     <button type="submit" className="w-full py-4 bg-[#E63746] text-white rounded-xl font-bold text-sm hover:bg-[#C1121F] transition-colors shadow-lg shadow-red-900/30 flex items-center justify-center gap-2">
-                        <Shield size={16} />Accéder au panel admin
+                        <Shield size={16} />{t('admin.accessBtn') || 'Accéder au panel admin'}
                     </button>
-                    <p className="text-center text-white/20 text-xs">Session sécurisée • Financer Group</p>
+                    <p className="text-center text-white/20 text-xs">{t('admin.secureSession') || 'Session sécurisée'} • Financer Group</p>
                 </form>
             </div>
         </div>
@@ -449,13 +451,13 @@ const AdminPage = () => {
     );
 
     const navItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'kyc', label: 'Vérifications KYC', icon: Shield },
-        { id: 'users', label: 'Utilisateurs', icon: Users },
-        { id: 'loans', label: 'Prêts', icon: Landmark },
-        { id: 'transfers', label: 'Virements', icon: ArrowLeftRight },
-        { id: 'cards', label: 'Cartes', icon: CreditCard },
-        { id: 'messages', label: 'Messages', icon: MessageSquare },
+        { id: 'dashboard', label: t('nav.dashboard') || 'Dashboard', icon: LayoutDashboard },
+        { id: 'kyc', label: t('nav.kyc') || 'Vérifications KYC', icon: Shield },
+        { id: 'users', label: t('nav.profile') ? 'Utilisateurs' : 'Utilisateurs', icon: Users }, // Fallback logic
+        { id: 'loans', label: t('nav.loans') || 'Prêts', icon: Landmark },
+        { id: 'transfers', label: t('nav.transfers') || 'Virements', icon: ArrowLeftRight },
+        { id: 'cards', label: t('nav.cards') || 'Cartes', icon: CreditCard },
+        { id: 'messages', label: t('nav.messages') || 'Messages', icon: MessageSquare },
     ];
 
     if (loading) return (
@@ -708,8 +710,8 @@ const AdminPage = () => {
                                                     <td className="px-5 py-4 text-gray-600 hidden md:table-cell">{u.email}</td>
                                                     <td className="px-5 py-4">
                                                         <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${u.kyc_status === 'verified' ? 'bg-emerald-50 text-emerald-600' :
-                                                                u.kyc_status === 'pending' ? 'bg-blue-50 text-blue-600' :
-                                                                    'bg-red-50 text-red-600'
+                                                            u.kyc_status === 'pending' ? 'bg-blue-50 text-blue-600' :
+                                                                'bg-red-50 text-red-600'
                                                             }`}>{u.kyc_status}</span>
                                                     </td>
                                                     <td className="px-5 py-4 text-right">

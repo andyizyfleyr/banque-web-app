@@ -1073,5 +1073,18 @@
         "step2Desc": "Szacowany czas: od 24 do 48 godzin roboczych",
         "step3Title": "Ostateczna walidacja",
         "required": "Proszę sfinalizować weryfikację tożsamości, aby uzyskać dostęp do tej funkcji finansowej."
+    },
+    "admin": {
+        "title": "Administration Panel",
+        "usersCount": "Users",
+        "kycPending": "Pending KYC",
+        "loansActive": "Active Loans",
+        "cardsActive": "Active Cards",
+        "totalBalance": "Total Balance",
+        "latestTransactions": "Latest Transactions",
+        "selectConvo": "Select a conversation",
+        "clickUser": "Click on a user on the left to start chatting.",
+        "send": "Send",
+        "markAsRead": "Mark as read"
     }
 }
