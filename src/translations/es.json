@@ -758,7 +758,7 @@
         "footerNewsletter": "Boletín",
         "footerNewsletterDesc": "Suscríbete a ofertas.",
         "footerEmailPlaceholder": "Tu email",
-        "footerCopyright": "Copyright @ 2026 Financer Todos los Derechos Reservados.",
+        "footerCopyright": "Copyright @ 2026 Crediwise Todos los Derechos Reservados.",
         "link1": "Sobre nosotros",
         "link2": "Servicios",
         "link3": "Características",
@@ -773,7 +773,7 @@
     "about": {
         "story": "Nuestra Historia",
         "title": "Redefiniendo la Banca Moderna para usted.",
-        "desc": "En Financer, creemos que un banco debe ser transparente, accesible y estar centrado en sus necesidades reales.",
+        "desc": "En Crediwise, creemos que un banco debe ser transparente, accesible y estar centrado en sus necesidades reales.",
         "valuesTitle": "Nuestros Valores Fundamentales",
         "val1": "Transparencia Total",
         "val1Desc": "Sin cargos ocultos, sin sorpresas inesperadas. Precios claros y justos en todo momento.",
@@ -937,14 +937,14 @@
         "effectiveDate": "En vigor desde el 01/01/2026",
         "editorTitle": "Editor del sitio",
         "editorIntro": "El sitio web <strong>www.notre-banque.com</strong> es editado por:",
-        "companyName": "Razón social: Financer Group SA",
+        "companyName": "Razón social: Crediwise Group SA",
         "headquarters": "Sede social: 123 Avenue des Champs-Élysées, 75008 París, Francia",
         "capital": "Capital social: 5.000.000 €",
         "rcs": "RCS: París B 123 456 789",
         "vat": "Número de IVA intracomunitario: FR 12 3456789",
         "orias": "Número ORIAS: 12345678 (www.orias.fr)",
         "directorTitle": "Director de la publicación",
-        "directorDesc": "Sr. Jean Dupont, en calidad de Director General de Financer Group SA.",
+        "directorDesc": "Sr. Jean Dupont, en calidad de Director General de Crediwise Group SA.",
         "directorContact": "Contacto:",
         "hostingTitle": "Alojamiento",
         "hostingIntro": "Este sitio está alojado por:",
@@ -952,13 +952,13 @@
         "hostingAddress": "31 Place des Corolles, 92400 Courbevoie, Francia",
         "hostingPhone": "Teléfono: +33 1 23 45 67 89",
         "authorityTitle": "Autoridad de control",
-        "authorityDesc": "Financer Group es una entidad de crédito de derecho francés autorizada y supervisada por la Autoridad de Control Prudencial y de Resolución (ACPR).",
+        "authorityDesc": "Crediwise Group es una entidad de crédito de derecho francés autorizada y supervisada por la Autoridad de Control Prudencial y de Resolución (ACPR).",
         "authorityAddress": "Dirección de la ACPR: 4 Place de Budapest, CS 92459, 75436 París Cedex 09."
     },
     "privacyPage": {
         "title": "Política de Privacidad",
         "updatedDate": "Actualizada el 01/01/2026",
-        "intro": "La protección de sus datos personales es el centro de nuestras preocupaciones. Esta política detalla cómo Financer Group recopila, utiliza, protege y comparte sus datos en el marco del uso de nuestros servicios en línea.",
+        "intro": "La protección de sus datos personales es el centro de nuestras preocupaciones. Esta política detalla cómo Crediwise Group recopila, utiliza, protege y comparte sus datos en el marco del uso de nuestros servicios en línea.",
         "dataCollectionTitle": "1. Recopilación de datos",
         "dataCollectionIntro": "Recopilamos diferentes categorías de datos personales, incluyendo:",
         "identityData": "Datos de identificación:",
@@ -988,7 +988,7 @@
     "termsPage": {
         "title": "Condiciones Generales de Uso",
         "effectiveDate": "Aplicables desde el 01/01/2026",
-        "intro": "Las presentes Condiciones Generales de Uso (CGU) determinan las reglas de acceso y uso del sitio de Financer Group. Todo acceso o uso del sitio implica la aceptación sin reservas de estas condiciones.",
+        "intro": "Las presentes Condiciones Generales de Uso (CGU) determinan las reglas de acceso y uso del sitio de Crediwise Group. Todo acceso o uso del sitio implica la aceptación sin reservas de estas condiciones.",
         "article1Title": "Artículo 1: Acceso al sitio",
         "article1Desc": "El sitio es accesible gratuitamente desde cualquier lugar para todo usuario con acceso a Internet. Todos los gastos soportados por el usuario para acceder al servicio (hardware, software, conexión a Internet, etc.) son a su cargo. El sitio está normalmente accesible 24/7. En caso de fuerza mayor o mantenimiento técnico periódico, el acceso puede ser suspendido o limitado.",
         "article2Title": "Artículo 2: Cuenta de usuario",
@@ -998,7 +998,7 @@
         "article4Title": "Artículo 4: Responsabilidad",
         "article4Desc": "El editor declina toda responsabilidad por cualquier interrupción del sitio o aparición de errores, por cualquier inexactitud u omisión relativa a la información disponible en el sitio, o más generalmente por cualquier daño directo o indirecto, cualesquiera que sean las causas o la naturaleza, provocado por el acceso de cualquier persona al sitio o la imposibilidad de acceder.",
         "article5Title": "Artículo 5: Enlaces hipertexto",
-        "article5Desc": "Los enlaces hipertexto pueden estar presentes en el sitio. El usuario queda informado de que al hacer clic en estos enlaces, saldrá del sitio de Financer Group. Este último no tiene control sobre las páginas web a las que conducen estos enlaces y no puede, en ningún caso, ser responsable de su contenido."
+        "article5Desc": "Los enlaces hipertexto pueden estar presentes en el sitio. El usuario queda informado de que al hacer clic en estos enlaces, saldrá del sitio de Crediwise Group. Este último no tiene control sobre las páginas web a las que conducen estos enlaces y no puede, en ningún caso, ser responsable de su contenido."
     },
     "publicFooter": {
         "home": "Inicio",
@@ -1018,7 +1018,7 @@
         "security": "Seguridad",
         "securePayments": "Pagos Seguros",
         "securedTransactions": "Transacciones seguras",
-        "copyright": "© 2026 Financer. Todos los derechos reservados.",
+        "copyright": "© 2026 Crediwise. Todos los derechos reservados.",
         "privacy": "Privacidad"
     },
     "messages": {

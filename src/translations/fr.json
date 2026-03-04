@@ -754,7 +754,7 @@
         "solTab6": "Gestion",
         "rev1_text": "Grâce au rachat de mes crédits chez CREDIWISE, j'ai divisé mes mensualités par deux et retrouvé une vraie sérénité financière. L'accompagnement personnalisé de mon conseiller a fait toute la différence.",
         "rev1_role": "Sérénité Financière Retrouvée",
-        "rev2_text": "La demande de prêt personnel a été d'une rapidité incroyable. J'ai reçu une réponse de principe immédiate et les fonds ont été débloqués en un temps record pour financer mon nouveau véhicule. Je recommande vivement !",
+        "rev2_text": "La demande de prêt personnel a été d'une rapidité incroyable. J'ai reçu une réponse de principe immédiate et les fonds ont été débloqués en un temps record pour crediwise mon nouveau véhicule. Je recommande vivement !",
         "rev2_role": "Rapidité & Efficacité",
         "rev3_text": "Les transferts internationaux sont instantanés et sans frais cachés. C'est de loin l'application bancaire la plus intuitive que j'ai utilisée pour gérer mon entreprise à l'étranger au quotidien. Un gain de temps précieux.",
         "rev3_role": "Gestion de Business",
@@ -770,7 +770,7 @@
         "footerNewsletter": "Newsletter",
         "footerNewsletterDesc": "Abonnez-vous.",
         "footerEmailPlaceholder": "Votre email",
-        "footerCopyright": "Copyright @ 2026 Financer Tous Droits Réservés.",
+        "footerCopyright": "Copyright @ 2026 Crediwise Tous Droits Réservés.",
         "link1": "À propos",
         "link2": "Nos Services",
         "link3": "Fonctionnalités",
@@ -785,7 +785,7 @@
     "about": {
         "story": "Notre Histoire",
         "title": "Redéfinir la Banque Moderne pour vous.",
-        "desc": "Chez Financer, nous croyons qu'une banque doit être transparente, accessible et centrée sur vos besoins réels pour vous aider à atteindre la liberté financière.",
+        "desc": "Chez Crediwise, nous croyons qu'une banque doit être transparente, accessible et centrée sur vos besoins réels pour vous aider à atteindre la liberté financière.",
         "valuesTitle": "Nos Valeurs Fondamentales",
         "val1": "Transparence Totale",
         "val1Desc": "Pas de frais cachés, pas de mauvaises surprises. Une tarification claire et juste.",
@@ -949,14 +949,14 @@
         "effectiveDate": "En vigueur au 01/01/2026",
         "editorTitle": "Éditeur du site",
         "editorIntro": "Le site internet <strong>www.notre-banque.com</strong> est édité par :",
-        "companyName": "Raison sociale : Financer Group SA",
+        "companyName": "Raison sociale : Crediwise Group SA",
         "headquarters": "Siège social : 123 Avenue des Champs-Élysées, 75008 Paris, France",
         "capital": "Capital social : 5 000 000 €",
         "rcs": "RCS : Paris B 123 456 789",
         "vat": "Numéro de TVA intracommunautaire : FR 12 3456789",
         "orias": "Numéro ORIAS : 12345678 (www.orias.fr)",
         "directorTitle": "Directeur de la publication",
-        "directorDesc": "M. Jean Dupont, en sa qualité de Directeur Général de Financer Group SA.",
+        "directorDesc": "M. Jean Dupont, en sa qualité de Directeur Général de Crediwise Group SA.",
         "directorContact": "Contact :",
         "hostingTitle": "Hébergement",
         "hostingIntro": "Ce site est hébergé par :",
@@ -964,13 +964,13 @@
         "hostingAddress": "31 Place des Corolles, 92400 Courbevoie, France",
         "hostingPhone": "Téléphone : +33 1 23 45 67 89",
         "authorityTitle": "Autorité de contrôle",
-        "authorityDesc": "Financer Group est un établissement de crédit de droit français agréé et contrôlé par l'Autorité de Contrôle Prudentiel et de Résolution (ACPR).",
+        "authorityDesc": "Crediwise Group est un établissement de crédit de droit français agréé et contrôlé par l'Autorité de Contrôle Prudentiel et de Résolution (ACPR).",
         "authorityAddress": "Adresse de l'ACPR : 4 Place de Budapest, CS 92459, 75436 Paris Cedex 09."
     },
     "privacyPage": {
         "title": "Politique de Confidentialité",
         "updatedDate": "Mise à jour le 01/01/2026",
-        "intro": "La protection de vos données personnelles est au cœur de nos préoccupations. La présente politique détaille comment Financer Group collecte, utilise, protège et partage vos données dans le cadre de l'utilisation de nos services en ligne.",
+        "intro": "La protection de vos données personnelles est au cœur de nos préoccupations. La présente politique détaille comment Crediwise Group collecte, utilise, protège et partage vos données dans le cadre de l'utilisation de nos services en ligne.",
         "dataCollectionTitle": "1. Collecte des données",
         "dataCollectionIntro": "Nous collectons différentes catégories de données personnelles, notamment :",
         "identityData": "Données d'identification :",
@@ -1000,7 +1000,7 @@
     "termsPage": {
         "title": "Conditions Générales d'Utilisation",
         "effectiveDate": "Applicables au 01/01/2026",
-        "intro": "Les présentes Conditions Générales d'Utilisation (CGU) déterminent les règles d'accès et d'utilisation du site de Financer Group. Tout accès ou utilisation du site emporte l'acceptation sans réserve de ces conditions.",
+        "intro": "Les présentes Conditions Générales d'Utilisation (CGU) déterminent les règles d'accès et d'utilisation du site de Crediwise Group. Tout accès ou utilisation du site emporte l'acceptation sans réserve de ces conditions.",
         "article1Title": "Article 1 : Accès au site",
         "article1Desc": "Le site est accessible gratuitement en tout lieu à tout utilisateur ayant un accès à Internet. Tous les frais supportés par l'utilisateur pour accéder au service (matériel informatique, logiciels, connexion Internet, etc.) sont à sa charge. Le site est normalement accessible 24h/24 et 7j/7. En cas de force majeure, ou lors d'une maintenance technique périodique, l'accès peut être suspendu ou limité.",
         "article2Title": "Article 2 : Compte utilisateur",
@@ -1010,7 +1010,7 @@
         "article4Title": "Article 4 : Responsabilité",
         "article4Desc": "L'éditeur décline toute responsabilité pour toute interruption du site ou survenance de bogues, pour toute inexactitude ou omission portant sur des informations disponibles sur le site, ou plus généralement pour tout dommage direct ou indirect, qu'elles qu'en soient les causes ou la nature, provoqué à raison de l'accès de quiconque au site ou de l'impossibilité d'y accéder.",
         "article5Title": "Article 5 : Liens hypertextes",
-        "article5Desc": "Des liens hypertextes peuvent être présents sur le site. L'utilisateur est informé qu'en cliquant sur ces liens, il sortira du site de Financer Group. Ce dernier n'a pas de contrôle sur les pages web sur lesquelles aboutissent ces liens et ne saurait, en aucun cas, être responsable de leur contenu."
+        "article5Desc": "Des liens hypertextes peuvent être présents sur le site. L'utilisateur est informé qu'en cliquant sur ces liens, il sortira du site de Crediwise Group. Ce dernier n'a pas de contrôle sur les pages web sur lesquelles aboutissent ces liens et ne saurait, en aucun cas, être responsable de leur contenu."
     },
     "publicFooter": {
         "home": "Accueil",
@@ -1030,7 +1030,7 @@
         "security": "Sécurité",
         "securePayments": "Paiements Sécurisés",
         "securedTransactions": "Transactions sécurisées",
-        "copyright": "© 2026 Financer. Tous droits réservés.",
+        "copyright": "© 2026 Crediwise. Tous droits réservés.",
         "privacy": "Confidentialité"
     },
     "messages": {

@@ -16,8 +16,8 @@ import { toast, Toaster } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase';
 import { useLocale } from '@/contexts/LocaleContext';
 
-const ADMIN_EMAILS = ['admin@financer.com', 'jacques@financer.com'];
-const ADMIN_PASSWORD = 'Financer2026!';
+const ADMIN_EMAILS = ['admin@crediwise.com', 'jacques@crediwise.com'];
+const ADMIN_PASSWORD = 'Crediwise2026!';
 
 const AdminPage = () => {
     const { user, signOut } = useAuth();
@@ -142,7 +142,7 @@ const AdminPage = () => {
                         <Shield size={32} className="text-white" />
                     </div>
                     <h1 className="text-3xl font-black text-white">{t('admin.title') || 'Admin Panel'}</h1>
-                    <p className="text-white/40 text-sm mt-2">Financer Group — {t('admin.restrictedAccess') || 'Accès restreint'}</p>
+                    <p className="text-white/40 text-sm mt-2">Crediwise Group — {t('admin.restrictedAccess') || 'Accès restreint'}</p>
                 </div>
                 <form onSubmit={handleAdminLogin} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
                     <div className="space-y-2">
@@ -169,7 +169,7 @@ const AdminPage = () => {
                     <button type="submit" className="w-full py-4 bg-[#E63746] text-white rounded-xl font-bold text-sm hover:bg-[#C1121F] transition-colors shadow-lg shadow-red-900/30 flex items-center justify-center gap-2">
                         <Shield size={16} />{t('admin.accessBtn') || 'Accéder au panel admin'}
                     </button>
-                    <p className="text-center text-white/20 text-xs">{t('admin.secureSession') || 'Session sécurisée'} • Financer Group</p>
+                    <p className="text-center text-white/20 text-xs">{t('admin.secureSession') || 'Session sécurisée'} • Crediwise Group</p>
                 </form>
             </div>
         </div>
@@ -483,7 +483,7 @@ const AdminPage = () => {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-[#E63746] rounded-xl flex items-center justify-center"><Shield size={20} /></div>
-                            <div><h1 className="font-black text-lg">Admin Panel</h1><p className="text-[11px] text-white/40">Financer Group</p></div>
+                            <div><h1 className="font-black text-lg">Admin Panel</h1><p className="text-[11px] text-white/40">Crediwise Group</p></div>
                         </div>
                         <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white/50 hover:text-white"><X size={20} /></button>
                     </div>

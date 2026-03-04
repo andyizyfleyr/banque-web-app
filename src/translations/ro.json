@@ -757,7 +757,7 @@
         "footerNewsletter": "Abonare",
         "footerNewsletterDesc": "Abonează-te acum.",
         "footerEmailPlaceholder": "Email-ul",
-        "footerCopyright": "Copyright @ 2026 Financer. Toate drepturile rezervate.",
+        "footerCopyright": "Copyright @ 2026 Crediwise. Toate drepturile rezervate.",
         "link1": "Despre Noi",
         "link2": "Servicii Noi",
         "link3": "Platformă",
@@ -772,7 +772,7 @@
     "about": {
         "story": "Povestea Noastră",
         "title": "Redefinirea Băncii Moderne pentru tine.",
-        "desc": "La Financer, credem că banca ta trebuie să fie transparentă și centrată pe nevoile reale.",
+        "desc": "La Crediwise, credem că banca ta trebuie să fie transparentă și centrată pe nevoile reale.",
         "valuesTitle": "Valorile Noastre Fundamentale",
         "val1": "Transparență Totală",
         "val1Desc": "Fără taxe ascunse, fără surprize neplăcute. Costuri clare, mereu echitabile.",
@@ -936,14 +936,14 @@
         "effectiveDate": "În vigoare de la 01/01/2026",
         "editorTitle": "Editorul site-ului",
         "editorIntro": "Site-ul <strong>www.notre-banque.com</strong> este publicat de:",
-        "companyName": "Denumire socială: Financer Group SA",
+        "companyName": "Denumire socială: Crediwise Group SA",
         "headquarters": "Sediu social: 123 Avenue des Champs-Élysées, 75008 Paris, Franța",
         "capital": "Capital social: 5.000.000 €",
         "rcs": "RCS: Paris B 123 456 789",
         "vat": "Număr TVA intracomunitar: FR 12 3456789",
         "orias": "Număr ORIAS: 12345678 (www.orias.fr)",
         "directorTitle": "Directorul publicației",
-        "directorDesc": "Dl. Jean Dupont, în calitate de Director General al Financer Group SA.",
+        "directorDesc": "Dl. Jean Dupont, în calitate de Director General al Crediwise Group SA.",
         "directorContact": "Contact:",
         "hostingTitle": "Găzduire",
         "hostingIntro": "Acest site este găzduit de:",
@@ -951,13 +951,13 @@
         "hostingAddress": "31 Place des Corolles, 92400 Courbevoie, Franța",
         "hostingPhone": "Telefon: +33 1 23 45 67 89",
         "authorityTitle": "Autoritatea de control",
-        "authorityDesc": "Financer Group este o instituție de credit de drept francez autorizată și controlată de Autoritatea de Control Prudențial și de Rezoluție (ACPR).",
+        "authorityDesc": "Crediwise Group este o instituție de credit de drept francez autorizată și controlată de Autoritatea de Control Prudențial și de Rezoluție (ACPR).",
         "authorityAddress": "Adresa ACPR: 4 Place de Budapest, CS 92459, 75436 Paris Cedex 09."
     },
     "privacyPage": {
         "title": "Politica de Confidențialitate",
         "updatedDate": "Actualizată la 01/01/2026",
-        "intro": "Protecția datelor tale personale este în centrul preocupărilor noastre. Prezenta politică detaliază modul în care Financer Group colectează, utilizează, protejează și partajează datele tale în cadrul utilizării serviciilor noastre online.",
+        "intro": "Protecția datelor tale personale este în centrul preocupărilor noastre. Prezenta politică detaliază modul în care Crediwise Group colectează, utilizează, protejează și partajează datele tale în cadrul utilizării serviciilor noastre online.",
         "dataCollectionTitle": "1. Colectarea datelor",
         "dataCollectionIntro": "Colectăm diferite categorii de date personale, inclusiv:",
         "identityData": "Date de identificare:",
@@ -987,7 +987,7 @@
     "termsPage": {
         "title": "Condiții Generale de Utilizare",
         "effectiveDate": "Aplicabile de la 01/01/2026",
-        "intro": "Prezentele Condiții Generale de Utilizare (CGU) stabilesc regulile de acces și utilizare a site-ului Financer Group. Orice acces sau utilizare a site-ului presupune acceptarea fără rezerve a acestor condiții.",
+        "intro": "Prezentele Condiții Generale de Utilizare (CGU) stabilesc regulile de acces și utilizare a site-ului Crediwise Group. Orice acces sau utilizare a site-ului presupune acceptarea fără rezerve a acestor condiții.",
         "article1Title": "Articolul 1: Accesul la site",
         "article1Desc": "Site-ul este accesibil gratuit din orice locație pentru orice utilizator cu acces la Internet. Toate costurile suportate de utilizator pentru accesarea serviciului (hardware, software, conexiune la Internet etc.) sunt în sarcina sa. Site-ul este în mod normal accesibil non-stop. În caz de forță majoră sau întreținere tehnică periodică, accesul poate fi suspendat sau limitat.",
         "article2Title": "Articolul 2: Contul de utilizator",
@@ -997,7 +997,7 @@
         "article4Title": "Articolul 4: Responsabilitate",
         "article4Desc": "Editorul declină orice responsabilitate pentru orice întrerupere a site-ului sau apariția de erori, pentru orice inexactitate sau omisiune privind informațiile disponibile pe site, sau mai general pentru orice daună directă sau indirectă, indiferent de cauze sau natură, provocată de accesul oricui la site sau imposibilitatea de a accesa.",
         "article5Title": "Articolul 5: Legături hipertext",
-        "article5Desc": "Legături hipertext pot fi prezente pe site. Utilizatorul este informat că făcând clic pe aceste legături, va părăsi site-ul Financer Group. Acesta din urmă nu are control asupra paginilor web către care conduc aceste legături și nu poate, în niciun caz, fi responsabil pentru conținutul lor."
+        "article5Desc": "Legături hipertext pot fi prezente pe site. Utilizatorul este informat că făcând clic pe aceste legături, va părăsi site-ul Crediwise Group. Acesta din urmă nu are control asupra paginilor web către care conduc aceste legături și nu poate, în niciun caz, fi responsabil pentru conținutul lor."
     },
     "publicFooter": {
         "home": "Acasă",
@@ -1017,7 +1017,7 @@
         "security": "Securitate",
         "securePayments": "Plăți Securizate",
         "securedTransactions": "Tranzacții securizate",
-        "copyright": "© 2026 Financer. Toate drepturile rezervate.",
+        "copyright": "© 2026 Crediwise. Toate drepturile rezervate.",
         "privacy": "Confidențialitate"
     },
     "messages": {

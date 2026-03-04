@@ -130,6 +130,25 @@ export const LocaleProvider = ({ children }) => {
         return getCurrencySymbol(globalCurrency || currencyOverride || country.currency);
     }, [country, globalCurrency]);
 
+    // Date formatting according to locale
+    const fd = useCallback((date) => {
+        if (!date) return '—';
+        try {
+            const localeStr = language === 'en' ? 'en-US' :
+                language === 'fr' ? 'fr-FR' :
+                    language === 'es' ? 'es-ES' :
+                        language === 'de' ? 'de-DE' :
+                            language === 'it' ? 'it-IT' : language;
+            return new Date(date).toLocaleDateString(localeStr, {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+        } catch (e) {
+            return '—';
+        }
+    }, [language]);
+
     // Convert raw value
     const cv = useCallback((amount, currencyOverride) => {
         const fromCurr = currencyOverride || country.currency;
@@ -182,6 +201,7 @@ export const LocaleProvider = ({ children }) => {
         fcs,      // formatSignedCurrency(amount, currencyOverride?)
         cs,       // getCurrencySymbol(currencyOverride?)
         cv,       // convert raw value
+        fd,       // formatDate
         // Actions
         changeCountry,
         changeLanguage,

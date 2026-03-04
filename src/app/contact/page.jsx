@@ -46,7 +46,7 @@ const ContactPage = () => {
             <nav className="fixed w-full top-0 bg-white/90 backdrop-blur-md z-50 py-5 px-6 lg:px-16 border-b border-gray-100 transition-all">
                 <div className="max-w-[1400px] mx-auto flex items-center justify-between">
                     <Link href="/">
-                        <Image src="/landing-page-assert/logo.png" alt="Financer" width={140} height={40} className="object-contain" priority />
+                        <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={140} height={40} className="object-contain" priority />
                     </Link>
 
                     <div className="flex items-center space-x-4 md:space-x-10">
@@ -87,7 +87,7 @@ const ContactPage = () => {
             {/* Mobile Menu Drawer */}
             <div className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white z-[110] shadow-[0_0_40px_rgba(0,0,0,0.2)] transform transition-transform duration-300 ease-[0.16,1,0.3,1] xl:hidden flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-6 flex justify-between items-center bg-white border-b border-gray-50">
-                    <Image src="/landing-page-assert/logo.png" alt="Financer" width={110} height={30} className="object-contain" />
+                    <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={110} height={30} className="object-contain" />
                     <button className="text-[#1D3557] hover:bg-[#FDECEC] hover:text-[#e63746] transition-all p-2.5 bg-gray-50 rounded-full" onClick={() => setIsMobileMenuOpen(false)}>
                         <X size={20} strokeWidth={2.5} />
                     </button>
@@ -169,13 +169,13 @@ const ContactPage = () => {
                             </motion.a>
 
                             {/* Email */}
-                            <motion.a href="mailto:contact@financer.fr" variants={fadeInUp} className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,163,255,0.15)] transition-all duration-300">
+                            <motion.a href="mailto:contact@crediwise.fr" variants={fadeInUp} className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col items-center text-center group hover:-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,163,255,0.15)] transition-all duration-300">
                                 <div className="w-20 h-20 bg-[#E6F8FE] text-[#00A3FF] rounded-[1.5rem] flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#00A3FF] group-hover:text-white transition-all shadow-inner">
                                     <Mail size={36} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-[#1D3557] mb-3 group-hover:text-[#00A3FF] transition-colors">{t('contactPage.emailUs')}</h3>
                                 <p className="text-gray-500 text-[15px] leading-relaxed font-medium mb-6">{t('contactPage.emailDesc')}</p>
-                                <span className="text-xl font-black text-[#1D3557] mt-auto border-b-2 border-transparent group-hover:border-[#00A3FF] transition-colors pb-1">contact@financer.fr</span>
+                                <span className="text-xl font-black text-[#1D3557] mt-auto border-b-2 border-transparent group-hover:border-[#00A3FF] transition-colors pb-1">contact@crediwise.fr</span>
                             </motion.a>
 
                         </motion.div>
