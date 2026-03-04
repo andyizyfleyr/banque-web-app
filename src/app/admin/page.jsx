@@ -452,8 +452,8 @@ const AdminPage = () => {
 
     const navItems = [
         { id: 'dashboard', label: t('nav.dashboard') || 'Dashboard', icon: LayoutDashboard },
-        { id: 'kyc', label: t('nav.kyc') || 'Vérifications KYC', icon: Shield },
-        { id: 'users', label: t('nav.profile') ? 'Utilisateurs' : 'Utilisateurs', icon: Users }, // Fallback logic
+        { id: 'kyc', label: t('admin.kycPending') || 'Vérifications KYC', icon: Shield },
+        { id: 'users', label: t('admin.usersCount') || 'Utilisateurs', icon: Users },
         { id: 'loans', label: t('nav.loans') || 'Prêts', icon: Landmark },
         { id: 'transfers', label: t('nav.transfers') || 'Virements', icon: ArrowLeftRight },
         { id: 'cards', label: t('nav.cards') || 'Cartes', icon: CreditCard },
