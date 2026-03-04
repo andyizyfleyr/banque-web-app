@@ -22,9 +22,6 @@ export async function POST(request) {
             return NextResponse.json({ error: 'Fichier ou utilisateur manquant' }, { status: 400 });
         }
 
-        const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-
         const fileExt = file.name.split('.').pop();
         const fileName = `kyc_${userId}_${documentType}_${Date.now()}.${fileExt}`;
 
@@ -34,7 +31,7 @@ export async function POST(request) {
 
         const { data, error } = await supabaseAdmin.storage
             .from('avatars')
-            .upload(filePath, buffer, {
+            .upload(filePath, file, {
                 contentType: file.type,
                 upsert: true
             });
