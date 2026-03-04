@@ -23,7 +23,10 @@ import {
     ArrowRight,
     X,
     Trash2,
-    Settings
+    Settings,
+    AlertTriangle,
+    AlertCircle,
+    CheckCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useConfirm } from '@/contexts/ConfirmContext';
@@ -78,6 +81,19 @@ const Dashboard = () => {
     const [profile, setProfile] = useState(null);
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
     const isCreatingAccount = useRef(false);
+
+    const kycStatus = user?.user_metadata?.kyc_status || 'unverified';
+
+    const handleFinancialAction = (e, path) => {
+        if (e) e.preventDefault();
+        if (kycStatus !== 'verified') {
+            toast.error(t('kyc.required') || "Veuillez finaliser votre vérification KYC pour accéder à cette fonctionnalité financière.");
+            router.push('/kyc');
+            return false;
+        }
+        if (path) router.push(path);
+        return true;
+    };
 
     const fetchDashboardData = async () => {
         try {
@@ -214,6 +230,7 @@ const Dashboard = () => {
 
     const handleAddAccount = async (e) => {
         e.preventDefault();
+        if (!handleFinancialAction(e)) return;
         if (accounts.length >= 3) return;
         if (!newAccountName.trim()) return;
 
@@ -412,6 +429,38 @@ const Dashboard = () => {
 
     return (
         <PageWrapper className="pb-12 space-y-10">
+            {/* KYC Banner */}
+            {kycStatus !== 'verified' && (
+                <div className={`rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-2 ${kycStatus === 'pending'
+                        ? 'bg-blue-50 border-blue-100 text-blue-900'
+                        : 'bg-red-50 border-red-100 text-red-900'
+                    }`}>
+                    <div className="flex items-start sm:items-center gap-4">
+                        <div className={`p-3 rounded-2xl ${kycStatus === 'pending' ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'
+                            }`}>
+                            {kycStatus === 'pending' ? <Loader2 className="animate-spin" size={24} /> : <AlertTriangle size={24} />}
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-1">
+                                {kycStatus === 'pending' ? "Vérification en cours" : "Vérification KYC requise"}
+                            </h3>
+                            <p className="text-sm opacity-80 max-w-xl">
+                                {kycStatus === 'pending'
+                                    ? "Vos documents sont actuellement en cours d'analyse par notre équipe. Vous recevrez une notification d'ici 24 à 48h."
+                                    : "Conformément à la réglementation bancaire, vous devez finaliser la vérification de votre identité pour débloquer les virements, les cartes et l'ajout de comptes."}
+                            </p>
+                        </div>
+                    </div>
+                    {kycStatus !== 'pending' && (
+                        <button
+                            onClick={() => router.push('/kyc')}
+                            className="bg-[#E63746] text-white px-6 py-3 rounded-xl font-bold flexitems-center gap-2 hover:bg-[#C1121F] transition-colors whitespace-nowrap shadow-md shadow-red-200"
+                        >
+                            Vérifier mon profil
+                        </button>
+                    )}
+                </div>
+            )}
             {/* Portfolio Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Balance Card */}
@@ -439,14 +488,14 @@ const Dashboard = () => {
 
                     <div className="mt-8 grid grid-cols-2 gap-2 w-full sm:w-auto relative z-10">
                         <button
-                            onClick={() => router.push('/transfers')}
+                            onClick={(e) => handleFinancialAction(e, '/transfers')}
                             className="bg-white px-4 py-3.5 rounded-2xl font-bold text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-gray-50 transition-all shadow-md active:scale-95 border border-transparent sm:px-6"
                         >
                             <ArrowRightLeft size={16} color="#e63746" />
                             <span style={{ color: '#e63746' }}>{t('nav.transfers')}</span>
                         </button>
                         <button
-                            onClick={() => router.push('/cards')}
+                            onClick={(e) => handleFinancialAction(e, '/cards')}
                             className="bg-red-900/40 backdrop-blur-md text-white border border-white/20 px-4 py-3.5 rounded-2xl font-bold text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-red-900/60 transition-all active:scale-95 sm:px-6 text-center"
                         >
                             <CreditCard size={16} /> {t('nav.cards')}

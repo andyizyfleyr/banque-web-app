@@ -41,8 +41,10 @@ export async function POST(request) {
             throw error;
         }
 
-        // Mettre à jour virtuellement l'utilisateur dans 'profiles' (exemple)
-        // await supabaseAdmin.from('profiles').update({ kyc_status: 'pending' }).eq('id', userId);
+        // Mettre à jour virtuellement l'utilisateur dans les metadata
+        await supabaseAdmin.auth.admin.updateUserById(userId, {
+            user_metadata: { kyc_status: 'pending' }
+        });
 
         return NextResponse.json({ success: true, path: filePath });
     } catch (error) {
