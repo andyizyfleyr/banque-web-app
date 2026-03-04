@@ -9,7 +9,8 @@
         "notifications": "Benachrichtigungen",
         "messages": "Nachrichten",
         "profile": "Profil",
-        "logout": "Abmelden"
+        "logout": "Abmelden",
+        "kyc": "Überprüfung"
     },
     "simulator": {
         "step1Title": "Ihr Projekt",

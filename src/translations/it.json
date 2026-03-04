@@ -9,7 +9,8 @@
         "notifications": "Notifiche",
         "messages": "Messaggi",
         "profile": "Profilo",
-        "logout": "Esci"
+        "logout": "Esci",
+        "kyc": "Verifica"
     },
     "simulator": {
         "step1Title": "Il Tuo Progetto",

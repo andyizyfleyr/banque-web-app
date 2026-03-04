@@ -9,7 +9,8 @@
         "notifications": "Notifications",
         "messages": "Messagerie",
         "profile": "Profil",
-        "logout": "Déconnexion"
+        "logout": "Déconnexion",
+        "kyc": "Vérification"
     },
     "simulator": {
         "step1Title": "Votre Projet",

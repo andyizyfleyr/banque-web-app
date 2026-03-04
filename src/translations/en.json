@@ -9,7 +9,8 @@
         "notifications": "Notifications",
         "messages": "Messages",
         "profile": "Profile",
-        "logout": "Log Out"
+        "logout": "Log Out",
+        "kyc": "Verification"
     },
     "simulator": {
         "step1Title": "Your Project",

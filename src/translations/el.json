@@ -9,7 +9,8 @@
         "notifications": "Ειδοποιήσεις",
         "messages": "Μηνύματα",
         "profile": "Προφίλ",
-        "logout": "Αποσύνδεση"
+        "logout": "Αποσύνδεση",
+        "kyc": "Επαλήθευση"
     },
     "simulator": {
         "step1Title": "Το Έργο Σας",

@@ -9,7 +9,8 @@
         "notifications": "Notificări",
         "messages": "Mesaje",
         "profile": "Profil",
-        "logout": "Deconectare"
+        "logout": "Deconectare",
+        "kyc": "Verificare"
     },
     "simulator": {
         "step1Title": "Proiectul Tău",

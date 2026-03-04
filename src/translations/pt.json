@@ -9,7 +9,8 @@
         "notifications": "Notificações",
         "messages": "Mensagens",
         "profile": "Perfil",
-        "logout": "Sair"
+        "logout": "Sair",
+        "kyc": "Verificação"
     },
     "simulator": {
         "step1Title": "Seu Projeto",
