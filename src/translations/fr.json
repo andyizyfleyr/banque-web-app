@@ -1083,7 +1083,10 @@
         "step2Title": "En de cours de vérification",
         "step2Desc": "Délai estimé : 24 à 48h ouvrées",
         "step3Title": "Validation finale",
-        "required": "Veuillez finaliser votre vérification d'identité pour accéder à cette fonctionnalité."
+        "required": "Veuillez finaliser votre vérification d'identité pour accéder à cette fonctionnalité.",
+        "bannerRequiredTitle": "Vérification KYC requise",
+        "bannerRequiredMsg": "Conformément à la réglementation bancaire, vous devez finaliser la vérification de votre identité pour débloquer les virements, les cartes et l'ajout de comptes.",
+        "verifyBtn": "Vérifier mon profil"
     },
     "admin": {
         "title": "Panel d'Administration",

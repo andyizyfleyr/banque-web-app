@@ -1072,7 +1072,10 @@
         "step2Title": "Überprüfung läuft",
         "step2Desc": "Geschätzte Zeit: 24 bis 48 Geschäftsstunden",
         "step3Title": "Endgültige Validierung",
-        "required": "Bitte schließen Sie Ihre Identitätsüberprüfung ab, um auf diese Finanzfunktion zugreifen zu können."
+        "required": "Bitte schließen Sie Ihre Identitätsüberprüfung ab, um auf diese Finanzfunktion zugreifen zu können.",
+        "bannerRequiredTitle": "KYC-Verifizierung erforderlich",
+        "bannerRequiredMsg": "Gemäß den Bankvorschriften müssen Sie Ihre Identitätsprüfung abschließen, um Überweisungen, Karten und Kontenerweiterungen freizuschalten.",
+        "verifyBtn": "Mein Profil verifizieren"
     },
     "admin": {
         "title": "Administration Panel",

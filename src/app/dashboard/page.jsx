@@ -447,21 +447,21 @@ const Dashboard = () => {
                         </div>
                         <div>
                             <h3 className="font-bold text-lg mb-1">
-                                {kycStatus === 'pending' ? "Vérification en cours" : "Vérification KYC requise"}
+                                {kycStatus === 'pending' ? (t('kyc.pendingTitle') || "Vérification en cours") : (t('kyc.bannerRequiredTitle') || "Vérification KYC requise")}
                             </h3>
                             <p className="text-sm opacity-80 max-w-xl">
                                 {kycStatus === 'pending'
-                                    ? "Vos documents sont actuellement en cours d'analyse par notre équipe. Vous recevrez une notification d'ici 24 à 48h."
-                                    : "Conformément à la réglementation bancaire, vous devez finaliser la vérification de votre identité pour débloquer les virements, les cartes et l'ajout de comptes."}
+                                    ? (t('kyc.pendingMsg') || "Vos documents sont actuellement en cours d'analyse par notre équipe. Vous recevrez une notification d'ici 24 à 48h.")
+                                    : (t('kyc.bannerRequiredMsg') || "Conformément à la réglementation bancaire, vous devez finaliser la vérification de votre identité pour débloquer les virements, les cartes et l'ajout de comptes.")}
                             </p>
                         </div>
                     </div>
                     {kycStatus !== 'pending' && (
                         <button
                             onClick={() => router.push('/kyc')}
-                            className="bg-[#E63746] text-white px-6 py-3 rounded-xl font-bold flexitems-center gap-2 hover:bg-[#C1121F] transition-colors whitespace-nowrap shadow-md shadow-red-200"
+                            className="bg-[#E63746] text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-[#C1121F] transition-colors whitespace-nowrap shadow-md shadow-red-200"
                         >
-                            Vérifier mon profil
+                            {t('kyc.verifyBtn') || "Vérifier mon profil"}
                         </button>
                     )}
                 </div>

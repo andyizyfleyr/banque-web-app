@@ -1072,7 +1072,10 @@
         "step2Title": "Weryfikacja w toku",
         "step2Desc": "Szacowany czas: od 24 do 48 godzin roboczych",
         "step3Title": "Ostateczna walidacja",
-        "required": "Proszę sfinalizować weryfikację tożsamości, aby uzyskać dostęp do tej funkcji finansowej."
+        "required": "Proszę sfinalizować weryfikację tożsamości, aby uzyskać dostęp do tej funkcji finansowej.",
+        "bannerRequiredTitle": "Wymagana weryfikacja KYC",
+        "bannerRequiredMsg": "Zgodnie z przepisami bankowymi musisz ukończyć weryfikację tożsamości, aby odblokować przelewy, karty i dodawanie kont.",
+        "verifyBtn": "Zweryfikuj mój profil"
     },
     "admin": {
         "title": "Administration Panel",

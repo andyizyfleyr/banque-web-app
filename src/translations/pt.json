@@ -1072,7 +1072,10 @@
         "step2Title": "Verificação em andamento",
         "step2Desc": "Tempo estimado: 24 a 48 horas úteis",
         "step3Title": "Validação final",
-        "required": "Por favor, finalize sua verificação de identidade para acessar este recurso financeiro."
+        "required": "Por favor, finalize sua verificação de identidade para acessar este recurso financeiro.",
+        "bannerRequiredTitle": "Verificação KYC necessária",
+        "bannerRequiredMsg": "De acordo com os regulamentos bancários, você deve concluir a verificação de identidade para desbloquear transferências, cartões e adições de conta.",
+        "verifyBtn": "Verificar meu perfil"
     },
     "admin": {
         "title": "Administration Panel",

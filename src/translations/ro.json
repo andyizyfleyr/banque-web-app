@@ -1070,7 +1070,10 @@
         "step2Title": "Verificare în curs",
         "step2Desc": "Timp estimat: 24 până la 48 de ore lucrătoare",
         "step3Title": "Validare finală",
-        "required": "Vă rugăm să finalizați verificarea identității pentru a accesa această funcție financiară."
+        "required": "Vă rugăm să finalizați verificarea identității pentru a accesa această funcție financiară.",
+        "bannerRequiredTitle": "Verificare KYC obligatorie",
+        "bannerRequiredMsg": "În conformitate cu reglementările bancare, trebuie să finalizați verificarea identității pentru a debloca transferurile, cardurile și adăugarea de conturi.",
+        "verifyBtn": "Verifică-mi profilul"
     },
     "admin": {
         "title": "Administration Panel",

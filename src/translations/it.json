@@ -1072,7 +1072,10 @@
         "step2Title": "Verifica in corso",
         "step2Desc": "Tempo stimato: 24-48 ore lavorative",
         "step3Title": "Validazione finale",
-        "required": "Si prega di completare la verifica dell'identità per accedere a questa funzione finanziaria."
+        "required": "Si prega di completare la verifica dell'identità per accedere a questa funzione finanziaria.",
+        "bannerRequiredTitle": "Verifica KYC richiesta",
+        "bannerRequiredMsg": "In conformità con le normative bancarie, è necessario completare la verifica dell'identità per sbloccare trasferimenti, carte e aggiunte di account.",
+        "verifyBtn": "Verifica il mio profilo"
     },
     "admin": {
         "title": "Administration Panel",

@@ -1083,7 +1083,10 @@
         "step2Title": "Verification in progress",
         "step2Desc": "Estimated time: 24 to 48 business hours",
         "step3Title": "Final validation",
-        "required": "Please finalize your identity verification to access this financial feature."
+        "required": "Please finalize your identity verification to access this financial feature.",
+        "bannerRequiredTitle": "KYC Verification Required",
+        "bannerRequiredMsg": "In accordance with banking regulations, you must complete your identity verification to unlock transfers, cards, and account additions.",
+        "verifyBtn": "Verify my profile"
     },
     "admin": {
         "title": "Administration Panel",
