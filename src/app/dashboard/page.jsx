@@ -82,7 +82,7 @@ const Dashboard = () => {
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
     const isCreatingAccount = useRef(false);
 
-    const kycStatus = user?.user_metadata?.kyc_status || 'unverified';
+    const [kycStatus, setKycStatus] = useState(user?.user_metadata?.kyc_status || 'unverified');
 
     const handleFinancialAction = (e, path) => {
         if (e) e.preventDefault();
@@ -98,6 +98,11 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
         try {
             setLoading(true);
+
+            // Fetch new auth token to ensure fresh metadata from server
+            const { data: { user: freshUser } } = await supabase.auth.getUser();
+            const currentKycStatus = freshUser?.user_metadata?.kyc_status || 'unverified';
+            setKycStatus(currentKycStatus);
 
             const { data: profileData } = await supabase
                 .from('profiles')
@@ -432,8 +437,8 @@ const Dashboard = () => {
             {/* KYC Banner */}
             {kycStatus !== 'verified' && (
                 <div className={`rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-2 ${kycStatus === 'pending'
-                        ? 'bg-blue-50 border-blue-100 text-blue-900'
-                        : 'bg-red-50 border-red-100 text-red-900'
+                    ? 'bg-blue-50 border-blue-100 text-blue-900'
+                    : 'bg-red-50 border-red-100 text-red-900'
                     }`}>
                     <div className="flex items-start sm:items-center gap-4">
                         <div className={`p-3 rounded-2xl ${kycStatus === 'pending' ? 'bg-blue-100 text-blue-600' : 'bg-red-100 text-red-600'

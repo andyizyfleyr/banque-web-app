@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
 import { UploadCloud, CheckCircle, AlertCircle, FileText, Smartphone, Camera, Loader2, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -18,9 +18,22 @@ export default function KYCPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Check initial user status
-    const initialKycStatus = user?.user_metadata?.kyc_status || 'unverified';
-    const [kycStatus, setKycStatus] = useState(initialKycStatus);
-    const [isSuccess, setIsSuccess] = useState(initialKycStatus === 'pending' || initialKycStatus === 'verified');
+    const [kycStatus, setKycStatus] = useState(user?.user_metadata?.kyc_status || 'unverified');
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    // Refresh auth session on mount to ensure we have the very latest user metadata from the server
+    useEffect(() => {
+        const refreshAuth = async () => {
+            if (user) {
+                const { data } = await supabase.auth.refreshSession();
+                const refreshedUser = data?.user || user;
+                const updatedStatus = refreshedUser?.user_metadata?.kyc_status || 'unverified';
+                setKycStatus(updatedStatus);
+                setIsSuccess(updatedStatus === 'pending' || updatedStatus === 'verified');
+            }
+        };
+        refreshAuth();
+    }, [user?.id]);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
