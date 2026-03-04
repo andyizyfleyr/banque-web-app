@@ -17,6 +17,13 @@ export default function KYCPage() {
     const [file, setFile] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    // Redirect if not logged in
+    useEffect(() => {
+        if (!user) {
+            router.push('/login');
+        }
+    }, [user, router]);
+
     // Check initial user status
     const [kycStatus, setKycStatus] = useState(user?.user_metadata?.kyc_status || 'unverified');
     const [isSuccess, setIsSuccess] = useState(false);

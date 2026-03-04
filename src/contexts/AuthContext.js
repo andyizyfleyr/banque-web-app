@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
             '/', '/login', '/landing', '/about', '/services', '/contact',
             '/rachat-credits', '/pret', '/fraude-bancaire', '/legal',
             '/mentions-legales', '/politique-confidentialite', '/cgu',
-            '/admin'
+            '/admin', '/api', '/kyc'
         ];
 
         const isPublicRoute = publicPaths.some(path => pathname === path || pathname?.startsWith(path + '/'));

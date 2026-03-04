@@ -43,7 +43,7 @@ export async function middleware(request) {
         '/', '/login', '/landing', '/about', '/services', '/contact',
         '/rachat-credits', '/pret', '/fraude-bancaire', '/legal',
         '/mentions-legales', '/politique-confidentialite', '/cgu',
-        '/admin', '/api'
+        '/admin', '/api', '/kyc'
     ]
 
     const isPublic = publicPaths.some(path => pathname === path || pathname.startsWith(path + '/'));
