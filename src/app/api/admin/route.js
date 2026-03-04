@@ -37,6 +37,7 @@ export async function POST(request) {
                     created_at: au.created_at,
                     full_name: profileMap[au.id]?.full_name || au.user_metadata?.full_name || 'Utilisateur',
                     account_status: profileMap[au.id]?.account_status || 'active',
+                    kyc_status: au.user_metadata?.kyc_status || 'unverified',
                     ...profileMap[au.id]
                 }));
 
@@ -302,6 +303,15 @@ export async function POST(request) {
                     .update({ is_read: true })
                     .eq('sender_id', senderUserId)
                     .eq('is_read', false);
+                if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+                return NextResponse.json({ success: true });
+            }
+
+            case 'updateKycStatus': {
+                const { userId, status } = payload;
+                const { error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+                    user_metadata: { kyc_status: status }
+                });
                 if (error) return NextResponse.json({ error: error.message }, { status: 500 });
                 return NextResponse.json({ success: true });
             }

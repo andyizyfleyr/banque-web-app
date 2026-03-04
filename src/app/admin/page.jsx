@@ -38,7 +38,7 @@ const AdminPage = () => {
     const [transactions, setTransactions] = useState([]);
     const [accounts, setAccounts] = useState([]);
     const [messages, setMessages] = useState([]);
-    const [stats, setStats] = useState({ users: 0, loans: 0, cards: 0, transfers: 0, totalBalance: 0, pendingLoans: 0, unreadMessages: 0 });
+    const [stats, setStats] = useState({ users: 0, loans: 0, cards: 0, transfers: 0, totalBalance: 0, pendingLoans: 0, unreadMessages: 0, pendingKyc: 0 });
     const [conversations, setConversations] = useState({});
     const [activeConversation, setActiveConversation] = useState(null);
     const [adminReply, setAdminReply] = useState('');
@@ -224,7 +224,8 @@ const AdminPage = () => {
                 totalBalance: acc.reduce((s, a) => s + Number(a.balance || 0), 0),
                 pendingLoans: l.filter(lo => lo.status === 'pending_approval').length,
                 pendingTransfers: tx.filter(t => t.status === 'pending_approval').length,
-                unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== (user?.id || null) && (m.receiver_id === (user?.id || null) || m.receiver_id === null)).length
+                unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== (user?.id || null) && (m.receiver_id === (user?.id || null) || m.receiver_id === null)).length,
+                pendingKyc: u.filter(user => user.kyc_status === 'pending').length
             });
         } catch (e) { console.error(e); toast.error('Erreur de chargement'); }
         setLoading(false);
@@ -239,6 +240,11 @@ const AdminPage = () => {
     const updateLoanStatus = async (id, status) => {
         const res = await adminApiCall('updateLoan', { id, status });
         if (res.error) toast.error('Erreur'); else { toast.success(`Prêt ${status === 'active' ? 'approuvé' : 'rejeté'}`); fetchAllData(); }
+    };
+
+    const updateKycStatus = async (userId, status) => {
+        const res = await adminApiCall('updateKycStatus', { userId, status });
+        if (res.error) toast.error('Erreur'); else { toast.success(`Statut KYC mis à jour`); fetchAllData(); }
     };
 
     const toggleCardStatus = async (id, current) => {
@@ -444,6 +450,7 @@ const AdminPage = () => {
 
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { id: 'kyc', label: 'Vérifications KYC', icon: Shield },
         { id: 'users', label: 'Utilisateurs', icon: Users },
         { id: 'loans', label: 'Prêts', icon: Landmark },
         { id: 'transfers', label: 'Virements', icon: ArrowLeftRight },
@@ -493,7 +500,8 @@ const AdminPage = () => {
                                 item.id === 'loans' ? stats.pendingLoans :
                                     item.id === 'transfers' ? stats.pendingTransfers :
                                         item.id === 'messages' ? stats.unreadMessages :
-                                            0
+                                            item.id === 'kyc' ? stats.pendingKyc :
+                                                0
                             }
                         />
                     ))}
@@ -631,6 +639,7 @@ const AdminPage = () => {
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                 {[
                                     { label: 'Utilisateurs', value: stats.users, icon: Users, color: 'from-blue-500 to-blue-600' },
+                                    { label: 'KYC en attente', value: stats.pendingKyc, icon: Shield, color: 'from-orange-500 to-orange-600' },
                                     { label: 'Prêts en cours', value: stats.loans, icon: Landmark, color: 'from-emerald-500 to-emerald-600', sub: `${stats.pendingLoans} en attente` },
                                     { label: 'Cartes actives', value: stats.cards, icon: CreditCard, color: 'from-purple-500 to-purple-600' },
                                     { label: 'Virements', value: stats.transfers, icon: ArrowLeftRight, color: 'from-blue-400 to-blue-500' },
@@ -664,6 +673,61 @@ const AdminPage = () => {
                                             <span className={`font-bold text-sm ${tx.amount > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{fc(tx.amount)}</span>
                                         </div>
                                     ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* KYC TAB */}
+                    {activeTab === 'kyc' && (
+                        <div className="space-y-4 animate-fade-in">
+                            <div className="flex flex-wrap gap-2">
+                                {['all', 'pending', 'verified', 'unverified'].map(f => (
+                                    <button key={f} onClick={() => setStatusFilter(f)} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${statusFilter === f ? 'bg-[#1D3557] text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'}`}>
+                                        {f === 'all' ? 'Tous' : f === 'pending' ? '⏳ En attente' : f === 'verified' ? '✅ Vérifiés' : '❌ Non vérifiés'}
+                                        {f === 'pending' && stats.pendingKyc > 0 && <span className="ml-1 bg-orange-400 text-white px-1.5 rounded-full">{stats.pendingKyc}</span>}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-sm">
+                                        <thead><tr className="border-b border-gray-100 bg-gray-50/50">
+                                            <th className="text-left px-5 py-3 font-bold text-gray-500 text-[11px] uppercase">Utilisateur</th>
+                                            <th className="text-left px-5 py-3 font-bold text-gray-500 text-[11px] uppercase hidden md:table-cell">Email</th>
+                                            <th className="text-left px-5 py-3 font-bold text-gray-500 text-[11px] uppercase">Statut KYC</th>
+                                            <th className="text-right px-5 py-3 font-bold text-gray-500 text-[11px] uppercase">Actions</th>
+                                        </tr></thead>
+                                        <tbody className="divide-y divide-gray-50">
+                                            {users.filter(u => statusFilter === 'all' || u.kyc_status === statusFilter).map(u => (
+                                                <tr key={u.id} className="hover:bg-gray-50/50 transition-colors">
+                                                    <td className="px-5 py-4"><div className="flex items-center gap-3">
+                                                        <div className="w-9 h-9 bg-[#1D3557] text-white rounded-full flex items-center justify-center text-sm font-bold">{(u.full_name || u.email || '?').charAt(0).toUpperCase()}</div>
+                                                        <div><p className="font-bold text-[#1D3557]">{u.full_name || '—'}</p></div>
+                                                    </div></td>
+                                                    <td className="px-5 py-4 text-gray-600 hidden md:table-cell">{u.email}</td>
+                                                    <td className="px-5 py-4">
+                                                        <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${u.kyc_status === 'verified' ? 'bg-emerald-50 text-emerald-600' :
+                                                                u.kyc_status === 'pending' ? 'bg-blue-50 text-blue-600' :
+                                                                    'bg-red-50 text-red-600'
+                                                            }`}>{u.kyc_status}</span>
+                                                    </td>
+                                                    <td className="px-5 py-4 text-right">
+                                                        {u.kyc_status === 'pending' && (
+                                                            <div className="flex items-center justify-end gap-2">
+                                                                <button onClick={() => updateKycStatus(u.id, 'verified')} className="px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-colors flex items-center gap-1">
+                                                                    <CheckCircle size={14} /> Valider
+                                                                </button>
+                                                                <button onClick={() => updateKycStatus(u.id, 'unverified')} className="px-3 py-1.5 bg-red-500 text-white rounded-lg text-xs font-bold hover:bg-red-600 transition-colors flex items-center gap-1">
+                                                                    <XCircle size={14} /> Rejeter
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
