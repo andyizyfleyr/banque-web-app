@@ -35,22 +35,20 @@ export default function KYCPage() {
 
         setIsSubmitting(true);
         try {
-            // Create a unique file path
-            const fileExt = file.name.split('.').pop();
-            const fileName = `${user.id}_${documentType}_${Date.now()}.${fileExt}`;
-            // Upload the file to Supabase Storage using 'avatars' bucket which is already set up
-            const filePath = `kyc/${fileName}`;
-            const { data, error: uploadError } = await supabase.storage
-                .from('avatars')
-                .upload(filePath, file);
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('userId', user.id);
+            formData.append('documentType', documentType);
 
-            if (uploadError) {
-                console.error("Upload error:", uploadError);
-                throw new Error("Erreur d'upload (" + uploadError.message + "). Le bucket de stockage est peut-être mal configuré.");
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.error || response.statusText);
             }
-
-            // In a real app, you would also update the user's KYC status in the database here
-            // e.g. await supabase.from('profiles').update({ kyc_status: 'pending' }).eq('id', user.id);
 
             setIsSuccess(true);
             setStep(3);
