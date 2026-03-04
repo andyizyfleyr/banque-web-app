@@ -40,7 +40,7 @@ export default function KYCPage() {
         if (selectedFile) {
             // Check size (max 5MB)
             if (selectedFile.size > 5 * 1024 * 1024) {
-                toast.error("Le fichier est trop volumineux (max 5MB).");
+                toast.error(t('common.error') + " (Max 5MB)");
                 return;
             }
             setFile(selectedFile);
@@ -76,7 +76,7 @@ export default function KYCPage() {
             setStep(3);
         } catch (error) {
             console.error("KYC Error:", error);
-            toast.error(error.message || "Une erreur est survenue lors de la soumission.");
+            toast.error(error.message || t('common.error'));
         } finally {
             setIsSubmitting(false);
         }
@@ -96,11 +96,11 @@ export default function KYCPage() {
                         <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                             <ShieldCheck size={32} className="text-white" />
                         </div>
-                        <h1 className="text-3xl font-black mb-2">Vérification d'Identité</h1>
+                        <h1 className="text-3xl font-black mb-2">{t('kyc.title') || "Vérification d'Identité"}</h1>
                         <p className="text-white/80 max-w-md mx-auto">
-                            {kycStatus === 'verified' ? "Votre identité a été vérifiée avec succès." :
-                                kycStatus === 'pending' ? "Vos documents sont en cours d'analyse." :
-                                    "Conformément à la réglementation bancaire, nous devons vérifier votre identité."}
+                            {kycStatus === 'verified' ? (t('kyc.verifiedMsg') || "Votre identité a été vérifiée avec succès.") :
+                                kycStatus === 'pending' ? (t('kyc.pendingMsg') || "Vos documents sont en cours d'analyse.") :
+                                    (t('kyc.subtitle') || "Conformément à la réglementation bancaire, nous devons vérifier votre identité.")}
                         </p>
                     </div>
                 </div>
@@ -113,9 +113,9 @@ export default function KYCPage() {
                                 <div className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-6">
                                     <CheckCircle size={48} />
                                 </div>
-                                <h2 className="text-2xl font-black text-[#1D3557] mb-3">Identité vérifiée</h2>
+                                <h2 className="text-2xl font-black text-[#1D3557] mb-3">{t('kyc.verifiedTitle') || "Identité vérifiée"}</h2>
                                 <p className="text-gray-500 mb-8 max-w-md">
-                                    Merci. Votre identité a été vérifiée avec succès. Vous avez désormais un accès complet à toutes nos fonctionnalités financières.
+                                    {t('kyc.verifiedMsg') || "Merci. Votre identité a été vérifiée con succès. Vous avez désormais un accès complet à toutes nos fonctionnalités financières."}
                                 </p>
                             </div>
                         ) : (
@@ -123,10 +123,9 @@ export default function KYCPage() {
                                 <div className="w-24 h-24 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mb-6">
                                     <Loader2 size={48} className="animate-spin" />
                                 </div>
-                                <h2 className="text-2xl font-black text-[#1D3557] mb-3">En cours de vérification</h2>
+                                <h2 className="text-2xl font-black text-[#1D3557] mb-3">{t('kyc.pendingTitle') || "En cours de vérification"}</h2>
                                 <p className="text-gray-500 mb-8 max-w-sm">
-                                    Vos documents ont bien été reçus et sont actuelement en cours de traitement par notre équipe.
-                                    Vous recevrez une notification d'ici 24 à 48h.
+                                    {t('kyc.pendingMsg') || "Vos documents ont bien été reçus et sont actuelement en cours de traitement par notre équipe. Vous recevrez une notification d'ici 24 à 48h."}
                                 </p>
                             </div>
                         )}
@@ -134,7 +133,7 @@ export default function KYCPage() {
                             onClick={() => router.push('/dashboard')}
                             className="px-8 py-3 bg-[#1D3557] text-white rounded-xl font-bold hover:bg-[#1D3557]/90 transition-all shadow-md active:scale-95"
                         >
-                            Retour au tableau de bord
+                            {t('kyc.backToDashboard') || "Retour au tableau de bord"}
                         </button>
                     </div>
                 ) : (
@@ -142,9 +141,9 @@ export default function KYCPage() {
                         {/* Stepper */}
                         <div className="flex px-8 py-6 bg-gray-50 border-b border-gray-100">
                             {[
-                                { num: 1, title: 'Type de document' },
-                                { num: 2, title: 'Téléchargement' },
-                                { num: 3, title: 'Confirmation' }
+                                { num: 1, title: t('kyc.stepperDocType') || 'Type de document' },
+                                { num: 2, title: t('kyc.stepperUpload') || 'Téléchargement' },
+                                { num: 3, title: t('kyc.stepperConfirm') || 'Confirmation' }
                             ].map((s) => (
                                 <div key={s.num} className="flex-1 flex flex-col items-center relative">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mb-2 z-10 transition-colors ${step >= s.num ? 'bg-[#E63746] text-white shadow-md shadow-red-200' : 'bg-white border-2 border-gray-200 text-gray-400'}`}>
@@ -166,15 +165,15 @@ export default function KYCPage() {
                             {step === 1 && (
                                 <div className="animate-fade-in space-y-6">
                                     <div className="text-center mb-8">
-                                        <h2 className="text-xl font-bold text-[#1D3557] mb-2">Choisissez un document</h2>
-                                        <p className="text-gray-500 text-sm">Sélectionnez le type de document d'identité que vous souhaitez fournir.</p>
+                                        <h2 className="text-xl font-bold text-[#1D3557] mb-2">{t('kyc.chooseDocTitle') || "Choisissez un document"}</h2>
+                                        <p className="text-gray-500 text-sm">{t('kyc.chooseDocDesc') || "Sélectionnez le type de document d\'identité que vous souhaitez fournir."}</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {[
-                                            { id: 'id_card', icon: FileText, title: "Carte d'identité", desc: "Format recto-verso" },
-                                            { id: 'passport', icon: FileText, title: "Passeport", desc: "Page avec photo" },
-                                            { id: 'driving_license', icon: Camera, title: "Permis de conduire", desc: "Nouveau format européen" }
+                                            { id: 'id_card', icon: FileText, title: t('kyc.docIdCard') || "Carte d'identité", desc: t('kyc.docIdCardDesc') || "Format recto-verso" },
+                                            { id: 'passport', icon: FileText, title: t('kyc.docPassport') || "Passeport", desc: t('kyc.docPassportDesc') || "Page avec photo" },
+                                            { id: 'driving_license', icon: Camera, title: t('kyc.docLicense') || "Permis de conduire", desc: t('kyc.docLicenseDesc') || "Nouveau format européen" }
                                         ].map((doc) => (
                                             <button
                                                 key={doc.id}
@@ -198,7 +197,7 @@ export default function KYCPage() {
                                             disabled={!documentType}
                                             className="px-8 py-3 bg-[#E63746] text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-[#C1121F] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2"
                                         >
-                                            Continuer <ArrowRight size={18} />
+                                            {t('kyc.continueBtn') || "Continuer"} <ArrowRight size={18} />
                                         </button>
                                     </div>
                                 </div>
@@ -208,8 +207,8 @@ export default function KYCPage() {
                             {step === 2 && (
                                 <div className="animate-fade-in space-y-6">
                                     <div className="text-center mb-8">
-                                        <h2 className="text-xl font-bold text-[#1D3557] mb-2">Téléchargez votre document</h2>
-                                        <p className="text-gray-500 text-sm">Assurez-vous que le document est bien lisible, sans reflets et non tronqué.</p>
+                                        <h2 className="text-xl font-bold text-[#1D3557] mb-2">{t('kyc.uploadTitle') || "Téléchargez votre document"}</h2>
+                                        <p className="text-gray-500 text-sm">{t('kyc.uploadDesc') || "Assurez-vous que le document est bien lisible, sans reflets et non tronqué."}</p>
                                     </div>
 
                                     <div className="border-2 border-dashed border-gray-200 rounded-3xl p-10 flex flex-col items-center justify-center text-center bg-gray-50 hover:bg-gray-100 transition-colors relative cursor-pointer group">
@@ -228,7 +227,7 @@ export default function KYCPage() {
                                                 <p className="font-bold text-[#1D3557]">{file.name}</p>
                                                 <p className="text-xs text-gray-500">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
                                                 <button className="text-[10px] font-bold text-[#E63746] uppercase tracking-wider mt-2 hover:underline relative z-20">
-                                                    Changer de fichier
+                                                    {t('kyc.changeFile') || "Changer de fichier"}
                                                 </button>
                                             </div>
                                         ) : (
@@ -236,9 +235,9 @@ export default function KYCPage() {
                                                 <div className="w-20 h-20 bg-white shadow-sm rounded-full flex items-center justify-center mb-4 text-[#E63746] group-hover:scale-110 transition-transform">
                                                     <UploadCloud size={32} />
                                                 </div>
-                                                <h3 className="font-bold text-[#1D3557] text-lg mb-1">Cliquez pour importer</h3>
-                                                <p className="text-sm text-gray-500 mb-4">ou glissez-déposez votre fichier ici</p>
-                                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">JPG, PNG ou PDF (Max. 5MB)</p>
+                                                <h3 className="font-bold text-[#1D3557] text-lg mb-1">{t('kyc.clickToUpload') || "Cliquez pour importer"}</h3>
+                                                <p className="text-sm text-gray-500 mb-4">{t('kyc.dragAndDrop') || "ou glissez-déposez votre fichier ici"}</p>
+                                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('kyc.fileFormats') || "JPG, PNG ou PDF (Max. 5MB)"}</p>
                                             </>
                                         )}
                                     </div>
@@ -246,11 +245,11 @@ export default function KYCPage() {
                                     <div className="bg-blue-50 p-4 rounded-xl flex items-start gap-3">
                                         <AlertCircle className="text-blue-500 flex-shrink-0 mt-0.5" size={20} />
                                         <div className="text-sm text-blue-900">
-                                            <p className="font-bold mb-1">Conseils pour une vérification rapide :</p>
+                                            <p className="font-bold mb-1">{t('kyc.tipsTitle') || "Conseils pour une vérification rapide :"}</p>
                                             <ul className="list-disc list-inside space-y-1 text-blue-800/80 text-xs">
-                                                <li>Le document doit être en cours de validité</li>
-                                                <li>Format couleur uniquement (pas de noir et blanc)</li>
-                                                <li>Les 4 coins du document doivent être visibles</li>
+                                                <li>{t('kyc.tip1') || "Le document doit être en cours de validité"}</li>
+                                                <li>{t('kyc.tip2') || "Format couleur uniquement (pas de noir et blanc)"}</li>
+                                                <li>{t('kyc.tip3') || "Les 4 coins du document doivent être visibles"}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -261,7 +260,7 @@ export default function KYCPage() {
                                             className="px-6 py-3 text-gray-500 font-bold hover:bg-gray-50 rounded-xl transition-colors"
                                             disabled={isSubmitting}
                                         >
-                                            Retour
+                                            {t('kyc.backBtn') || "Retour"}
                                         </button>
                                         <button
                                             onClick={handleSubmit}
@@ -269,9 +268,9 @@ export default function KYCPage() {
                                             className="px-8 py-3 bg-[#E63746] text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-[#C1121F] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center gap-2"
                                         >
                                             {isSubmitting ? (
-                                                <><Loader2 size={18} className="animate-spin" /> Envoi en cours...</>
+                                                <><Loader2 size={18} className="animate-spin" /> {t('kyc.submitting') || "Envoi en cours..."}</>
                                             ) : (
-                                                <>Soumettre <CheckCircle size={18} /></>
+                                                <>{t('kyc.submitBtn') || "Soumettre"} <CheckCircle size={18} /></>
                                             )}
                                         </button>
                                     </div>
@@ -284,13 +283,13 @@ export default function KYCPage() {
                                     <div className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                         <CheckCircle size={48} />
                                     </div>
-                                    <h2 className="text-2xl font-black text-[#1D3557] mb-3">Documents envoyés !</h2>
+                                    <h2 className="text-2xl font-black text-[#1D3557] mb-3">{t('kyc.successTitle') || "Documents envoyés !"}</h2>
                                     <p className="text-gray-500 mb-8 max-w-sm mx-auto">
-                                        Merci. Vos documents ont été reçus avec succès et sont en cours de vérification par notre équipe.
+                                        {t('kyc.successMsg') || "Merci. Vos documents ont été reçus avec succès et sont en cours de vérification par notre équipe."}
                                     </p>
 
                                     <div className="bg-gray-50 rounded-2xl p-6 mb-8 max-w-sm mx-auto text-left">
-                                        <h3 className="font-bold text-[#1D3557] mb-2 text-sm">Prochaines étapes :</h3>
+                                        <h3 className="font-bold text-[#1D3557] mb-2 text-sm">{t('kyc.nextStepsTitle') || "Prochaines étapes :"}</h3>
                                         <div className="space-y-4">
                                             <div className="flex gap-3 relative">
                                                 <div className="w-1.5 h-full bg-green-500 absolute left-[9px] top-6 rounded-full opacity-20"></div>
@@ -298,7 +297,7 @@ export default function KYCPage() {
                                                     <CheckCircle size={12} />
                                                 </div>
                                                 <div>
-                                                    <p className="font-bold text-sm text-[#1D3557]">Documents reçus</p>
+                                                    <p className="font-bold text-sm text-[#1D3557]">{t('kyc.step1Title') || "Documents reçus"}</p>
                                                 </div>
                                             </div>
                                             <div className="flex gap-3 relative">
@@ -307,15 +306,15 @@ export default function KYCPage() {
                                                     <div className="w-2 h-2 bg-[#E63746] rounded-full animate-pulse"></div>
                                                 </div>
                                                 <div>
-                                                    <p className="font-bold text-sm text-[#1D3557]">En de cours de vérification</p>
-                                                    <p className="text-xs text-gray-500 mt-0.5">Délai estimé : 24 à 48h ouvrées</p>
+                                                    <p className="font-bold text-sm text-[#1D3557]">{t('kyc.step2Title') || "En de cours de vérification"}</p>
+                                                    <p className="text-xs text-gray-500 mt-0.5">{t('kyc.step2Desc') || "Délai estimé : 24 à 48h ouvrées"}</p>
                                                 </div>
                                             </div>
                                             <div className="flex gap-3">
                                                 <div className="w-6 h-6 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center flex-shrink-0 z-10">
                                                 </div>
                                                 <div>
-                                                    <p className="font-bold text-sm text-gray-400">Validation finale</p>
+                                                    <p className="font-bold text-sm text-gray-400">{t('kyc.step3Title') || "Validation finale"}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -325,7 +324,7 @@ export default function KYCPage() {
                                         onClick={() => router.push('/dashboard')}
                                         className="px-8 py-3 bg-[#1D3557] text-white rounded-xl font-bold hover:bg-[#1D3557]/90 transition-all shadow-md active:scale-95"
                                     >
-                                        Retour au tableau de bord
+                                        {t('kyc.backToDashboard') || "Retour au tableau de bord"}
                                     </button>
                                 </div>
                             )}
