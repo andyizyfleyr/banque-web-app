@@ -241,7 +241,7 @@ const Transfers = () => {
             };
         } else if (transferMode === 'p2p') {
             if (!p2pRecipient) {
-                toast.error(t('transfers.verifyRedBankRecipient'));
+                toast.error(t('transfers.verifyCrediwiseRecipient'));
                 return;
             }
             targetName = p2pRecipient.owner_name;
@@ -252,7 +252,7 @@ const Transfers = () => {
                 sender_account_id: srcAccount.id,
                 receiver_account_id: p2pRecipient.account_id,
                 amount_to_transfer: amt,
-                description_text: description || `${t('transfers.redBankTransferTo')} ${targetName}`
+                description_text: description || `${t('transfers.crediwiseTransferTo')} ${targetName}`
             };
         } else {
             // External
@@ -538,7 +538,7 @@ const Transfers = () => {
                             <div className="space-y-3">
                                 <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">
                                     {transferMode === 'internal' ? t('transfers.toAccount') :
-                                        transferMode === 'p2p' ? t('transfers.redBankRecipient') : t('transfers.externalBeneficiary')}
+                                        transferMode === 'p2p' ? t('transfers.crediwiseRecipient') : t('transfers.externalBeneficiary')}
                                 </label>
 
                                 {transferMode === 'internal' && (

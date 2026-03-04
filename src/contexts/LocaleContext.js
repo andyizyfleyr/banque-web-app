@@ -18,7 +18,7 @@ const translations = { fr, en, es, de, it, ro, pl, pt, el };
 
 const LocaleContext = createContext(null);
 
-const STORAGE_KEY = 'redbank_locale';
+const STORAGE_KEY = 'crediwise_locale';
 
 export const LocaleProvider = ({ children }) => {
     const [countryCode, setCountryCode] = useState(null);

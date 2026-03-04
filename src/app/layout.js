@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import SafeHydration from "@/components/SafeHydration";
 
 export const metadata = {
-  title: "REDBANK - Your Modern Bank",
+  title: "CREDIWISE - Your Modern Bank",
   description: "Manage your finances with elegance and simplicity.",
   viewport: {
     width: 'device-width',
