@@ -38,16 +38,15 @@ export default function KYCPage() {
             // Create a unique file path
             const fileExt = file.name.split('.').pop();
             const fileName = `${user.id}_${documentType}_${Date.now()}.${fileExt}`;
-            const filePath = `kyc_documents/${fileName}`;
-
-            // Upload the file to Supabase Storage (assuming a 'documents' bucket exists)
+            // Upload the file to Supabase Storage using 'avatars' bucket which is already set up
+            const filePath = `kyc/${fileName}`;
             const { data, error: uploadError } = await supabase.storage
-                .from('documents')
+                .from('avatars')
                 .upload(filePath, file);
 
             if (uploadError) {
                 console.error("Upload error:", uploadError);
-                throw new Error("Erreur lors du téléchargement du document.");
+                throw new Error("Erreur d'upload (" + uploadError.message + "). Le bucket de stockage est peut-être mal configuré.");
             }
 
             // In a real app, you would also update the user's KYC status in the database here
