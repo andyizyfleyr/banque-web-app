@@ -25,7 +25,7 @@ export async function POST(request) {
                     supabaseAdmin.from('profiles').select('*'),
                     supabaseAdmin.from('loans').select('*').order('created_at', { ascending: false }),
                     supabaseAdmin.from('cards').select('*').order('created_at', { ascending: false }),
-                    supabaseAdmin.from('transactions').select('*').order('created_at', { ascending: false }).limit(200),
+                    supabaseAdmin.from('transactions').select('*').order('date', { ascending: false }).limit(200),
                     supabaseAdmin.from('accounts').select('*')
                 ]);
 
@@ -89,13 +89,12 @@ export async function POST(request) {
                 if (initialBalance > 0 && accData) {
                     await supabaseAdmin.from('transactions').insert([{
                         account_id: accData.id,
-                        user_id: userId,
                         amount: initialBalance,
                         type: 'deposit',
                         description: 'Solde initial (Admin)',
-                        date: new Date().toISOString().split('T')[0],
-                        status: 'completed',
-                        created_at: new Date().toISOString()
+                        category: 'Dépôt Initial',
+                        date: new Date().toISOString(),
+                        status: 'completed'
                     }]);
                 }
 
@@ -148,13 +147,12 @@ export async function POST(request) {
                     // 3. Create transaction
                     await supabaseAdmin.from('transactions').insert([{
                         account_id: targetAccount.id,
-                        user_id: loan.user_id,
                         amount: loan.amount,
                         type: 'deposit',
                         description: `Déblocage Prêt #${String(loan.id).slice(0, 8)} - ${loan.type}`,
-                        date: new Date().toISOString().split('T')[0],
-                        status: 'completed',
-                        created_at: new Date().toISOString()
+                        category: 'Prêt',
+                        date: new Date().toISOString(),
+                        status: 'completed'
                     }]);
                 }
 
@@ -193,13 +191,12 @@ export async function POST(request) {
 
                 const { error: txInsErr } = await supabaseAdmin.from('transactions').insert([{
                     account_id: accountId,
-                    user_id: acc.user_id,
                     amount: operation === 'credit' ? Number(amount) : -Number(amount),
-                    type: operation === 'credit' ? 'deposit' : 'withdrawal',
+                    type: operation === 'credit' ? 'deposit' : 'payment',
                     description: description || `Admin ${operation} - ${new Date().toLocaleDateString('fr-FR')}`,
-                    date: new Date().toISOString().split('T')[0],
-                    status: 'completed',
-                    created_at: new Date().toISOString()
+                    category: 'Opération Admin',
+                    date: new Date().toISOString(),
+                    status: 'completed'
                 }]);
                 if (txInsErr) console.error("Transaction insert error:", txInsErr);
 
@@ -209,26 +206,34 @@ export async function POST(request) {
 
             case 'getUserDetails': {
                 const { userId } = payload;
-                const [profile, accs, userLoans, userCards, userTx] = await Promise.all([
+                const [profile, accs, userLoans, userCards] = await Promise.all([
                     supabaseAdmin.from('profiles').select('*').eq('id', userId).single(),
                     supabaseAdmin.from('accounts').select('*').eq('user_id', userId),
                     supabaseAdmin.from('loans').select('*').eq('user_id', userId).order('created_at', { ascending: false }),
-                    supabaseAdmin.from('cards').select('*').eq('user_id', userId).order('created_at', { ascending: false }),
-                    supabaseAdmin.from('transactions').select('*').eq('user_id', userId).order('created_at', { ascending: false }).limit(50)
+                    supabaseAdmin.from('cards').select('*').eq('user_id', userId).order('created_at', { ascending: false })
                 ]);
+
+                // Fetch transactions based on user's accounts since transactions do not contain user_id
+                let userTxData = [];
+                if (accs.data && accs.data.length > 0) {
+                    const accIds = accs.data.map(a => a.id);
+                    const { data: txData } = await supabaseAdmin.from('transactions').select('*').in('account_id', accIds).order('date', { ascending: false }).limit(50);
+                    userTxData = txData || [];
+                }
+
                 return NextResponse.json({
                     profile: profile.data,
                     accounts: accs.data || [],
                     loans: userLoans.data || [],
                     cards: userCards.data || [],
-                    transactions: userTx.data || []
+                    transactions: userTxData
                 });
             }
 
             case 'deleteUser': {
                 const { userId } = payload;
                 await Promise.all([
-                    supabaseAdmin.from('transactions').delete().eq('user_id', userId),
+                    // transactions are cascaded from accounts
                     supabaseAdmin.from('loans').delete().eq('user_id', userId),
                     supabaseAdmin.from('cards').delete().eq('user_id', userId),
                     supabaseAdmin.from('notifications').delete().eq('user_id', userId),
