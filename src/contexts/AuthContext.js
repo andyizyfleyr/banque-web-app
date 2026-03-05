@@ -81,13 +81,13 @@ export const AuthProvider = ({ children }) => {
         };
     }, [pathname, router]);
 
-    const value = {
+    const value = React.useMemo(() => ({
         signUp: (data) => supabase.auth.signUp(data),
         signIn: (data) => supabase.auth.signInWithPassword(data),
         signOut: () => supabase.auth.signOut(),
         user,
         loading,
-    };
+    }), [user, loading]);
 
     return (
         <AuthContext.Provider value={value}>

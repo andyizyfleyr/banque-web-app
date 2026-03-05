@@ -76,11 +76,15 @@ const Loans = () => {
 
     useEffect(() => {
         setIsMounted(true);
-        if (user) fetchLoans();
-    }, [user]);
+        if (user && myLoans.length === 0) {
+            fetchLoans(false);
+        } else if (user) {
+            fetchLoans(true); // Silent update if user exists but we have data
+        }
+    }, [user?.id]); // Use user.id for better stability
 
-    const fetchLoans = async () => {
-        setLoading(true);
+    const fetchLoans = async (silent = false) => {
+        if (!silent) setLoading(true);
         try {
             const { data, error } = await supabase
                 .from('loans')
@@ -675,27 +679,45 @@ const Loans = () => {
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold text-gray-500 uppercase">{t('loans.identityDoc')}</label>
                                                 <div className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all ${identityDoc ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20'}`}>
-                                                    {identityDoc ? (
-                                                        <div className="flex items-center gap-3 justify-center">
-                                                            <CheckCircle className="text-green-500" size={22} />
-                                                            <div className="text-left">
-                                                                <p className="text-sm font-bold text-[#1D3557] truncate max-w-[180px]">{identityDoc.name}</p>
-                                                                <p className="text-[10px] text-gray-400">{(identityDoc.size / 1024).toFixed(0)} {t('common.kb') || 'Ko'}</p>
+                                                    <div className="relative">
+                                                        {identityDoc ? (
+                                                            <div className="flex items-center gap-3 justify-center py-2 animate-in fade-in zoom-in duration-300">
+                                                                <CheckCircle className="text-green-500" size={22} />
+                                                                <div className="text-left">
+                                                                    <p className="text-sm font-bold text-[#1D3557] truncate max-w-[180px]">{identityDoc.name}</p>
+                                                                    <p className="text-[10px] text-gray-400">{(identityDoc.size / 1024).toFixed(0)} {t('common.kb') || 'Ko'}</p>
+                                                                </div>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        e.stopPropagation();
+                                                                        setIdentityDoc(null);
+                                                                    }}
+                                                                    className="ml-2 w-7 h-7 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition-colors"
+                                                                >
+                                                                    <X size={14} />
+                                                                </button>
                                                             </div>
-                                                            <button onClick={() => setIdentityDoc(null)} className="ml-2 w-7 h-7 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition-colors">
-                                                                <X size={14} />
-                                                            </button>
-                                                        </div>
-                                                    ) : (
-                                                        <label className="cursor-pointer space-y-2 block">
-                                                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                                                                <Upload size={20} className="text-gray-400" />
-                                                            </div>
-                                                            <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
-                                                            <p className="text-[10px] text-gray-400">{t('loans.fileFormats')}</p>
-                                                            <input type="file" accept=".jpg,.jpeg,.png,.pdf" className="hidden" onChange={(e) => e.target.files[0] && setIdentityDoc(e.target.files[0])} />
-                                                        </label>
-                                                    )}
+                                                        ) : (
+                                                            <label className="cursor-pointer space-y-2 block" onClick={(e) => e.stopPropagation()}>
+                                                                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                                                                    <Upload size={20} className="text-gray-400" />
+                                                                </div>
+                                                                <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
+                                                                <p className="text-[10px] text-gray-400">{t('loans.fileFormats')}</p>
+                                                            </label>
+                                                        )}
+                                                        <input
+                                                            type="file"
+                                                            accept=".jpg,.jpeg,.png,.pdf"
+                                                            className="hidden"
+                                                            onChange={(e) => {
+                                                                const file = e.target.files[0];
+                                                                if (file) setIdentityDoc(file);
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -703,27 +725,45 @@ const Loans = () => {
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold text-gray-500 uppercase">{t('loans.addressProof')}</label>
                                                 <div className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all ${addressProof ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20'}`}>
-                                                    {addressProof ? (
-                                                        <div className="flex items-center gap-3 justify-center">
-                                                            <CheckCircle className="text-green-500" size={22} />
-                                                            <div className="text-left">
-                                                                <p className="text-sm font-bold text-[#1D3557] truncate max-w-[180px]">{addressProof.name}</p>
-                                                                <p className="text-[10px] text-gray-400">{(addressProof.size / 1024).toFixed(0)} {t('common.kb') || 'Ko'}</p>
+                                                    <div className="relative">
+                                                        {addressProof ? (
+                                                            <div className="flex items-center gap-3 justify-center py-2 animate-in fade-in zoom-in duration-300">
+                                                                <CheckCircle className="text-green-500" size={22} />
+                                                                <div className="text-left">
+                                                                    <p className="text-sm font-bold text-[#1D3557] truncate max-w-[180px]">{addressProof.name}</p>
+                                                                    <p className="text-[10px] text-gray-400">{(addressProof.size / 1024).toFixed(0)} {t('common.kb') || 'Ko'}</p>
+                                                                </div>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        e.stopPropagation();
+                                                                        setAddressProof(null);
+                                                                    }}
+                                                                    className="ml-2 w-7 h-7 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition-colors"
+                                                                >
+                                                                    <X size={14} />
+                                                                </button>
                                                             </div>
-                                                            <button onClick={() => setAddressProof(null)} className="ml-2 w-7 h-7 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-200 transition-colors">
-                                                                <X size={14} />
-                                                            </button>
-                                                        </div>
-                                                    ) : (
-                                                        <label className="cursor-pointer space-y-2 block">
-                                                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
-                                                                <Upload size={20} className="text-gray-400" />
-                                                            </div>
-                                                            <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
-                                                            <p className="text-[10px] text-gray-400">{t('loans.addressProofFormats')}</p>
-                                                            <input type="file" accept=".jpg,.jpeg,.png,.pdf" className="hidden" onChange={(e) => e.target.files[0] && setAddressProof(e.target.files[0])} />
-                                                        </label>
-                                                    )}
+                                                        ) : (
+                                                            <label className="cursor-pointer space-y-2 block" onClick={(e) => e.stopPropagation()}>
+                                                                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                                                                    <Upload size={20} className="text-gray-400" />
+                                                                </div>
+                                                                <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
+                                                                <p className="text-[10px] text-gray-400">{t('loans.addressProofFormats')}</p>
+                                                            </label>
+                                                        )}
+                                                        <input
+                                                            type="file"
+                                                            accept=".jpg,.jpeg,.png,.pdf"
+                                                            className="hidden"
+                                                            onChange={(e) => {
+                                                                const file = e.target.files[0];
+                                                                if (file) setAddressProof(file);
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
