@@ -241,7 +241,7 @@ const Transfers = () => {
             };
         } else if (transferMode === 'p2p') {
             if (!p2pRecipient) {
-                toast.error(t('transfers.verifyCrediwiseRecipient'));
+                toast.error(t('transfers.verifyCrediwizeRecipient'));
                 return;
             }
             targetName = p2pRecipient.owner_name;

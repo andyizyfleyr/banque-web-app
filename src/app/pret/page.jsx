@@ -57,7 +57,7 @@ const PretPersonnel = () => {
                         <Link href="/" className="flex items-center gap-3 group shrink-0">
                             <Image
                                 src="/landing-page-assert/logo.png"
-                                alt="Crediwise"
+                                alt="Crediwize"
                                 width={140}
                                 height={40}
                                 className="object-contain"
@@ -138,7 +138,7 @@ const PretPersonnel = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex justify-between items-center mb-16">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={120} height={35} />
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={120} height={35} />
                                 <button
                                     className="w-11 h-11 flex items-center justify-center text-[#1D3557] hover:bg-gray-100 rounded-full"
                                     onClick={() => setIsMobileMenuOpen(false)}

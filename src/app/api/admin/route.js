@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 import { countries } from '@/config/countries';
 
-const ADMIN_PASSWORD = 'Crediwise2026!';
+const ADMIN_PASSWORD = 'Crediwize2026!';
 
 export async function POST(request) {
     const origin = request.nextUrl.origin;

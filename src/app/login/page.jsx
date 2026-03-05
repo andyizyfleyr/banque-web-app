@@ -103,7 +103,7 @@ const LoginPage = () => {
                                 <div className="p-2.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg">
                                     <Landmark className="text-white" size={28} />
                                 </div>
-                                <span className="text-2xl font-black tracking-tighter">CREDIWISE <span className="text-[#1D3557]">ELITE.</span></span>
+                                <span className="text-2xl font-black tracking-tighter">CREDIWIZE <span className="text-[#1D3557]">ELITE.</span></span>
                             </div>
 
                             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -139,7 +139,7 @@ const LoginPage = () => {
                                 <div className="p-2 bg-[#1D3557] rounded-xl shadow-md">
                                     <Landmark className="text-[#e63746]" size={20} />
                                 </div>
-                                <span className="text-xl font-black tracking-tighter text-[#1D3557]">CREDIWISE <span className="text-[#e63746]">ELITE.</span></span>
+                                <span className="text-xl font-black tracking-tighter text-[#1D3557]">CREDIWIZE <span className="text-[#e63746]">ELITE.</span></span>
                             </div>
 
                             <div className="mb-10">
@@ -283,7 +283,7 @@ const LoginPage = () => {
 
                 {/* Footer Copyright */}
                 <div className="absolute bottom-6 left-0 right-0 text-center text-[#1D3557]/40 text-[10px] font-bold uppercase tracking-widest">
-                    &copy; 2026 Crediwise Private Core. All rights reserved.
+                    &copy; 2026 Crediwize Private Core. All rights reserved.
                 </div>
             </div>
         </div >

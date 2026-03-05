@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
     } catch {
         t = (key) => {
             const fallback = {
-                'footer.copyright': '© 2026 CREDIWISE Financial Services. All rights reserved.',
+                'footer.copyright': '© 2026 CREDIWIZE Financial Services. All rights reserved.',
                 'footer.privacy': 'Privacy Policy',
                 'footer.terms': 'Terms of Service',
                 'footer.security': 'Security',

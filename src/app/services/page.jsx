@@ -85,7 +85,7 @@ const ServicesPage = () => {
             <nav className="fixed w-full top-0 bg-white/90 backdrop-blur-md z-50 py-5 px-6 lg:px-16 border-b border-gray-100 transition-all">
                 <div className="max-w-[1400px] mx-auto flex items-center justify-between">
                     <Link href="/">
-                        <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={140} height={40} className="object-contain" priority />
+                        <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="object-contain" priority />
                     </Link>
 
                     <div className="flex items-center space-x-4 md:space-x-10">
@@ -126,7 +126,7 @@ const ServicesPage = () => {
             {/* Mobile Menu Drawer */}
             <div className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white z-[110] shadow-[0_0_40px_rgba(0,0,0,0.2)] transform transition-transform duration-300 ease-[0.16,1,0.3,1] xl:hidden flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-6 flex justify-between items-center bg-white border-b border-gray-50">
-                    <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={110} height={30} className="object-contain" />
+                    <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={110} height={30} className="object-contain" />
                     <button className="text-[#1D3557] hover:bg-[#FDECEC] hover:text-[#e63746] transition-all p-2.5 bg-gray-50 rounded-full" onClick={() => setIsMobileMenuOpen(false)}>
                         <X size={20} strokeWidth={2.5} />
                     </button>

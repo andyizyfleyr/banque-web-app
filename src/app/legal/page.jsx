@@ -52,7 +52,7 @@ const LegalPage = () => {
                         <Link href="/" className="flex items-center gap-3 group shrink-0">
                             <Image
                                 src="/landing-page-assert/logo.png"
-                                alt="Crediwise"
+                                alt="Crediwize"
                                 width={140}
                                 height={40}
                                 className="object-contain"
@@ -133,7 +133,7 @@ const LegalPage = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex justify-between items-center mb-16">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwise" width={120} height={35} />
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={120} height={35} />
                                 <button
                                     className="w-11 h-11 flex items-center justify-center text-[#1D3557] hover:bg-gray-100 rounded-full"
                                     onClick={() => setIsMobileMenuOpen(false)}
@@ -258,7 +258,7 @@ const LegalPage = () => {
                                                 </h3>
                                                 <p>Le site internet <strong className="text-[#1D3557]">www.notre-banque.com</strong> est édité par :</p>
                                                 <ul className="mt-2 space-y-1 pl-6 list-disc marker:text-[#E63746]">
-                                                    <li>Raison sociale : Crediwise Group SA</li>
+                                                    <li>Raison sociale : Crediwize Group SA</li>
                                                     <li>Siège social : 123 Avenue des Champs-Élysées, 75008 Paris, France</li>
                                                     <li>Capital social : 5 000 000 €</li>
                                                     <li>RCS : Paris B 123 456 789</li>
@@ -271,7 +271,7 @@ const LegalPage = () => {
                                                 <h3 className="text-xl font-bold text-[#1D3557] mb-4 flex items-center gap-2">
                                                     <Phone className="text-[#E63746]" size={22} /> Directeur de la publication
                                                 </h3>
-                                                <p>M. Jean Dupont, en sa qualité de Directeur Général de Crediwise Group SA.</p>
+                                                <p>M. Jean Dupont, en sa qualité de Directeur Général de Crediwize Group SA.</p>
                                                 <p className="mt-2">Contact : <a href="mailto:contact@notre-banque.com" className="text-[#E63746] font-medium hover:underline">contact@notre-banque.com</a></p>
                                             </div>
 
@@ -289,7 +289,7 @@ const LegalPage = () => {
 
                                             <div>
                                                 <h3 className="text-xl font-bold text-[#1D3557] mb-4">Autorité de contrôle</h3>
-                                                <p>Crediwise Group est un établissement de crédit de droit français agréé et contrôlé par l'Autorité de Contrôle Prudentiel et de Résolution (ACPR).</p>
+                                                <p>Crediwize Group est un établissement de crédit de droit français agréé et contrôlé par l'Autorité de Contrôle Prudentiel et de Résolution (ACPR).</p>
                                                 <p className="mt-2">Adresse de l'ACPR : 4 Place de Budapest, CS 92459, 75436 Paris Cedex 09.</p>
                                             </div>
                                         </div>
@@ -312,7 +312,7 @@ const LegalPage = () => {
 
                                         <div className="space-y-8 text-gray-600 leading-loose">
                                             <p>
-                                                La protection de vos données personnelles est au cœur de nos préoccupations. La présente politique détaille comment Crediwise Group collecte, utilise, protège et partage vos données dans le cadre de l'utilisation de nos services en ligne.
+                                                La protection de vos données personnelles est au cœur de nos préoccupations. La présente politique détaille comment Crediwize Group collecte, utilise, protège et partage vos données dans le cadre de l'utilisation de nos services en ligne.
                                             </p>
 
                                             <div>
@@ -377,7 +377,7 @@ const LegalPage = () => {
 
                                         <div className="space-y-8 text-gray-600 leading-loose">
                                             <p className="font-medium text-[#1D3557]">
-                                                Les présentes Conditions Générales d'Utilisation (CGU) déterminent les règles d'accès et d'utilisation du site de Crediwise Group. Tout accès ou utilisation du site emporte l'acceptation sans réserve de ces conditions.
+                                                Les présentes Conditions Générales d'Utilisation (CGU) déterminent les règles d'accès et d'utilisation du site de Crediwize Group. Tout accès ou utilisation du site emporte l'acceptation sans réserve de ces conditions.
                                             </p>
 
                                             <div>
@@ -402,7 +402,7 @@ const LegalPage = () => {
 
                                             <div>
                                                 <h3 className="text-xl font-bold text-[#1D3557] mb-4">Article 5 : Liens hypertextes</h3>
-                                                <p>Des liens hypertextes peuvent être présents sur le site. L'utilisateur est informé qu'en cliquant sur ces liens, il sortira du site de Crediwise Group. Ce dernier n'a pas de contrôle sur les pages web sur lesquelles aboutissent ces liens et ne saurait, en aucun cas, être responsable de leur contenu.</p>
+                                                <p>Des liens hypertextes peuvent être présents sur le site. L'utilisateur est informé qu'en cliquant sur ces liens, il sortira du site de Crediwize Group. Ce dernier n'a pas de contrôle sur les pages web sur lesquelles aboutissent ces liens et ne saurait, en aucun cas, être responsable de leur contenu.</p>
                                             </div>
                                         </div>
                                     </motion.div>

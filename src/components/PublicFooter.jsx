@@ -32,7 +32,7 @@ const PublicFooter = () => {
             <div className="max-w-[1400px] mx-auto px-6 lg:px-16 grid lg:grid-cols-12 gap-20">
                 <div className="lg:col-span-5 space-y-12">
                     <Link href="/" className="flex items-center gap-3">
-                        <Image src="/landing-page-assert/footer-logo.png" alt="Crediwise" width={160} height={50} className="brightness-0 invert opacity-90" />
+                        <Image src="/landing-page-assert/footer-logo.png" alt="Crediwize" width={160} height={50} className="brightness-0 invert opacity-90" />
                     </Link>
                     <p className="text-white/40 text-lg leading-relaxed max-w-md font-light italic">
                         {t('publicFooter.description')}
