@@ -147,19 +147,19 @@ const Loans = () => {
         const primaryColor = [29, 53, 87]; // #1D3557 (Navy)
         let statusColor = [245, 158, 11]; // Amber for pending
         let statusBgLight = [254, 243, 199];
-        let docTitle = "DEMANDE DE FINANCEMENT (EN COURS)";
-        let statusStr = "EN ATTENTE D'ÉTUDE";
+        let docTitle = t('loans.pdfPendingTitle');
+        let statusStr = t('loans.pdfStatusPending');
 
         if (loan.status === 'active') {
             statusColor = [16, 185, 129]; // Emerald for active
             statusBgLight = [209, 250, 229];
-            docTitle = "CONTRAT DE PRÊT (APPROUVÉ)";
-            statusStr = "APPROUVÉ / DÉBLOQUÉ";
+            docTitle = t('loans.pdfApprovedTitle');
+            statusStr = t('loans.pdfStatusApproved');
         } else if (loan.status === 'failed' || loan.status === 'rejected') {
             statusColor = [239, 68, 68]; // Red for rejected
             statusBgLight = [254, 226, 226];
-            docTitle = "NOTIFICATION DE DÉCISION (REFUS)";
-            statusStr = "REFUSÉ";
+            docTitle = t('loans.pdfRejectedTitle');
+            statusStr = t('loans.pdfStatusRejected');
         }
 
         // Custom PDF Currency Formatter (Spaces for thousands)
@@ -191,8 +191,8 @@ const Loans = () => {
         doc.setFontSize(9);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(150, 150, 150);
-        doc.text(`Doc Réf: ${loan.id.toUpperCase()}`, 190, 29, { align: "right" });
-        doc.text(`Date d'émission: ${new Date().toLocaleDateString('fr-FR')}`, 190, 34, { align: "right" });
+        doc.text(`${t('loans.pdfDocRef')} ${loan.id.toUpperCase()}`, 190, 29, { align: "right" });
+        doc.text(`${t('loans.pdfIssuanceDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 190, 34, { align: "right" });
 
         // Line separator
         doc.setDrawColor(220, 220, 220);
@@ -206,26 +206,26 @@ const Loans = () => {
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(...primaryColor);
-        doc.text("1. IDENTIFICATION DE L'EMPRUNTEUR", 22, 61);
+        doc.text(t('loans.pdfSection1'), 22, 61);
 
         doc.setFontSize(10);
         doc.setTextColor(...darkGray);
 
         // Left Column
-        doc.setFont("helvetica", "bold"); doc.text("Nom complet:", 25, 75);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfName'), 25, 75);
         doc.setFont("helvetica", "normal"); doc.text(`${user?.user_metadata?.full_name || user?.email || 'N/A'}`, 60, 75);
 
-        doc.setFont("helvetica", "bold"); doc.text("Contact:", 25, 82);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfContact'), 25, 82);
         doc.setFont("helvetica", "normal"); doc.text(`${user?.email || 'N/A'}`, 60, 82);
 
-        doc.setFont("helvetica", "bold"); doc.text("Revenu mensuel:", 25, 89);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfIncome'), 25, 89);
         doc.setFont("helvetica", "normal"); doc.text(formatPdfCurrency(loan.monthly_income), 60, 89);
 
         // Right Column
-        doc.setFont("helvetica", "bold"); doc.text("Catégorie prof.:", 110, 75);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfProfCat'), 110, 75);
         doc.setFont("helvetica", "normal"); doc.text(`${t(`loans.${loan.professional_situation}`) || loan.professional_situation || 'N/A'}`.toUpperCase(), 145, 75);
 
-        doc.setFont("helvetica", "bold"); doc.text("Logement:", 110, 82);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfHousing'), 110, 82);
         doc.setFont("helvetica", "normal"); doc.text(`${t(`loans.${loan.housing_status}`) || loan.housing_status || 'N/A'}`.toUpperCase(), 145, 82);
 
 
@@ -235,7 +235,7 @@ const Loans = () => {
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(...primaryColor);
-        doc.text("2. CARACTÉRISTIQUES DU FINANCEMENT", 22, 111);
+        doc.text(t('loans.pdfSection2'), 22, 111);
 
         // Big Box around details
         doc.setDrawColor(...primaryColor);
@@ -247,27 +247,27 @@ const Loans = () => {
         // Inside details
         doc.setFontSize(10);
         doc.setTextColor(...darkGray);
-        doc.setFont("helvetica", "bold"); doc.text("Type de crédit:", 25, 130);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfCreditType'), 25, 130);
         doc.setFont("helvetica", "normal"); doc.text(`${typeLabel}`, 65, 130);
 
-        doc.setFont("helvetica", "bold"); doc.text("Montant Nominal:", 25, 140);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfNominalAmount'), 25, 140);
         doc.setFont("helvetica", "normal"); doc.text(formatPdfCurrency(loan.amount), 65, 140);
 
-        doc.setFont("helvetica", "bold"); doc.text("Durée d'amortiss.:", 25, 150);
-        doc.setFont("helvetica", "normal"); doc.text(`${loan.duration_months} mois`, 65, 150);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfAmortizationDuration'), 25, 150);
+        doc.setFont("helvetica", "normal"); doc.text(`${loan.duration_months} ${t('loans.monthsUnit')}`, 65, 150);
 
         // Right side of details box
-        doc.setFont("helvetica", "bold"); doc.text("Taux Débiteur Fixe:", 110, 130);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfFixedRate'), 110, 130);
         doc.setFont("helvetica", "normal"); doc.text(`${loan.interest_rate}%`, 160, 130);
 
-        doc.setFont("helvetica", "bold"); doc.text("Mensualité cible:", 110, 140);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfTargetInstallment'), 110, 140);
         doc.setTextColor(...primaryColor); // highlight
         doc.setFont("helvetica", "bold"); doc.text(formatPdfCurrency(loan.monthly_payment), 160, 140);
 
         doc.setFillColor(...statusBgLight);
         doc.rect(142, 145, 45, 7, 'F');
         doc.setTextColor(...statusColor);
-        doc.setFont("helvetica", "bold"); doc.text("Statut:", 110, 150);
+        doc.setFont("helvetica", "bold"); doc.text(t('loans.pdfStatus'), 110, 150);
         doc.setFont("helvetica", "bold"); doc.text(statusStr, 145, 150);
 
 
@@ -277,7 +277,7 @@ const Loans = () => {
         doc.setFontSize(12);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(...primaryColor);
-        doc.text("3. CONDITIONS SPÉCIFIQUES & DÉCISION", 22, 186);
+        doc.text(t('loans.pdfSection3'), 22, 186);
 
         // Tiny text paragraphs
         doc.setFontSize(8);
@@ -286,17 +286,17 @@ const Loans = () => {
 
         let text1, text2, text3;
         if (loan.status === 'active') {
-            text1 = "Ce document constitue votre contrat de prêt officiel suite à l'approbation de la commission de crédit de Crediwize Banque. Le montant demandé a été intégralement viré sur votre compte principal et est à votre disposition immédiate.";
-            text2 = "Vous vous engagez à rembourser ce crédit selon l'échéancier établi. Les mensualités seront prélevées automatiquement sur votre compte bancaire à date fixe. En cas de défaut de paiement, des pénalités de retard pourront être appliquées selon les CGS en vigueur.";
-            text3 = "Le délai légal de rétractation de 14 jours calendaires court à compter de l'acceptation de la présente offre de crédit. Toute rétractation entraîne l'obligation de restituer l'intégralité du capital versé sous 30 jours, majoré des intérêts courus.";
+            text1 = t('loans.pdfConditionApproved1');
+            text2 = t('loans.pdfConditionApproved2');
+            text3 = t('loans.pdfConditionApproved3');
         } else if (loan.status === 'failed' || loan.status === 'rejected') {
-            text1 = "Après étude attentive de votre dossier et des justificatifs fournis, le comité de crédit de Crediwize Banque n'a malheureusement pas pu donner une suite favorable à votre demande de financement à ce stade.";
-            text2 = "Cette décision repose notamment sur l'analyse de votre capacité de remboursement via les critères d'endettement réglementaires. Pour éviter toute situation de surendettement, nous devons nous plier à des ratios stricts de reste à vivre.";
-            text3 = "Vous pourrez soumettre une nouvelle demande ultérieurement en cas d'évolution de votre situation personnelle ou professionnelle (augmentation de revenus, solde de crédits en cours existants, ou ajustement de la durée/montant demandé).";
+            text1 = t('loans.pdfConditionRejected1');
+            text2 = t('loans.pdfConditionRejected2');
+            text3 = t('loans.pdfConditionRejected3');
         } else {
-            text1 = "Votre demande de financement a bien été reçue et est actuellement en cours d'analyse par notre comité de crédit. Ce document n'est qu'un récapitulatif de votre proposition et ne constitue en aucun cas un accord de prêt définitif.";
-            text2 = "L'analyse complète inclura la vérification des pièces justificatives téléversées et une étude de solvabilité détaillée. Vous recevrez une notification officielle une fois qu'une décision ferme aura été prise, généralement dans un délai de 24 à 48 heures ouvrées.";
-            text3 = "Un crédit vous engage et doit être remboursé. Vérifiez systématiquement vos capacités de remboursement avant de vous engager. Les taux d'intérêts et mensualités figurant sur ce document sont indicatifs jusqu'à l'approbation formelle de l'offre.";
+            text1 = t('loans.pdfConditionPending1');
+            text2 = t('loans.pdfConditionPending2');
+            text3 = t('loans.pdfConditionPending3');
         }
 
         doc.text(text1, 20, 200, { maxWidth: 170, align: "justify" });
@@ -307,21 +307,21 @@ const Loans = () => {
         doc.setFontSize(10);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(...primaryColor);
-        doc.text("L'ÉDITEUR / COMITÉ CRÉDIT", 30, 245);
+        doc.text(t('loans.pdfSignatureIssuer'), 30, 245);
 
         if (loan.status === 'failed' || loan.status === 'rejected') {
             doc.setFontSize(8);
             doc.setFont("helvetica", "italic");
             doc.setTextColor(150, 150, 150);
-            doc.text("(Avis Défavorable Édité Électroniquement)", 30, 250);
-            doc.text(`Édité le: ${new Date().toLocaleDateString('fr-FR')}`, 135, 250);
+            doc.text(t('loans.pdfRejectedSignature'), 30, 250);
+            doc.text(`${t('loans.pdfEditedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 135, 250);
         } else {
-            doc.text("SIGNATURE EMPRUNTEUR", 135, 245);
+            doc.text(t('loans.pdfSignatureBorrower'), 135, 245);
             doc.setFontSize(8);
             doc.setFont("helvetica", "italic");
             doc.setTextColor(150, 150, 150);
-            doc.text("(Cachet et validation électronique)", 30, 250);
-            doc.text(`Lu et approuvé le: ${new Date().toLocaleDateString('fr-FR')}`, 135, 250);
+            doc.text(t('loans.pdfStamp'), 30, 250);
+            doc.text(`${t('loans.pdfReadApprovedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 135, 250);
 
             // Box for user signature
             doc.setDrawColor(200, 200, 200);
@@ -333,9 +333,9 @@ const Loans = () => {
         // Footer note
         doc.setFontSize(8);
         doc.setTextColor(180, 180, 180);
-        doc.text("Crediwize SA - Capital Social 15 000 000 EUR - Agréé par l'ACPR en qualité d'établissement de crédit", 105, 285, { align: "center" });
+        doc.text(t('loans.pdfFooter'), 105, 285, { align: "center" });
 
-        const fileName = (loan.status === 'active') ? `Contrat_Pret_${loan.id.slice(0, 8)}.pdf` : `Reçu_Demande_Pret_${loan.id.slice(0, 8)}.pdf`;
+        const fileName = (loan.status === 'active') ? `${t('loans.pdfFileNameApproved')}${loan.id.slice(0, 8)}.pdf` : `${t('loans.pdfFileNamePending')}${loan.id.slice(0, 8)}.pdf`;
         doc.save(fileName);
     };
 
