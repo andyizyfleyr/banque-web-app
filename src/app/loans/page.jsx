@@ -678,7 +678,10 @@ const Loans = () => {
                                             {/* Identity Document */}
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold text-gray-500 uppercase">{t('loans.identityDoc')}</label>
-                                                <div className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all ${identityDoc ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20'}`}>
+                                                <div
+                                                    onClick={() => !identityDoc && document.getElementById('identity-upload').click()}
+                                                    className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all cursor-pointer ${identityDoc ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20 active:scale-[0.98]'}`}
+                                                >
                                                     <div className="relative">
                                                         {identityDoc ? (
                                                             <div className="flex items-center gap-3 justify-center py-2 animate-in fade-in zoom-in duration-300">
@@ -725,7 +728,10 @@ const Loans = () => {
                                             {/* Proof of Address */}
                                             <div className="space-y-2">
                                                 <label className="text-xs font-bold text-gray-500 uppercase">{t('loans.addressProof')}</label>
-                                                <div className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all ${addressProof ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20'}`}>
+                                                <div
+                                                    onClick={() => !addressProof && document.getElementById('address-upload').click()}
+                                                    className={`relative border-2 border-dashed rounded-2xl p-6 text-center transition-all cursor-pointer ${addressProof ? 'border-green-300 bg-green-50/50' : 'border-gray-200 bg-gray-50/50 hover:border-[#E63746]/30 hover:bg-red-50/20 active:scale-[0.98]'}`}
+                                                >
                                                     <div className="relative">
                                                         {addressProof ? (
                                                             <div className="flex items-center gap-3 justify-center py-2 animate-in fade-in zoom-in duration-300">
