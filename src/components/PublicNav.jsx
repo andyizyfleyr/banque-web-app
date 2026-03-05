@@ -30,15 +30,10 @@ const PublicNav = () => {
             <nav className="fixed top-0 left-0 w-full z-[100] transition-all duration-500 py-0 md:py-8">
                 <div className="max-w-[1400px] mx-auto px-0 md:px-6 lg:px-16">
                     <div className="bg-white/80 backdrop-blur-2xl rounded-none md:rounded-[2.5rem] border-b md:border border-white/50 shadow-[0_15px_40px_rgba(0,0,0,0.04)] px-6 md:px-10 py-4 flex flex-row items-center justify-between transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
-                        <Link href="/" className="flex items-center gap-3 group shrink-0 self-start">
-                            <Image
-                                src="/landing-page-assert/logo.png"
-                                alt="Crediwize"
-                                width={160}
-                                height={45}
-                                className="object-contain pr-2"
-                                priority
-                            />
+                        <Link href="/" className="flex items-center gap-1 group shrink-0 self-start">
+                            <span className="text-2xl font-black tracking-tighter text-[#1D3557]">
+                                CREDI<span className="text-[#e63746]">WIZE</span>
+                            </span>
                         </Link>
 
                         <div className="hidden xl:flex items-center space-x-12">
@@ -108,7 +103,11 @@ const PublicNav = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex flex-row justify-between items-center mb-16">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="self-start object-contain pr-2" />
+                                <div className="flex items-center gap-1 self-start">
+                                    <span className="text-xl font-black tracking-tighter text-[#1D3557]">
+                                        CREDI<span className="text-[#e63746]">WIZE</span>
+                                    </span>
+                                </div>
                                 <button
                                     className="w-11 h-11 flex items-center justify-center text-[#1D3557] hover:bg-gray-100 rounded-full"
                                     onClick={() => setIsMobileMenuOpen(false)}

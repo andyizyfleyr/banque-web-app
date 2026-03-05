@@ -141,9 +141,11 @@ const AdminPage = () => {
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
                     <div className="flex items-center justify-center mb-4">
-                        <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={180} height={50} className="object-contain brightness-0 invert pr-4" priority />
+                        <span className="text-4xl font-black tracking-tighter text-white">
+                            CREDI<span className="text-[#e63746]">WIZE</span>
+                        </span>
                     </div>
-                    <h1 className="text-2xl font-black text-white/40 uppercase tracking-widest">{t('admin.title') || 'Admin Panel'}</h1>
+                    <h1 className="text-xl font-bold text-white/30 uppercase tracking-[0.3em]">{t('admin.title') || 'Admin Panel'}</h1>
                 </div>
                 <form onSubmit={handleAdminLogin} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
                     <div className="space-y-2">
@@ -482,8 +484,10 @@ const AdminPage = () => {
             <aside className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#1D3557] text-white transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="p-6 border-b border-white/10">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="brightness-0 invert object-contain pr-2" priority />
+                        <div className="flex items-center gap-1">
+                            <span className="text-xl font-black tracking-tighter text-white">
+                                CREDI<span className="text-[#e63746]">WIZE</span>
+                            </span>
                         </div>
                         <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white/50 hover:text-white"><X size={20} /></button>
                     </div>

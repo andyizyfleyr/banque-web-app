@@ -41,8 +41,10 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-20 flex items-center justify-between">
                     <div className="flex items-center gap-8">
                         {/* Logo - Only visible on mobile since Sidebar handles desktop */}
-                        <Link href="/dashboard" className="flex items-center gap-2 group md:hidden">
-                            <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={130} height={38} className="object-contain pr-2" priority />
+                        <Link href="/dashboard" className="flex items-center gap-1 group md:hidden">
+                            <span className="text-xl font-black tracking-tighter text-[#1D3557]">
+                                CREDI<span className="text-[#e63746]">WIZE</span>
+                            </span>
                         </Link>
 
                     </div>
