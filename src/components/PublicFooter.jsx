@@ -37,10 +37,8 @@ const PublicFooter = () => {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#e63746] to-transparent opacity-30" />
             <div className="max-w-[1400px] mx-auto px-6 lg:px-16 grid lg:grid-cols-12 gap-20">
                 <div className="lg:col-span-5 space-y-12 flex flex-col items-start">
-                    <Link href="/" className="flex items-center gap-1 self-start">
-                        <span className="text-3xl font-black tracking-tighter text-white">
-                            CREDI<span className="text-[#e63746]">WIZE</span>
-                        </span>
+                    <Link href="/" className="flex items-center gap-3 self-start">
+                        <Image src="/landing-page-assert/footer-logo.png" alt="Crediwize" width={180} height={55} className="brightness-0 invert opacity-90 object-contain pr-4" />
                     </Link>
                     <p className="text-white/40 text-lg leading-relaxed max-w-md font-light italic">
                         {t('publicFooter.description')}
