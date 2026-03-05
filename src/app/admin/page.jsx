@@ -226,7 +226,7 @@ const AdminPage = () => {
                 transfers: tx.filter(t => t.type === 'transfer' || t.type === 'external').length,
                 totalBalance: acc.reduce((s, a) => s + Number(a.balance || 0), 0),
                 pendingLoans: l.filter(lo => lo.status === 'pending_approval').length,
-                pendingTransfers: tx.filter(t => t.status === 'pending_approval').length,
+                pendingTransfers: tx.filter(t => t.status === 'pending' && t.category === 'Virement Externe').length,
                 unreadMessages: msgs.filter(m => !m.is_read && m.sender_id !== (user?.id || null) && (m.receiver_id === (user?.id || null) || m.receiver_id === null)).length,
                 pendingKyc: u.filter(user => user.kyc_status === 'pending').length
             });
@@ -838,6 +838,47 @@ const AdminPage = () => {
                     {/* TRANSFERS */}
                     {activeTab === 'transfers' && (
                         <div className="space-y-4 animate-fade-in">
+                            {/* Pending Transfers Section */}
+                            {transactions.filter(tx => tx.status === 'pending' && tx.category === 'Virement Externe').length > 0 && (
+                                <div className="bg-orange-50 rounded-2xl border border-orange-200 shadow-sm overflow-hidden">
+                                    <div className="px-5 py-3 border-b border-orange-200 flex items-center gap-2">
+                                        <Clock size={16} className="text-orange-500" />
+                                        <h3 className="text-sm font-bold text-orange-700">Virements en attente d'approbation</h3>
+                                        <span className="ml-auto bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                            {transactions.filter(tx => tx.status === 'pending' && tx.category === 'Virement Externe').length}
+                                        </span>
+                                    </div>
+                                    <div className="divide-y divide-orange-100">
+                                        {transactions.filter(tx => tx.status === 'pending' && tx.category === 'Virement Externe').map((tx, i) => {
+                                            const ownerAccount = accounts.find(a => a.id === tx.account_id);
+                                            const ownerUser = users.find(u => u.id === ownerAccount?.user_id);
+                                            return (
+                                                <div key={i} className="px-5 py-4 flex flex-col md:flex-row md:items-center gap-3">
+                                                    <div className="flex-1 min-w-0">
+                                                        <p className="font-bold text-[#1D3557] text-sm truncate">{tx.description || '—'}</p>
+                                                        <div className="flex flex-wrap items-center gap-2 mt-1">
+                                                            <span className="text-[10px] font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">EN ATTENTE</span>
+                                                            <span className="text-[11px] text-gray-400">de {ownerUser?.full_name || ownerUser?.email || 'Inconnu'}</span>
+                                                            <span className="text-[11px] text-gray-400">• {fd(tx.date || tx.created_at)}</span>
+                                                        </div>
+                                                    </div>
+                                                    <p className="text-lg font-black text-red-600 whitespace-nowrap">{fc(tx.amount)}</p>
+                                                    <div className="flex items-center gap-2">
+                                                        <button onClick={() => updateTransferStatus(tx.id, 'completed')} className="px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition-colors flex items-center gap-1.5 shadow-sm">
+                                                            <CheckCircle size={14} /> Approuver
+                                                        </button>
+                                                        <button onClick={() => updateTransferStatus(tx.id, 'failed')} className="px-4 py-2 bg-red-500 text-white rounded-xl text-xs font-bold hover:bg-red-600 transition-colors flex items-center gap-1.5 shadow-sm">
+                                                            <XCircle size={14} /> Refuser
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* All Transactions Table */}
                             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-sm">
@@ -850,22 +891,23 @@ const AdminPage = () => {
                                         </tr></thead>
                                         <tbody className="divide-y divide-gray-50">
                                             {transactions.map((tx, i) => (
-                                                <tr key={i} className="hover:bg-gray-50/50">
+                                                <tr key={i} className={`hover:bg-gray-50/50 ${tx.status === 'pending' && tx.category === 'Virement Externe' ? 'bg-orange-50/30' : ''}`}>
                                                     <td className="px-5 py-3">
                                                         <p className="font-medium text-[#1D3557]">{tx.description || '—'}</p>
                                                         <div className="flex items-center gap-2 mt-1">
                                                             <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${tx.amount > 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>{tx.type}</span>
-                                                            <p className="text-[11px] text-gray-400 md:hidden">{fd(tx.created_at)}</p>
+                                                            {tx.category === 'Virement Externe' && <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-blue-50 text-blue-600">Externe</span>}
+                                                            <p className="text-[11px] text-gray-400 md:hidden">{fd(tx.date || tx.created_at)}</p>
                                                         </div>
                                                     </td>
                                                     <td className="px-5 py-3 hidden md:table-cell">{statusBadge(tx.status || 'completed')}</td>
-                                                    <td className="px-5 py-3 text-gray-500 hidden lg:table-cell">{fd(tx.created_at)}</td>
+                                                    <td className="px-5 py-3 text-gray-500 hidden lg:table-cell">{fd(tx.date || tx.created_at)}</td>
                                                     <td className={`px-5 py-3 text-right font-bold ${tx.amount > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{fc(tx.amount)}</td>
                                                     <td className="px-5 py-3 text-right">
-                                                        {tx.status === 'pending_approval' && (
+                                                        {tx.status === 'pending' && tx.category === 'Virement Externe' && (
                                                             <div className="flex items-center justify-end gap-1">
                                                                 <button onClick={() => updateTransferStatus(tx.id, 'completed')} className="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg hover:bg-emerald-100 transition-colors" title="Accepter"><CheckCircle size={14} /></button>
-                                                                <button onClick={() => updateTransferStatus(tx.id, 'rejected')} className="p-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors" title="Refuser"><XCircle size={14} /></button>
+                                                                <button onClick={() => updateTransferStatus(tx.id, 'failed')} className="p-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors" title="Refuser"><XCircle size={14} /></button>
                                                             </div>
                                                         )}
                                                     </td>
