@@ -8,7 +8,13 @@ const PublicFooter = () => {
     const { t } = useLocale();
 
     // Utility function to format numbers, since fc() might not be available here
-    const fc = (n) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(n);
+    // Utility function to format numbers with abbreviations (K, M, Md)
+    const formatCurrency = (n) => {
+        if (n >= 1e9) return (n / 1e9).toFixed(2) + ' Md €';
+        if (n >= 1e6) return (n / 1e6).toFixed(0) + ' M €';
+        if (n >= 1e3) return (n / 1e3).toFixed(0) + ' K €';
+        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(n);
+    };
 
     const quickLinks = [
         { name: t('publicFooter.home'), path: "/" },
@@ -30,8 +36,8 @@ const PublicFooter = () => {
         <footer className="bg-[#1D3557] pt-24 pb-16 text-white overflow-hidden relative border-t-[10px] border-[#e63746] mt-auto">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#e63746] to-transparent opacity-30" />
             <div className="max-w-[1400px] mx-auto px-6 lg:px-16 grid lg:grid-cols-12 gap-20">
-                <div className="lg:col-span-5 space-y-12">
-                    <Link href="/" className="flex items-center gap-3">
+                <div className="lg:col-span-5 space-y-12 flex flex-col items-start">
+                    <Link href="/" className="flex items-center gap-3 self-start">
                         <Image src="/landing-page-assert/footer-logo.png" alt="Crediwize" width={160} height={50} className="brightness-0 invert opacity-90" />
                     </Link>
                     <p className="text-white/40 text-lg leading-relaxed max-w-md font-light italic">
@@ -83,7 +89,7 @@ const PublicFooter = () => {
                             <p className="text-white/40 text-sm font-bold uppercase tracking-widest">{t('publicFooter.securePayments')}</p>
                         </div>
                         <div className="p-6 xl:p-8 bg-gradient-to-br from-white/10 to-transparent rounded-3xl border border-white/10 shadow-inner overflow-hidden">
-                            <p className="text-xl xl:text-3xl font-black mb-1 whitespace-nowrap">{fc(1250000000)}</p>
+                            <p className="text-xl xl:text-3xl font-black mb-1 whitespace-nowrap">{formatCurrency(1250000000)}</p>
                             <p className="text-[10px] xl:text-[11px] text-white/30 font-bold uppercase tracking-widest whitespace-nowrap">{t('publicFooter.securedTransactions')}</p>
                         </div>
                     </div>

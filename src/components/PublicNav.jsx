@@ -27,10 +27,10 @@ const PublicNav = () => {
     return (
         <>
             {/* Header / Nav */}
-            <nav className="fixed w-full z-[100] transition-all duration-500 py-0 md:py-8">
+            <nav className="fixed top-0 left-0 w-full z-[100] transition-all duration-500 py-0 md:py-8">
                 <div className="max-w-[1400px] mx-auto px-0 md:px-6 lg:px-16">
-                    <div className="bg-white/80 backdrop-blur-2xl rounded-none md:rounded-[2.5rem] border-b md:border border-white/50 shadow-[0_15px_40px_rgba(0,0,0,0.04)] px-6 md:px-10 py-4 flex items-center justify-between transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
-                        <Link href="/" className="flex items-center gap-3 group shrink-0">
+                    <div className="bg-white/80 backdrop-blur-2xl rounded-none md:rounded-[2.5rem] border-b md:border border-white/50 shadow-[0_15px_40px_rgba(0,0,0,0.04)] px-6 md:px-10 py-4 flex flex-row items-center justify-between transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+                        <Link href="/" className="flex items-center gap-3 group shrink-0 self-start">
                             <Image
                                 src="/landing-page-assert/logo.png"
                                 alt="Crediwize"
@@ -107,8 +107,8 @@ const PublicNav = () => {
                             className="absolute top-0 right-0 w-full max-w-sm h-full bg-white shadow-2xl p-10 flex flex-col"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="flex justify-between items-center mb-16">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={120} height={35} />
+                            <div className="flex flex-row justify-between items-center mb-16">
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={120} height={35} className="self-start" />
                                 <button
                                     className="w-11 h-11 flex items-center justify-center text-[#1D3557] hover:bg-gray-100 rounded-full"
                                     onClick={() => setIsMobileMenuOpen(false)}
