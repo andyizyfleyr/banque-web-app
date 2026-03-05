@@ -472,7 +472,7 @@ const Cards = () => {
                                                     <div className="h-10 grow bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-l-sm flex items-center px-4 overflow-hidden relative">
                                                         {/* Subtle signature pattern lines */}
                                                         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%)', backgroundSize: '7px 7px' }} />
-                                                        <span className="text-gray-400 font-serif italic text-sm opacity-60 z-10 select-none">Bank Signature</span>
+                                                        <span className="text-gray-400 font-serif italic text-sm opacity-60 z-10 select-none">Crediwize Signature</span>
                                                     </div>
                                                     <div className="h-10 w-16 bg-white border-l-2 border-gray-200 rounded-r-sm flex items-center justify-center shadow-inner">
                                                         <span className="text-gray-900 font-mono font-black italic text-lg tracking-tighter">
@@ -487,7 +487,7 @@ const Cards = () => {
                                                 <div className="flex justify-between items-end border-t border-white/10 pt-4">
                                                     <div className="max-w-[180px]">
                                                         <p className="text-[6px] leading-[1.4] opacity-40 uppercase font-medium">
-                                                            This card is issued by Banka pursuant to a license. The use of this card is subject to the terms and conditions.
+                                                            This card is issued by Crediwize pursuant to a license. The use of this card is subject to the terms and conditions.
                                                             Found? please return to the nearest branch or call +33 1 23 45 67 89.
                                                         </p>
                                                     </div>
@@ -495,7 +495,7 @@ const Cards = () => {
                                                         <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                                                             <div className="w-4 h-4 rounded-full border border-white/20 animate-pulse" />
                                                         </div>
-                                                        <p className="text-[8px] font-black uppercase tracking-widest opacity-60">Banka Premium</p>
+                                                        <p className="text-[8px] font-black uppercase tracking-widest opacity-60">Crediwize Premium</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -512,9 +512,9 @@ const Cards = () => {
                             </motion.div>
                         ))
                         }
-                    </div>
+                    </div >
                 )}
-            </section>
+            </section >
 
             {/* Selected Card Details */}
             {
@@ -928,7 +928,7 @@ const Cards = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </PageWrapper>
+        </PageWrapper >
     );
 };
 

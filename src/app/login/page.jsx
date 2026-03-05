@@ -19,8 +19,6 @@ import {
 import { countries } from '@/config/countries';
 import toast from 'react-hot-toast';
 import { useLocale } from '@/contexts/LocaleContext';
-import Image from 'next/image';
-import Link from 'next/link';
 
 const LoginPage = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -101,10 +99,8 @@ const LoginPage = () => {
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1D3557]/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
 
                         <div className="relative z-10">
-                            <div className="flex items-center gap-1 mb-12">
-                                <span className="text-3xl font-black tracking-tighter text-white">
-                                    CREDI<span className="text-[#e63746]">WIZE</span>
-                                </span>
+                            <div className="flex items-center gap-3 mb-12">
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={180} height={50} className="object-contain brightness-0 invert pr-4" priority />
                             </div>
 
                             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -136,10 +132,8 @@ const LoginPage = () => {
                     <div className="w-full lg:w-[55%] p-6 md:p-12 lg:p-16 flex flex-col justify-start lg:justify-center bg-white relative pt-10 lg:pt-16">
                         <div className="max-w-md mx-auto w-full">
                             {/* Mobile Logo */}
-                            <div className="flex lg:hidden items-center justify-center gap-1 mb-8 mt-2">
-                                <span className="text-2xl font-black tracking-tighter text-[#1D3557]">
-                                    CREDI<span className="text-[#e63746]">WIZE</span>
-                                </span>
+                            <div className="flex lg:hidden items-center justify-center gap-2 mb-8 mt-2">
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={160} height={45} className="object-contain pr-2" priority />
                             </div>
 
                             <div className="mb-10">
@@ -286,7 +280,7 @@ const LoginPage = () => {
                     &copy; 2026 Crediwize Private Core. All rights reserved.
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
