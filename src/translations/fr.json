@@ -433,7 +433,9 @@
     "pdfStamp": "(Cachet et validation électronique)",
     "pdfFooter": "Crediwize SA - Capital Social 15 000 000 EUR - Agréé par l'ACPR en qualité d'établissement de crédit",
     "pdfFileNameApproved": "Contrat_Pret_",
-    "pdfFileNamePending": "Reçu_Demande_Pret_"
+    "pdfFileNamePending": "Reçu_Demande_Pret_",
+    "downloadReceipt": "Télécharger le reçu (PDF)",
+    "receipt": "Reçu"
   },
   "savings": {
     "title": "Mes Objectifs d'Épargne",

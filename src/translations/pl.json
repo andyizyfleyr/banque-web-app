@@ -424,7 +424,9 @@
     "pdfStamp": "(Electronic stamp and validation)",
     "pdfFooter": "Crediwize SA - Share Capital 15 000 000 EUR - Approved by the ACPR as a credit institution",
     "pdfFileNameApproved": "Loan_Agreement_",
-    "pdfFileNamePending": "Loan_Request_Receipt_"
+    "pdfFileNamePending": "Loan_Request_Receipt_",
+    "downloadReceipt": "Download Receipt (PDF)",
+    "receipt": "Receipt"
   },
   "savings": {
     "title": "Moje Cele Oszczędnościowe",

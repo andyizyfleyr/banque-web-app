@@ -42,7 +42,7 @@ import { useLocale } from '@/contexts/LocaleContext';
 
 const Loans = () => {
     const { user } = useAuth();
-    const { t, fc } = useLocale();
+    const { t, fc, language } = useLocale();
     const [amount, setAmount] = useState(25000);
     const [months, setMonths] = useState(24);
     const [isLoading, setIsLoading] = useState(false); // For save button
