@@ -22,8 +22,10 @@ import {
     Shield,
     MessageSquare,
     X,
-    CheckCircle
+    CheckCircle,
+    Download
 } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 import { PageWrapper } from '@/components/PageWrapper';
 import {
     AreaChart,
@@ -135,6 +137,67 @@ const Loans = () => {
             fetchLoans();
         }
         setIsLoading(false);
+    };
+
+    // Generate PDF Receipt
+    const handleDownloadPDF = (loan) => {
+        const doc = new jsPDF();
+
+        // Setup margins and colors
+        doc.setFontSize(22);
+        doc.setTextColor(29, 53, 87); // #1D3557 -> navy
+        doc.text("Crediwize - Recu de Pret", 105, 20, { align: "center" });
+
+        doc.setFontSize(10);
+        doc.setTextColor(150, 150, 150);
+        doc.text(`Reference: ${loan.id.slice(0, 8).toUpperCase()}`, 105, 28, { align: "center" });
+        doc.text(`Date demande: ${new Date(loan.created_at).toLocaleDateString()}`, 105, 34, { align: "center" });
+
+        // Line separator
+        doc.setDrawColor(230, 230, 230);
+        doc.setLineWidth(0.5);
+        doc.line(20, 42, 190, 42);
+
+        // Client info section
+        doc.setFontSize(14);
+        doc.setTextColor(29, 53, 87);
+        doc.text("Informations Emprunteur", 20, 55);
+
+        doc.setFontSize(11);
+        doc.setTextColor(80, 80, 80);
+        doc.text(`Profil: ${user?.user_metadata?.full_name || user?.email || 'N/A'}`, 25, 65);
+        doc.text(`Email: ${user?.email || 'N/A'}`, 25, 72);
+        doc.text(`Revenu mensuel declare: ${fc(Number(loan.monthly_income), loan.currency || 'EUR')}`, 25, 79);
+        doc.text(`Situation pro: ${t(`loans.${loan.professional_situation}`) || loan.professional_situation || 'N/A'}`, 25, 86);
+        doc.text(`Logement: ${t(`loans.${loan.housing_status}`) || loan.housing_status || 'N/A'}`, 25, 93);
+
+        // Loan details section
+        doc.setFontSize(14);
+        doc.setTextColor(29, 53, 87);
+        doc.text("Caracteristiques du Pret", 20, 115);
+
+        const typeLabel = loanTypes.find(t => t.id === loan.type)?.label || loan.type;
+        doc.setFontSize(11);
+        doc.setTextColor(80, 80, 80);
+        doc.text(`Type de pret: ${typeLabel}`, 25, 125);
+        doc.text(`Montant demande: ${fc(Number(loan.amount), loan.currency || 'EUR')}`, 25, 132);
+        doc.text(`Duree: ${loan.duration_months} mois`, 25, 139);
+        doc.text(`Taux d'interet: ${loan.interest_rate}%`, 25, 146);
+        doc.text(`Mensualite estimee: ${fc(Number(loan.monthly_payment), loan.currency || 'EUR')}`, 25, 153);
+
+        let statusStr = "En attente";
+        if (loan.status === 'active') statusStr = "Approuve / Actif";
+        if (loan.status === 'failed' || loan.status === 'rejected') statusStr = "Refuse";
+
+        doc.text(`Statut actuel: ${statusStr}`, 25, 160);
+
+        // Footer note
+        doc.setFontSize(9);
+        doc.setTextColor(180, 180, 180);
+        doc.text("Ce document est genere automatiquement et ne constitue pas", 105, 275, { align: "center" });
+        doc.text("un accord de pret definitif sans la validation de l'administration.", 105, 280, { align: "center" });
+
+        doc.save(`Recu_Pret_${loan.id.slice(0, 8)}.pdf`);
     };
 
     // Generate Chart Data
@@ -719,7 +782,16 @@ const Loans = () => {
                                                         <span className="flex items-center gap-1 text-gray-500">
                                                             <Calendar size={12} /> {loan.start_date ? new Date(loan.start_date).toLocaleDateString() : 'N/A'}
                                                         </span>
-                                                        <span className="font-bold text-[#1D3557]">{t('loans.fileNo')}{loan.id.slice(0, 8)}</span>
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="font-bold text-[#1D3557]">{t('loans.fileNo')}{loan.id.slice(0, 8)}</span>
+                                                            <button
+                                                                onClick={() => handleDownloadPDF(loan)}
+                                                                className="flex items-center gap-1 px-2 py-1 bg-[#1D3557]/5 hover:bg-[#1D3557]/10 text-[#1D3557] rounded transition-colors"
+                                                                title={t('loans.downloadReceipt') || "Télécharger le reçu (PDF)"}
+                                                            >
+                                                                <Download size={14} /> {t('loans.receipt') || "Reçu"}
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             ))}
