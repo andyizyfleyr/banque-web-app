@@ -267,32 +267,47 @@ const Transfers = () => {
                 targetName = manualBeneficiaryName;
                 targetDetail = manualBeneficiaryIban;
             }
-            // NEW: Instead of pay_external RPC (instant), create a PENDING transaction
-            // Admin will validate it. Balance is NOT deducted yet.
-            const { error: txErr } = await supabase.from('transactions').insert([{
-                account_id: srcAccount.id,
-                user_id: user.id,
-                amount: -amt,
-                type: 'external',
-                description: description || t('transfers.transfer'),
-                status: 'pending_approval',
-                beneficiary_name: targetName,
-                beneficiary_iban: targetDetail,
-                date: new Date().toISOString().split('T')[0],
-                created_at: new Date().toISOString()
-            }]);
 
-            if (txErr) throw txErr;
+            // External transfer: create a PENDING transaction for admin approval
+            setIsLoading(true);
+            try {
+                const externalDesc = `${description || t('transfers.transfer')} → ${targetName} (${targetDetail})`;
 
-            // Success handling below bypasses RPC call
-            toast.success("Demande de virement envoyée à l'administrateur !");
-            setAmount('');
-            setDescription('');
-            setManualBeneficiaryName('');
-            setManualBeneficiaryIban('');
-            setSelectedBeneficiary(null);
-            fetchAccounts();
-            setIsLoading(false);
+                const { error: txErr } = await supabase.from('transactions').insert([{
+                    account_id: srcAccount.id,
+                    amount: -amt,
+                    type: 'transfer',
+                    description: externalDesc,
+                    category: 'Virement Externe',
+                    status: 'pending',
+                    date: new Date().toISOString()
+                }]);
+
+                if (txErr) throw txErr;
+
+                // Save beneficiary if opted in
+                if (saveBeneficiary && !selectedBeneficiary) {
+                    await supabase.from('beneficiaries').insert([{
+                        user_id: user.id,
+                        name: targetName,
+                        iban: targetDetail
+                    }]);
+                    fetchBeneficiaries();
+                }
+
+                toast.success(t('transfers.transferSuccess') || "Demande de virement envoyée !");
+                setAmount('');
+                setDescription('');
+                setManualBeneficiaryName('');
+                setManualBeneficiaryIban('');
+                setSelectedBeneficiary(null);
+                fetchAccounts();
+            } catch (error) {
+                console.error('External Transfer Error:', error);
+                toast.error(error.message || t('transfers.transferError'));
+            } finally {
+                setIsLoading(false);
+            }
             return;
         }
 
