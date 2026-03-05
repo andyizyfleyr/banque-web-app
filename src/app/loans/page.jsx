@@ -703,13 +703,13 @@ const Loans = () => {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <label htmlFor="identity-upload" className="cursor-pointer space-y-2 block">
+                                                            <div className="space-y-2 block">
                                                                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                                                                     <Upload size={20} className="text-gray-400" />
                                                                 </div>
                                                                 <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
                                                                 <p className="text-[10px] text-gray-400">{t('loans.fileFormats')}</p>
-                                                            </label>
+                                                            </div>
                                                         )}
                                                         <input
                                                             id="identity-upload"
@@ -753,13 +753,13 @@ const Loans = () => {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <label htmlFor="address-upload" className="cursor-pointer space-y-2 block">
+                                                            <div className="space-y-2 block">
                                                                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                                                                     <Upload size={20} className="text-gray-400" />
                                                                 </div>
                                                                 <p className="text-sm font-medium text-gray-500">{t('loans.clickToUpload')}</p>
                                                                 <p className="text-[10px] text-gray-400">{t('loans.addressProofFormats')}</p>
-                                                            </label>
+                                                            </div>
                                                         )}
                                                         <input
                                                             id="address-upload"
