@@ -13,7 +13,8 @@ import {
     ChevronRight,
     Building2,
     Mail,
-    Phone
+    Phone,
+    Lock
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PublicNav from '@/components/PublicNav';
