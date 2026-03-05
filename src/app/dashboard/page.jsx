@@ -87,7 +87,7 @@ const Dashboard = () => {
     const handleFinancialAction = (e, path) => {
         if (e) e.preventDefault();
         if (kycStatus !== 'verified') {
-            toast.error(t('kyc.required') || "Veuillez finaliser votre vérification KYC pour accéder à cette fonctionnalité financière.");
+            toast.error(t('kyc.required'));
             router.push('/kyc');
             return false;
         }
@@ -140,7 +140,7 @@ const Dashboard = () => {
                 }
 
                 const userCountry = user.user_metadata?.country || 'FR';
-                const fullName = user.user_metadata?.full_name || 'Utilisateur';
+                const fullName = user.user_metadata?.full_name || t('common.user');
 
                 // Determine IBAN/Account prefix based on country
                 let finalIban = 'FR76 3000 6000 0102 1234 5678 901'; // Default Fallback
@@ -151,7 +151,7 @@ const Dashboard = () => {
 
                 const { data: newAcc, error: createErr } = await supabase.from('accounts').insert([{
                     user_id: user.id,
-                    name: (c && c.bankingConfig && c.bankingConfig.accountTypes) ? c.bankingConfig.accountTypes.checking : 'Compte Courant',
+                    name: (c && c.bankingConfig && c.bankingConfig.accountTypes) ? c.bankingConfig.accountTypes.checking : t('dashboard.checking'),
                     type: 'checking',
                     balance: 0,
                     currency: c?.currency || 'EUR',
@@ -447,12 +447,12 @@ const Dashboard = () => {
                         </div>
                         <div>
                             <h3 className="font-bold text-lg mb-1">
-                                {kycStatus === 'pending' ? (t('kyc.pendingTitle') || "Vérification en cours") : (t('kyc.bannerRequiredTitle') || "Vérification KYC requise")}
+                                {kycStatus === 'pending' ? t('kyc.pendingTitle') : t('kyc.bannerRequiredTitle')}
                             </h3>
                             <p className="text-sm opacity-80 max-w-xl">
                                 {kycStatus === 'pending'
-                                    ? (t('kyc.pendingMsg') || "Vos documents sont actuellement en cours d'analyse par notre équipe. Vous recevrez une notification d'ici 24 à 48h.")
-                                    : (t('kyc.bannerRequiredMsg') || "Conformément à la réglementation bancaire, vous devez finaliser la vérification de votre identité pour débloquer les virements, les cartes et l'ajout de comptes.")}
+                                    ? t('kyc.pendingMsg')
+                                    : t('kyc.bannerRequiredMsg')}
                             </p>
                         </div>
                     </div>
@@ -461,7 +461,7 @@ const Dashboard = () => {
                             onClick={() => router.push('/kyc')}
                             className="bg-[#E63746] text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-[#C1121F] transition-colors whitespace-nowrap shadow-md shadow-red-200"
                         >
-                            {t('kyc.verifyBtn') || "Vérifier mon profil"}
+                            {t('kyc.verifyBtn')}
                         </button>
                     )}
                 </div>

@@ -149,7 +149,7 @@ const Transactions = () => {
         // Top Expenses
         const expensesMap = data.reduce((acc, curr) => {
             if (curr.amount < 0) {
-                const cat = curr.category || 'Autres';
+                const cat = curr.category || t('categories.other');
                 acc[cat] = (acc[cat] || 0) + Math.abs(curr.amount);
             }
             return acc;
@@ -168,10 +168,10 @@ const Transactions = () => {
 
         // Spending Trend (Last 4 months) - Simplified for demo
         const trendData = [
-            { name: 'Juil', value: 2400 },
-            { name: 'Août', value: 3800 },
-            { name: 'Sep', value: 3200 },
-            { name: 'Oct', value: 4500 }
+            { name: new Date(2025, 6, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 2400 },
+            { name: new Date(2025, 7, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 3800 },
+            { name: new Date(2025, 8, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 3200 },
+            { name: new Date(2025, 9, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 4500 }
         ];
 
         setStats({ expenses: topExpenses, trend: trendData });
@@ -268,7 +268,8 @@ const Transactions = () => {
             const yesterday = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
 
-            let key = date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
+            let key = date.toLocaleDateString(localeStr, { day: 'numeric', month: 'short' });
             if (date.toDateString() === today.toDateString()) key = t('transactions.today');
             else if (date.toDateString() === yesterday.toDateString()) key = t('transactions.yesterday');
 
@@ -363,14 +364,18 @@ const Transactions = () => {
                                                     <h3 className="font-bold text-[#1D3557]">{item.description}</h3>
                                                     <div className="flex items-center gap-2 mt-1">
                                                         <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-bold text-gray-600 rounded uppercase">{item.category}</span>
-                                                        <span className="text-xs text-gray-500">{new Date(item.date).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</span>
+                                                        <span className="text-xs text-gray-500">{new Date(item.date).toLocaleTimeString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { hour: '2-digit', minute: '2-digit' })}</span>
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
                                                     <p className={`font-bold text-lg ${item.amount > 0 ? 'text-emerald-600' : 'text-[#E63746]'}`}>
                                                         {item.amount > 0 ? '+' : ''}{fc(Math.abs(item.amount), item.currency)}
                                                     </p>
-                                                    <p className={`text-[10px] font-bold text-gray-400`}>{item.status || t('transactions.completed')}</p>
+                                                    <p className={`text-[10px] font-bold text-gray-400 capitalize`}>
+                                                        {item.status === 'completed' ? t('transactions.completed') :
+                                                            item.status === 'pending' ? t('common.pending') :
+                                                                item.status === 'failed' ? t('common.failed') : (item.status || t('transactions.completed'))}
+                                                    </p>
                                                 </div>
                                             </div>
                                         );

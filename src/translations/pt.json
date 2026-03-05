@@ -123,7 +123,14 @@
     "checking": "À Ordem",
     "savingsType": "Poupança",
     "creating": "A criar...",
-    "create": "Criar Conta"
+    "create": "Criar Conta",
+    "availableBalance": "Saldo Disponível",
+    "thisMonth": "este mês",
+    "investmentPortfolio": "Portfólio de Invest.",
+    "activePortfolio": "PORTFÓLIO ATIVO",
+    "mainAccount": "Conta Principal",
+    "jointAccount": "Conta Conjunta",
+    "request": "Solicitar"
   },
   "transfers": {
     "title": "Transferências",
@@ -288,7 +295,9 @@
     "orderSuccess": "O seu cartão foi pedido com sucesso!",
     "orderError": "Erro ao pedir o cartão.",
     "deleteSuccess": "Cartão eliminado com sucesso.",
-    "deleteError": "Erro ao eliminar o cartão."
+    "deleteError": "Erro ao eliminar o cartão.",
+    "totalPay": "Total a pagar",
+    "paymentMethod": "Método de pagamento"
   },
   "loans": {
     "title": "Empréstimos",
@@ -811,7 +820,9 @@
     "serv2": "Operações Das Casas Apartamentos Para Te Prevenir Nos Assuntos Negócios No Teus Mais Lucro Mais Grandes De Construir Sucesso Em Tudo Para Investimento Seguros Muito Seguros Com Garantidos Nas Valorização Monetárias Para Futuro Pessoal As Residência Exatas Da Oferta Dos Compradores Nos Mercados Físicos Mais Procurados As Rendes Dos Lotes Ou Construídos Bens Terrestres.",
     "serv3": "Acumulo As Sobras Que Deixe Para Ser Usada Quando Acontecer Um Eventual Problema A Maior Garantir Seu Benefícios Seguros Numa Situações Na Mais Alta Taxas",
     "serv4": "Investidores Moderno Onde Envia Nas Empresas Que Geraram Tudo Pra Lucro Muito Superior Rápido",
-    "serv5": "Ideias e Atitudes Organizadas Pra Sucesso Ocorrer Num Perfeito Trabalho Ocorrido Neste Grande Mercado."
+    "serv5": "Ideias e Atitudes Organizadas Pra Sucesso Ocorrer Num Perfeito Trabalho Ocorrido Neste Grande Mercado.",
+    "howItWorks": "Como funciona",
+    "securityTag": "Seguro"
   },
   "about": {
     "story": "Nossa História de Trajetória na Vida de Projetos Que Funcionam de Fato",
@@ -1075,49 +1086,12 @@
     "typing": "A escrever..."
   },
   "kyc": {
-    "title": "Verificação de Identidade",
-    "subtitle": "De acordo com os regulamentos bancários, devemos verificar sua identidade.",
-    "verifiedTitle": "Identidade verificada",
-    "verifiedMsg": "Obrigado. Sua identidade foi verificada com sucesso. Agora você tem acesso total a todos os nossos recursos financeiros.",
-    "pendingTitle": "Verificação pendente",
-    "pendingMsg": "Seus documentos foram recebidos e estão sendo processados pela nossa equipe. Você receberá uma notificação dentro de 24 a 48 horas.",
-    "backToDashboard": "Voltar ao painel",
-    "stepperDocType": "Tipo de documento",
-    "stepperUpload": "Carregar",
-    "stepperConfirm": "Confirmação",
-    "chooseDocTitle": "Escolha um documento",
-    "chooseDocDesc": "Selecione o tipo de documento de identidade que deseja fornecer.",
-    "docIdCard": "Carteira de identidade",
-    "docIdCardDesc": "Formato frente e verso",
-    "docPassport": "Passaporte",
-    "docPassportDesc": "Página com foto",
-    "docLicense": "Carteira de motorista",
-    "docLicenseDesc": "Novo formato europeu",
-    "continueBtn": "Continuar",
-    "uploadTitle": "Carregue seu documento",
-    "uploadDesc": "Certifique-se de que o documento esteja claramente legível, sem reflexos e não cortado.",
-    "changeFile": "Mudar arquivo",
-    "clickToUpload": "Clique para carregar",
-    "dragAndDrop": "ou arraste e solte seu arquivo aqui",
-    "fileFormats": "JPG, PNG ou PDF (Max. 5MB)",
-    "tipsTitle": "Dicas para uma verificação rápida:",
-    "tip1": "O documento deve estar válido",
-    "tip2": "Apenas formato em cores (não em preto e branco)",
-    "tip3": "Todos os 4 cantos do documento devem estar visíveis",
-    "backBtn": "Voltar",
-    "submitBtn": "Enviar",
-    "submitting": "Enviando...",
-    "successTitle": "Documentos enviados!",
-    "successMsg": "Obrigado. Seus documentos foram recebidos com sucesso e estão sendo verificados pela nossa equipe.",
-    "nextStepsTitle": "Próximos passos:",
-    "step1Title": "Documentos recebidos",
-    "step2Title": "Verificação em andamento",
-    "step2Desc": "Tempo estimado: 24 a 48 horas úteis",
-    "step3Title": "Validação final",
-    "required": "Por favor, finalize sua verificação de identidade para acessar este recurso financeiro.",
+    "required": "Por favor, complete a sua verificação KYC para aceder a esta funcionalidade financeira.",
+    "pendingTitle": "Verificação em curso",
+    "pendingMsg": "Os seus documentos estão a ser analisados pela nossa equipa. Receberá uma notificação dentro de 24 a 48 horas.",
     "bannerRequiredTitle": "Verificação KYC necessária",
-    "bannerRequiredMsg": "De acordo com os regulamentos bancários, você deve concluir a verificação de identidade para desbloquear transferências, cartões e adições de conta.",
-    "verifyBtn": "Verificar meu perfil"
+    "bannerRequiredMsg": "De acordo com os regulamentos bancários, deve concluir a verificação da sua identidade para desbloquear transferências, cartões e adição de contas.",
+    "verifyBtn": "Verificar o meu perfil"
   },
   "admin": {
     "title": "Administration Panel",

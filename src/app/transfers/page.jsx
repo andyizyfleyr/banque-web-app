@@ -163,7 +163,7 @@ const Transfers = () => {
     const handleBeneficiaryClick = async (b) => {
         if (!b.iban) return;
 
-        const toastId = toast.loading(t('common.loading') || 'Vérification en cours...');
+        const toastId = toast.loading(t('common.loading'));
 
         try {
             // Check if this identifier exists as an internal user
@@ -193,7 +193,7 @@ const Transfers = () => {
 
         // If it looks like an email but wasn't found, it defaults to P2P anyway
         if (b.iban.includes('@')) {
-            toast.error(t('transfers.noRecipientFound') || 'Bénéficiaire introuvable.');
+            toast.error(t('transfers.noRecipientFound'));
             setTransferMode('p2p');
             setP2pIdentifier(b.iban);
         } else {
@@ -295,7 +295,7 @@ const Transfers = () => {
                     fetchBeneficiaries();
                 }
 
-                toast.success(t('transfers.transferSuccess') || "Demande de virement envoyée !");
+                toast.success(t('transfers.transferSuccess'));
                 setAmount('');
                 setDescription('');
                 setManualBeneficiaryName('');
