@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
 export default function KYCPage() {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const { t } = useLocale();
     const router = useRouter();
     const [step, setStep] = useState(1);
@@ -17,12 +17,12 @@ export default function KYCPage() {
     const [file, setFile] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Redirect if not logged in
+    // Redirect if not logged in (only after auth has finished loading)
     useEffect(() => {
-        if (!user) {
+        if (!loading && !user) {
             router.push('/login');
         }
-    }, [user, router]);
+    }, [user, loading, router]);
 
     // Check initial user status
     const [kycStatus, setKycStatus] = useState(user?.user_metadata?.kyc_status || 'unverified');
