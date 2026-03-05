@@ -657,7 +657,7 @@ const Savings = () => {
                     </div>
                 )
             }
-        </PageWrapper >
+        </PageWrapper>
     );
 };
 

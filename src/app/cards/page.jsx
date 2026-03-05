@@ -512,9 +512,9 @@ const Cards = () => {
                             </motion.div>
                         ))
                         }
-                    </div >
+                    </div>
                 )}
-            </section >
+            </section>
 
             {/* Selected Card Details */}
             {
@@ -928,7 +928,7 @@ const Cards = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </PageWrapper >
+        </PageWrapper>
     );
 };
 

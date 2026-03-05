@@ -590,7 +590,7 @@ const Profile = () => {
                 </div>
             )
             }
-        </PageWrapper >
+        </PageWrapper>
     );
 };
 

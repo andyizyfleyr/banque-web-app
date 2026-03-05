@@ -1007,7 +1007,7 @@ const Dashboard = () => {
                     </div>
                 )
             }
-        </PageWrapper >
+        </PageWrapper>
     );
 };
 
