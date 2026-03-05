@@ -379,13 +379,26 @@ const Dashboard = () => {
 
     const getTransactionColor = (category, amount) => {
         if (amount > 0) return 'bg-green-100 text-green-600';
-        switch (category?.toLowerCase()) {
-            case 'shopping': return 'bg-orange-100 text-orange-600';
-            case 'bills': return 'bg-blue-100 text-blue-600';
-            case 'food': return 'bg-purple-100 text-purple-600';
-            case 'transport': return 'bg-yellow-100 text-yellow-600';
-            default: return 'bg-gray-100 text-gray-600';
-        }
+        const cat = category?.toLowerCase() || '';
+        if (cat === 'shopping') return 'bg-orange-100 text-orange-600';
+        if (cat === 'bills' || cat === 'factures' || cat === 'utilities') return 'bg-blue-100 text-blue-600';
+        if (cat === 'food' || cat === 'alimentation') return 'bg-purple-100 text-purple-600';
+        if (cat === 'transport') return 'bg-yellow-100 text-yellow-600';
+        return 'bg-gray-100 text-gray-600';
+    };
+
+    const translateDBValue = (val) => {
+        if (!val) return val;
+        const mapping = {
+            'Virement Externe': t('transfers.outgoingTransfer'),
+            'Virement': t('categories.transfer'),
+            'Dépôt': t('transactions.deposit'),
+            'Paiement': t('transactions.payment'),
+            'Dépôt Initial': t('dashboard.mainAccount'),
+            'Prêt': t('nav.loans'),
+            'Opération Admin': t('common.settings')
+        };
+        return mapping[val] || val;
     };
 
     if (loading) {
@@ -633,8 +646,8 @@ const Dashboard = () => {
                     const d = new Date(now);
                     d.setDate(d.getDate() - i);
                     const key = d.toISOString().split('T')[0];
-                    const localeCode = language === 'fr' ? 'fr-FR' : language === 'es' ? 'es-ES' : language === 'de' ? 'de-DE' : language === 'it' ? 'it-IT' : language === 'pt' ? 'pt-PT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'el' ? 'el-GR' : 'en-US';
-                    const label = d.toLocaleDateString(localeCode, { day: '2-digit', month: 'short' });
+                    const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
+                    const label = d.toLocaleDateString(localeStr, { day: '2-digit', month: 'short' });
                     dailyMap[key] = { name: label, fullDate: key, income: 0, expenses: 0, balance: 0 };
                     last30Days.push(key);
                 }
@@ -722,7 +735,7 @@ const Dashboard = () => {
                                 <div>
                                     <h2 className="text-xl md:text-2xl font-black text-[#1D3557] tracking-tight">
                                         <span className="hidden md:inline">{t('dashboard.financialAnalysis')}</span>
-                                        <span className="md:hidden">Performance</span>
+                                        <span className="md:hidden">{t('dashboard.financialAnalysis')}</span>
                                     </h2>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t('dashboard.last30Days')}</p>
                                 </div>
@@ -829,7 +842,7 @@ const Dashboard = () => {
                         <div className="w-1.5 h-8 bg-black rounded-full"></div>
                         <h2 className="text-2xl font-black text-[--color-navy] tracking-tight">
                             <span className="hidden md:inline">{t('dashboard.recentActivity')}</span>
-                            <span className="md:hidden">Transactions</span>
+                            <span className="md:hidden">{t('dashboard.recentActivity')}</span>
                         </h2>
                     </div>
                     <Link href="/transactions" className="text-xs font-black text-[--color-primary-red] uppercase tracking-widest hover:opacity-70 flex items-center gap-2">
@@ -853,9 +866,17 @@ const Dashboard = () => {
                                         {React.createElement(getTransactionIcon(item.category), { size: 20 })}
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-[--color-navy] mb-0.5">{item.description}</p>
-                                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
-                                            {new Date(item.date).toLocaleDateString(language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'en-US', { day: '2-digit', month: 'short', year: 'numeric' })} • {item.account?.name || t('dashboard.checking')}
+                                        <p className="text-sm font-black text-[--color-navy] mb-0.5">
+                                            {translateDBValue(item.description)}
+                                        </p>
+                                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                                            <span className="px-1.5 py-0.5 bg-gray-100 text-[9px] font-black text-gray-500 rounded border border-gray-100">
+                                                {translateDBValue(item.category)}
+                                            </span>
+                                            {(() => {
+                                                const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
+                                                return new Date(item.date).toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' });
+                                            })()} • {item.account?.name || t('dashboard.checking')}
                                         </p>
                                     </div>
                                 </div>
@@ -863,7 +884,11 @@ const Dashboard = () => {
                                     <p className={`text-lg font-black tracking-tight ${parseFloat(item.amount) > 0 ? 'text-green-600' : 'text-[--color-primary-red]'}`}>
                                         <CountUp value={parseFloat(item.amount)} suffix={` ${cs(item.currency || item.account?.currency || profile?.preferred_currency)}`} decimals={2} prefix={parseFloat(item.amount) > 0 ? '+' : ''} />
                                     </p>
-                                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-300">{item.status === 'completed' ? t('common.completed') : t('common.pending')}</span>
+                                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-300">
+                                        {item.status === 'completed' ? t('transactions.completed') :
+                                            item.status === 'pending' ? t('common.pending') :
+                                                item.status === 'failed' ? t('common.failed') : t('transactions.completed')}
+                                    </span>
                                 </div>
                             </motion.div>
                         ))

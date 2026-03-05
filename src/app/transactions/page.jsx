@@ -260,6 +260,20 @@ const Transactions = () => {
         return 'bg-gray-100 text-gray-600';
     };
 
+    const translateDBValue = (val) => {
+        if (!val) return val;
+        const mapping = {
+            'Virement Externe': t('transfers.outgoingTransfer'),
+            'Virement': t('categories.transfer'),
+            'Dépôt': t('transactions.deposit'),
+            'Paiement': t('transactions.payment'),
+            'Dépôt Initial': t('dashboard.mainAccount'),
+            'Prêt': t('nav.loans'),
+            'Opération Admin': t('common.settings')
+        };
+        return mapping[val] || val;
+    };
+
     const groupTransactions = (data) => {
         const groups = {};
         data.forEach(tx => {
@@ -361,9 +375,9 @@ const Transactions = () => {
                                                     <Icon size={20} />
                                                 </div>
                                                 <div className="flex-grow">
-                                                    <h3 className="font-bold text-[#1D3557]">{item.description}</h3>
+                                                    <h3 className="font-bold text-[#1D3557]">{translateDBValue(item.description)}</h3>
                                                     <div className="flex items-center gap-2 mt-1">
-                                                        <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-bold text-gray-600 rounded uppercase">{item.category}</span>
+                                                        <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-bold text-gray-600 rounded uppercase">{translateDBValue(item.category)}</span>
                                                         <span className="text-xs text-gray-500">{new Date(item.date).toLocaleTimeString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { hour: '2-digit', minute: '2-digit' })}</span>
                                                     </div>
                                                 </div>
