@@ -700,7 +700,7 @@ const Loans = () => {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <label className="cursor-pointer space-y-2 block" onClick={(e) => e.stopPropagation()}>
+                                                            <label htmlFor="identity-upload" className="cursor-pointer space-y-2 block">
                                                                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                                                                     <Upload size={20} className="text-gray-400" />
                                                                 </div>
@@ -709,6 +709,7 @@ const Loans = () => {
                                                             </label>
                                                         )}
                                                         <input
+                                                            id="identity-upload"
                                                             type="file"
                                                             accept=".jpg,.jpeg,.png,.pdf"
                                                             className="hidden"
@@ -746,7 +747,7 @@ const Loans = () => {
                                                                 </button>
                                                             </div>
                                                         ) : (
-                                                            <label className="cursor-pointer space-y-2 block" onClick={(e) => e.stopPropagation()}>
+                                                            <label htmlFor="address-upload" className="cursor-pointer space-y-2 block">
                                                                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                                                                     <Upload size={20} className="text-gray-400" />
                                                                 </div>
@@ -755,6 +756,7 @@ const Loans = () => {
                                                             </label>
                                                         )}
                                                         <input
+                                                            id="address-upload"
                                                             type="file"
                                                             accept=".jpg,.jpeg,.png,.pdf"
                                                             className="hidden"
