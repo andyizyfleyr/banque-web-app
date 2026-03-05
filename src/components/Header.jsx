@@ -42,12 +42,7 @@ const Header = () => {
                     <div className="flex items-center gap-8">
                         {/* Logo - Only visible on mobile since Sidebar handles desktop */}
                         <Link href="/dashboard" className="flex items-center gap-2 group md:hidden">
-                            <div className="w-10 h-10 bg-[#e63746] rounded-xl flex items-center justify-center shadow-lg shadow-red-200 group-hover:scale-105 transition-transform">
-                                <Landmark className="text-white" size={24} />
-                            </div>
-                            <span className="text-xl font-bold tracking-tight text-[#1D3557]">
-                                RED<span className="text-[#e63746]">BANK</span>
-                            </span>
+                            <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={130} height={38} className="object-contain pr-2" priority />
                         </Link>
 
                     </div>

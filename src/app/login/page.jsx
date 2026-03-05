@@ -100,10 +100,7 @@ const LoginPage = () => {
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-12">
-                                <div className="p-2.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg">
-                                    <Landmark className="text-white" size={28} />
-                                </div>
-                                <span className="text-2xl font-black tracking-tighter">CREDIWIZE <span className="text-[#1D3557]">ELITE.</span></span>
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={180} height={50} className="object-contain brightness-0 invert pr-4" priority />
                             </div>
 
                             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -136,10 +133,7 @@ const LoginPage = () => {
                         <div className="max-w-md mx-auto w-full">
                             {/* Mobile Logo */}
                             <div className="flex lg:hidden items-center justify-center gap-2 mb-8 mt-2">
-                                <div className="p-2 bg-[#1D3557] rounded-xl shadow-md">
-                                    <Landmark className="text-[#e63746]" size={20} />
-                                </div>
-                                <span className="text-xl font-black tracking-tighter text-[#1D3557]">CREDIWIZE <span className="text-[#e63746]">ELITE.</span></span>
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={160} height={45} className="object-contain pr-2" priority />
                             </div>
 
                             <div className="mb-10">

@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { countries } from '@/config/countries';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -138,11 +140,10 @@ const AdminPage = () => {
         <div className="min-h-screen bg-gradient-to-br from-[#1D3557] via-[#1D3557] to-[#0d1b2a] flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-[#E63746] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-900/30">
-                        <Shield size={32} className="text-white" />
+                    <div className="flex items-center justify-center mb-4">
+                        <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={180} height={50} className="object-contain brightness-0 invert pr-4" priority />
                     </div>
-                    <h1 className="text-3xl font-black text-white">{t('admin.title') || 'Admin Panel'}</h1>
-                    <p className="text-white/40 text-sm mt-2">Crediwize Group — {t('admin.restrictedAccess') || 'Accès restreint'}</p>
+                    <h1 className="text-2xl font-black text-white/40 uppercase tracking-widest">{t('admin.title') || 'Admin Panel'}</h1>
                 </div>
                 <form onSubmit={handleAdminLogin} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
                     <div className="space-y-2">
@@ -482,8 +483,7 @@ const AdminPage = () => {
                 <div className="p-6 border-b border-white/10">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-[#E63746] rounded-xl flex items-center justify-center"><Shield size={20} /></div>
-                            <div><h1 className="font-black text-lg">Admin Panel</h1><p className="text-[11px] text-white/40">Crediwize Group</p></div>
+                            <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="brightness-0 invert object-contain pr-2" priority />
                         </div>
                         <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white/50 hover:text-white"><X size={20} /></button>
                     </div>
