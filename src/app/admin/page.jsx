@@ -853,22 +853,63 @@ const AdminPage = () => {
                                             const ownerAccount = accounts.find(a => a.id === tx.account_id);
                                             const ownerUser = users.find(u => u.id === ownerAccount?.user_id);
                                             return (
-                                                <div key={i} className="px-5 py-4 flex flex-col md:flex-row md:items-center gap-3">
-                                                    <div className="flex-1 min-w-0">
-                                                        <p className="font-bold text-[#1D3557] text-sm truncate">{tx.description || '—'}</p>
-                                                        <div className="flex flex-wrap items-center gap-2 mt-1">
-                                                            <span className="text-[10px] font-bold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">EN ATTENTE</span>
-                                                            <span className="text-[11px] text-gray-400">de {ownerUser?.full_name || ownerUser?.email || 'Inconnu'}</span>
-                                                            <span className="text-[11px] text-gray-400">• {fd(tx.date || tx.created_at)}</span>
+                                                <div key={tx.id || i} className="p-5 flex flex-col gap-4 bg-white hover:bg-gray-50/50 transition-colors">
+                                                    {/* Sender & Amounts Header */}
+                                                    <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+                                                        <div>
+                                                            <div className="flex items-center gap-2 mb-1">
+                                                                <span className="text-[10px] font-black tracking-widest text-orange-600 bg-orange-100 px-2 py-0.5 rounded uppercase">Demande de virement</span>
+                                                                <span className="text-xs text-gray-400">{fd(tx.date || tx.created_at)}</span>
+                                                            </div>
+                                                            <h4 className="font-black text-[#1D3557] text-lg">
+                                                                {ownerUser ? (ownerUser.full_name || 'Sans Nom') : 'Utilisateur inconnu'}
+                                                            </h4>
+                                                            <p className="text-sm text-gray-500 font-medium">
+                                                                {ownerUser?.email || '-'}
+                                                            </p>
+                                                            <div className="mt-2 text-xs font-bold text-gray-400 bg-gray-100 inline-block px-3 py-1 rounded-lg">
+                                                                Compte source : <span className="text-[#1D3557]">{ownerAccount?.name || 'Inconnu'}</span> • Solde actuel : {fc(ownerAccount?.balance || 0)}
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-left sm:text-right">
+                                                            <p className="text-2xl font-black text-red-600">{fc(tx.amount)}</p>
+                                                            {(ownerAccount?.balance !== undefined && (Number(ownerAccount.balance) + Number(tx.amount)) < 0) && (
+                                                                <p className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 rounded mt-1">
+                                                                    ⚠️ Attention : Solde insuffisant !
+                                                                </p>
+                                                            )}
                                                         </div>
                                                     </div>
-                                                    <p className="text-lg font-black text-red-600 whitespace-nowrap">{fc(tx.amount)}</p>
-                                                    <div className="flex items-center gap-2">
-                                                        <button onClick={() => updateTransferStatus(tx.id, 'completed')} className="px-4 py-2 bg-emerald-500 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition-colors flex items-center gap-1.5 shadow-sm">
-                                                            <CheckCircle size={14} /> Approuver
+
+                                                    {/* Beneficiary Details Extracts */}
+                                                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-start gap-3">
+                                                        <ArrowLeftRight size={18} className="text-gray-400 mt-0.5" />
+                                                        <div>
+                                                            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Détails du destinataire</p>
+                                                            <p className="font-medium text-[#1D3557] text-sm break-all">{tx.description || '—'}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Actions */}
+                                                    <div className="grid grid-cols-2 gap-3 mt-2">
+                                                        <button
+                                                            onClick={async () => {
+                                                                // Provide immediate UI feedback by showing a toast before fetching
+                                                                if ((Number(ownerAccount?.balance) + Number(tx.amount)) < 0) {
+                                                                    toast.error('Impossible, solde insuffisant');
+                                                                    return;
+                                                                }
+                                                                updateTransferStatus(tx.id, 'completed');
+                                                            }}
+                                                            className="py-3 bg-emerald-500 text-white rounded-xl font-black hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2 shadow-sm shadow-emerald-500/20"
+                                                        >
+                                                            <CheckCircle size={18} /> Valider le virement
                                                         </button>
-                                                        <button onClick={() => updateTransferStatus(tx.id, 'failed')} className="px-4 py-2 bg-red-500 text-white rounded-xl text-xs font-bold hover:bg-red-600 transition-colors flex items-center gap-1.5 shadow-sm">
-                                                            <XCircle size={14} /> Refuser
+                                                        <button
+                                                            onClick={() => updateTransferStatus(tx.id, 'failed')}
+                                                            className="py-3 bg-red-500 text-white rounded-xl font-black hover:bg-red-600 transition-colors flex items-center justify-center gap-2 shadow-sm shadow-red-500/20"
+                                                        >
+                                                            <XCircle size={18} /> Rejeter définitivement
                                                         </button>
                                                     </div>
                                                 </div>
