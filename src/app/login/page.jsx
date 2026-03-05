@@ -16,6 +16,7 @@ import {
     Globe,
     ChevronDown
 } from 'lucide-react';
+import Image from 'next/image';
 import { countries } from '@/config/countries';
 import toast from 'react-hot-toast';
 import { useLocale } from '@/contexts/LocaleContext';
