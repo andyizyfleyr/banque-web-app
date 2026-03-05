@@ -34,9 +34,9 @@ const PublicNav = () => {
                             <Image
                                 src="/landing-page-assert/logo.png"
                                 alt="Crediwize"
-                                width={140}
-                                height={40}
-                                className="object-contain"
+                                width={160}
+                                height={45}
+                                className="object-contain pr-2"
                                 priority
                             />
                         </Link>
@@ -108,7 +108,7 @@ const PublicNav = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex flex-row justify-between items-center mb-16">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={120} height={35} className="self-start" />
+                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="self-start object-contain pr-2" />
                                 <button
                                     className="w-11 h-11 flex items-center justify-center text-[#1D3557] hover:bg-gray-100 rounded-full"
                                     onClick={() => setIsMobileMenuOpen(false)}
