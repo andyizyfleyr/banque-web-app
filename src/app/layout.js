@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
           </AuthProvider>
         </LocaleProvider>
       </body>
-    </html >
+    </html>
   );
 }
 

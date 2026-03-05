@@ -11,7 +11,7 @@ import {
     ChevronDown, Search, MoreHorizontal, CheckCircle, XCircle,
     Clock, Eye, EyeOff, Ban, Trash2, Shield, LogOut, TrendingUp, AlertTriangle,
     RefreshCw, Filter, ChevronLeft, ChevronRight, Menu, X, Wallet,
-    History, UserCog, Trash, Settings, Plus, UserPlus, Lock, CreditCard as CardIcon,
+    History, UserCog, Trash, Settings, Plus, UserPlus, Lock,
     MessageSquare
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
@@ -1100,7 +1100,7 @@ const AdminPage = () => {
                     </div>
                 )}
             </main>
-        </div >
+        </div>
     );
 };
 

@@ -19,6 +19,8 @@ import {
 import { countries } from '@/config/countries';
 import toast from 'react-hot-toast';
 import { useLocale } from '@/contexts/LocaleContext';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const LoginPage = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -284,7 +286,7 @@ const LoginPage = () => {
                     &copy; 2026 Crediwize Private Core. All rights reserved.
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
