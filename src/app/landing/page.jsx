@@ -178,7 +178,7 @@ const LandingPage = () => {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-5">
-                                <Link href="/register" className="bg-[#e63746] hover:bg-[#C1121F] text-white px-10 py-5 rounded-full font-bold text-lg shadow-[0_15px_30px_rgba(230,55,70,0.4)] transition-all hover:-translate-y-1 active:scale-95">
+                                <Link href="/login" className="bg-[#e63746] hover:bg-[#C1121F] text-white px-10 py-5 rounded-full font-bold text-lg shadow-[0_15px_30px_rgba(230,55,70,0.4)] transition-all hover:-translate-y-1 active:scale-95">
                                     {t('landing.createAccountLink')}
                                 </Link>
                             </div>
