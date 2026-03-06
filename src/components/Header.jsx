@@ -42,7 +42,7 @@ const Header = () => {
                     <div className="flex items-center gap-8">
                         {/* Logo - Only visible on mobile since Sidebar handles desktop */}
                         <Link href="/dashboard" className="flex items-center gap-2 group md:hidden">
-                            <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={130} height={38} className="object-contain pr-2" priority />
+                            <Image src="/landing-page-assert/logo.svg" alt="Crediwize" width={130} height={38} className="object-contain pr-2" priority />
                         </Link>
 
                     </div>

@@ -62,7 +62,7 @@ const Sidebar = () => {
         <aside className="w-64 bg-white h-screen border-r border-gray-100 flex-shrink-0 sticky top-0 z-50 hidden md:flex flex-col shadow-xl shadow-gray-200/50">
             <div className="p-6">
                 <Link href="/dashboard" className="flex items-center gap-3">
-                    <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={140} height={40} className="object-contain pr-2" priority />
+                    <Image src="/landing-page-assert/logo.svg" alt="Crediwize" width={140} height={40} className="object-contain pr-2" priority />
                 </Link>
             </div>
 

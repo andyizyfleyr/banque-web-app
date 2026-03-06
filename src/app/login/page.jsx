@@ -101,7 +101,7 @@ const LoginPage = () => {
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-12">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={180} height={50} className="object-contain brightness-0 invert pr-4" priority />
+                                <Image src="/landing-page-assert/footer-logo.svg" alt="Crediwize" width={180} height={50} className="object-contain pr-4" priority />
                             </div>
 
                             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -134,7 +134,7 @@ const LoginPage = () => {
                         <div className="max-w-md mx-auto w-full">
                             {/* Mobile Logo */}
                             <div className="flex lg:hidden items-center justify-center gap-2 mb-8 mt-2">
-                                <Image src="/landing-page-assert/logo.png" alt="Crediwize" width={160} height={45} className="object-contain pr-2" priority />
+                                <Image src="/landing-page-assert/logo.svg" alt="Crediwize" width={160} height={45} className="object-contain pr-2" priority />
                             </div>
 
                             <div className="mb-10">
