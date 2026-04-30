@@ -167,8 +167,7 @@ const Transactions = () => {
             }));
 
         // Spending Trend (Last 4 months) - Simplified for demo
-        const getLocaleStr = (lang) => lang === 'fr' ? 'fr-FR' : lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : lang === 'ro' ? 'ro-RO' : lang === 'pl' ? 'pl-PL' : lang === 'pt' ? 'pt-PT' : lang === 'el' ? 'el-GR' : lang === 'sv' ? 'sv-SE' : lang === 'ky' ? 'ky-KG' : lang;
-        const localeStr = getLocaleStr(language);
+        const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : language;
         const trendData = [
             { name: new Date(2025, 6, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 2400 },
             { name: new Date(2025, 7, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 3800 },
@@ -284,7 +283,6 @@ const Transactions = () => {
             const yesterday = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
 
-            const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : language;
             let key = date.toLocaleDateString(localeStr, { day: 'numeric', month: 'short' });
             if (date.toDateString() === today.toDateString()) key = t('transactions.today');
             else if (date.toDateString() === yesterday.toDateString()) key = t('transactions.yesterday');

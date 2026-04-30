@@ -59,6 +59,9 @@ const Loans = () => {
     });
     const [loanCurrency, setLoanCurrency] = useState('EUR');
 
+    // Locale string for date formatting
+    const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US';
+
     // Document & Justification State
     const [loanPurpose, setLoanPurpose] = useState('');
     const [loanPurposeDetail, setLoanPurposeDetail] = useState('');
@@ -196,7 +199,7 @@ const Loans = () => {
         doc.setFont("helvetica", "normal");
         doc.setTextColor(150, 150, 150);
         doc.text(`${t('loans.pdfDocRef')} ${loan.id.toUpperCase()}`, 190, 29, { align: "right" });
-        doc.text(`${t('loans.pdfIssuanceDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US')}`, 190, 34, { align: "right" });
+        doc.text(`${t('loans.pdfIssuanceDate')} ${new Date().toLocaleDateString(localeStr)}`, 190, 34, { align: "right" });
 
         // Line separator
         doc.setDrawColor(220, 220, 220);
@@ -318,7 +321,7 @@ const Loans = () => {
             doc.setFont("helvetica", "italic");
             doc.setTextColor(150, 150, 150);
             doc.text(t('loans.pdfRejectedSignature'), 30, 250);
-            doc.text(`${t('loans.pdfEditedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US')}`, 135, 250);
+            doc.text(`${t('loans.pdfEditedDate')} ${new Date().toLocaleDateString(localeStr)}`, 135, 250);
         } else {
             doc.text(t('loans.pdfSignatureBorrower'), 135, 245);
             doc.setFontSize(8);
