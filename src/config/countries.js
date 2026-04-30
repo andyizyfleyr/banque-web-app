@@ -263,7 +263,7 @@ export const countries = [
     },
     {
         code: "KG", country: "Кыргызстан", flag: "🇰🇬",
-        language: "ky",
+        language: "ky", currency: "KGS",
         bankingConfig: {
             accountIdLabel: "IBAN",
             accountIdFormat: "KG96 XXXX XXXX XXXX XXXX",
@@ -276,7 +276,7 @@ export const countries = [
     },
     {
         code: "SE", country: "Sverige", flag: "🇸🇪",
-        language: "sv",
+        language: "sv", currency: "SEK",
         bankingConfig: {
             accountIdLabel: "Bankgiro / Plusgiro",
             accountIdFormat: "SE XXX XXX XXXX XXXX",
