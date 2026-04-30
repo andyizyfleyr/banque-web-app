@@ -30,6 +30,8 @@ const CountrySelector = ({ onClose, isOnboarding = false }) => {
             'pl': { code: 'pl', name: 'Polski', flag: '🇵🇱' },
             'pt': { code: 'pt', name: 'Português', flag: '🇵🇹' },
             'el': { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' },
+            'ky': { code: 'ky', name: 'Кыргызча', flag: '🇰🇬' },
+            'sv': { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
         };
         // Show default language for selected country first, then all others
         const defaultLang = currentSelectedCountry?.defaultLanguage || 'fr';

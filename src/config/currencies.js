@@ -11,6 +11,8 @@ export const currencies = {
     GTQ: { code: "GTQ", symbol: "Q", name: "Guatemalan Quetzal", locale: "es-GT", rate: 7.82 },
     NIO: { code: "NIO", symbol: "C$", name: "Nicaraguan Córdoba", locale: "es-NI", rate: 36.62 },
     HNL: { code: "HNL", symbol: "L", name: "Honduran Lempira", locale: "es-HN", rate: 24.67 },
+    KGS: { code: "KGS", symbol: "с", name: "Kyrgyzstani Som", locale: "ky-KG", rate: 95.0 },
+    SEK: { code: "SEK", symbol: "kr", name: "Swedish Krona", locale: "sv-SE", rate: 11.5 },
 };
 
 /**

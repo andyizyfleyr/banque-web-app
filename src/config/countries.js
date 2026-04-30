@@ -260,6 +260,32 @@ export const countries = [
             regulations: "FDIC Insured",
             cardNetwork: "Visa"
         }
+    },
+    {
+        code: "KG", country: "Кыргызстан", flag: "🇰🇬",
+        language: "ky",
+        bankingConfig: {
+            accountIdLabel: "IBAN",
+            accountIdFormat: "KG96 XXXX XXXX XXXX XXXX",
+            transferMethods: ["Электронный перевод", "Elcart"],
+            paymentApps: ["O!Wallet", "MegaPay", "Apple Pay"],
+            accountTypes: { checking: "Агымдагы эсеп", savings: "Чогултуруу эсеби" },
+            regulations: "Кыргыз Республикасынын Улуттук Банкы",
+            cardNetwork: "Visa / Elcard"
+        }
+    },
+    {
+        code: "SE", country: "Sverige", flag: "🇸🇪",
+        language: "sv",
+        bankingConfig: {
+            accountIdLabel: "Bankgiro / Plusgiro",
+            accountIdFormat: "SE XXX XXX XXXX XXXX",
+            transferMethods: ["SEPA", "Swish", "Bankgiro"],
+            paymentApps: ["Swish", "Apple Pay", "Google Pay"],
+            accountTypes: { checking: "Checkkonto", savings: "Sparkonto" },
+            regulations: "Finansinspektionen (FI)",
+            cardNetwork: "Visa / Mastercard"
+        }
     }
 ];
 
@@ -268,8 +294,9 @@ export const getCountry = (code) => countries.find(c => c.code === code);
 
 // Get all countries grouped by region
 export const getCountriesByRegion = () => ({
-    europe: countries.filter(c => ["FR", "ES", "DE", "IT", "RO", "PL", "PT", "GB", "CH", "GR"].includes(c.code)),
-    americas: countries.filter(c => ["US", "PE", "GT", "MX", "EC", "NI", "HN", "SV", "PA", "PR"].includes(c.code))
+    europe: countries.filter(c => ["FR", "ES", "DE", "IT", "RO", "PL", "PT", "GB", "CH", "GR", "SE"].includes(c.code)),
+    americas: countries.filter(c => ["US", "PE", "GT", "MX", "EC", "NI", "HN", "SV", "PA", "PR"].includes(c.code)),
+    asia: countries.filter(c => ["KG"].includes(c.code))
 });
 
 // Get unique languages
@@ -282,5 +309,7 @@ export const getAvailableLanguages = () => [
     { code: "ro", name: "Română" },
     { code: "pl", name: "Polski" },
     { code: "pt", name: "Português" },
-    { code: "el", name: "Ελληνικά" }
+    { code: "el", name: "Ελληνικά" },
+    { code: "ky", name: "Кыргызча" },
+    { code: "sv", name: "Svenska" }
 ];
