@@ -196,7 +196,7 @@ const Loans = () => {
         doc.setFont("helvetica", "normal");
         doc.setTextColor(150, 150, 150);
         doc.text(`${t('loans.pdfDocRef')} ${loan.id.toUpperCase()}`, 190, 29, { align: "right" });
-        doc.text(`${t('loans.pdfIssuanceDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 190, 34, { align: "right" });
+        doc.text(`${t('loans.pdfIssuanceDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US')}`, 190, 34, { align: "right" });
 
         // Line separator
         doc.setDrawColor(220, 220, 220);
@@ -318,14 +318,14 @@ const Loans = () => {
             doc.setFont("helvetica", "italic");
             doc.setTextColor(150, 150, 150);
             doc.text(t('loans.pdfRejectedSignature'), 30, 250);
-            doc.text(`${t('loans.pdfEditedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 135, 250);
+            doc.text(`${t('loans.pdfEditedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US')}`, 135, 250);
         } else {
             doc.text(t('loans.pdfSignatureBorrower'), 135, 245);
             doc.setFontSize(8);
             doc.setFont("helvetica", "italic");
             doc.setTextColor(150, 150, 150);
             doc.text(t('loans.pdfStamp'), 30, 250);
-            doc.text(`${t('loans.pdfReadApprovedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : 'fr-FR')}`, 135, 250);
+            doc.text(`${t('loans.pdfReadApprovedDate')} ${new Date().toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US')}`, 135, 250);
 
             // Box for user signature
             doc.setDrawColor(200, 200, 200);

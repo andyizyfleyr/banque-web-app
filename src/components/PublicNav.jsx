@@ -136,7 +136,7 @@ const PublicNav = () => {
                                     className="flex items-center gap-3 w-full p-4 rounded-2xl bg-gray-50 text-[#1D3557] font-black"
                                 >
                                     <Globe size={20} />
-                                    <span>{language === 'en' ? 'English' : language === 'fr' ? 'Français' : language.toUpperCase()}</span>
+                                    <span>{language === 'en' ? 'English' : language === 'fr' ? 'Français' : language === 'sv' ? 'Svenska' : language === 'ky' ? 'Кыргызча' : language.toUpperCase()}</span>
                                 </button>
                                 <Link
                                     href="/login"

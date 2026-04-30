@@ -642,11 +642,11 @@ const Dashboard = () => {
                 const dailyMap = {};
                 const last30Days = [];
 
+                const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : language;
                 for (let i = 29; i >= 0; i--) {
                     const d = new Date(now);
                     d.setDate(d.getDate() - i);
                     const key = d.toISOString().split('T')[0];
-                    const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
                     const label = d.toLocaleDateString(localeStr, { day: '2-digit', month: 'short' });
                     dailyMap[key] = { name: label, fullDate: key, income: 0, expenses: 0, balance: 0 };
                     last30Days.push(key);
@@ -873,10 +873,7 @@ const Dashboard = () => {
                                             <span className="px-1.5 py-0.5 bg-gray-100 text-[9px] font-black text-gray-500 rounded border border-gray-100">
                                                 {translateDBValue(item.category)}
                                             </span>
-                                            {(() => {
-                                                const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
-                                                return new Date(item.date).toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' });
-                                            })()} • {item.account?.name || t('dashboard.checking')}
+                                             {new Date(item.date).toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' })} • {item.account?.name || t('dashboard.checking')}
                                         </p>
                                     </div>
                                 </div>

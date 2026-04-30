@@ -167,11 +167,13 @@ const Transactions = () => {
             }));
 
         // Spending Trend (Last 4 months) - Simplified for demo
+        const getLocaleStr = (lang) => lang === 'fr' ? 'fr-FR' : lang === 'en' ? 'en-US' : lang === 'de' ? 'de-DE' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : lang === 'ro' ? 'ro-RO' : lang === 'pl' ? 'pl-PL' : lang === 'pt' ? 'pt-PT' : lang === 'el' ? 'el-GR' : lang === 'sv' ? 'sv-SE' : lang === 'ky' ? 'ky-KG' : lang;
+        const localeStr = getLocaleStr(language);
         const trendData = [
-            { name: new Date(2025, 6, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 2400 },
-            { name: new Date(2025, 7, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 3800 },
-            { name: new Date(2025, 8, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 3200 },
-            { name: new Date(2025, 9, 1).toLocaleDateString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { month: 'short' }), value: 4500 }
+            { name: new Date(2025, 6, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 2400 },
+            { name: new Date(2025, 7, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 3800 },
+            { name: new Date(2025, 8, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 3200 },
+            { name: new Date(2025, 9, 1).toLocaleDateString(localeStr, { month: 'short' }), value: 4500 }
         ];
 
         setStats({ expenses: topExpenses, trend: trendData });
@@ -282,7 +284,7 @@ const Transactions = () => {
             const yesterday = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
 
-            const localeStr = language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language);
+            const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : language;
             let key = date.toLocaleDateString(localeStr, { day: 'numeric', month: 'short' });
             if (date.toDateString() === today.toDateString()) key = t('transactions.today');
             else if (date.toDateString() === yesterday.toDateString()) key = t('transactions.yesterday');
@@ -378,7 +380,7 @@ const Transactions = () => {
                                                     <h3 className="font-bold text-[#1D3557]">{translateDBValue(item.description)}</h3>
                                                     <div className="flex items-center gap-2 mt-1">
                                                         <span className="px-2 py-0.5 bg-gray-100 text-[10px] font-bold text-gray-600 rounded uppercase">{translateDBValue(item.category)}</span>
-                                                        <span className="text-xs text-gray-500">{new Date(item.date).toLocaleTimeString(language === 'fr' ? 'fr-FR' : (language === 'en' ? 'en-US' : language), { hour: '2-digit', minute: '2-digit' })}</span>
+                                                        <span className="text-xs text-gray-500">{new Date(item.date).toLocaleTimeString(localeStr, { hour: '2-digit', minute: '2-digit' })}</span>
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
