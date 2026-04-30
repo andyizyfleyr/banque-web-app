@@ -82,6 +82,9 @@ const Dashboard = () => {
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
     const isCreatingAccount = useRef(false);
 
+    // Locale string for date formatting
+    const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : 'en-US';
+
     const [kycStatus, setKycStatus] = useState(user?.user_metadata?.kyc_status || 'unverified');
 
     const handleFinancialAction = (e, path) => {
@@ -642,7 +645,6 @@ const Dashboard = () => {
                 const dailyMap = {};
                 const last30Days = [];
 
-                const localeStr = language === 'fr' ? 'fr-FR' : language === 'en' ? 'en-US' : language === 'de' ? 'de-DE' : language === 'es' ? 'es-ES' : language === 'it' ? 'it-IT' : language === 'ro' ? 'ro-RO' : language === 'pl' ? 'pl-PL' : language === 'pt' ? 'pt-PT' : language === 'el' ? 'el-GR' : language === 'sv' ? 'sv-SE' : language === 'ky' ? 'ky-KG' : language;
                 for (let i = 29; i >= 0; i--) {
                     const d = new Date(now);
                     d.setDate(d.getDate() - i);
