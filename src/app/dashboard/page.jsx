@@ -44,9 +44,7 @@ import {
     PieChart,
     Pie,
 } from 'recharts';
-import { motion } from 'framer-motion';
 import { PageWrapper } from '@/components/PageWrapper';
-import { CountUp } from '@/components/CountUp';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLocale } from '@/contexts/LocaleContext';
@@ -485,9 +483,7 @@ const Dashboard = () => {
             {/* Portfolio Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Balance Card */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                <div
                     className="lg:col-span-8 lg:col-start-3 bg-gradient-to-br from-[#E63946] to-[#F77F00] rounded-3xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[200px] md:min-h-[300px] border border-white/10"
                 >
                     {/* Abstract decoration */}
@@ -500,7 +496,7 @@ const Dashboard = () => {
                     <div className="relative z-10">
                         <p className="text-white/80 font-black uppercase tracking-[0.2em] text-[10px] mb-1">{t('dashboard.totalBalance')}</p>
                         <h1 className="text-5xl lg:text-7xl font-extrabold mb-3 tracking-tighter text-white">
-                            <CountUp value={totalCheckingBalance} suffix={` ${cs()}`} decimals={2} />
+                            {totalCheckingBalance.toFixed(2)} {cs()}
                         </h1>
                         <p className="text-[10px] font-mono tracking-[0.3em] text-white/60">
                             {country?.bankingConfig?.accountIdLabel || 'IBAN'}: {checkingAccount?.iban ? `XXXX ${checkingAccount.iban.slice(-4)}` : 'XXXX 0000'}
@@ -522,7 +518,7 @@ const Dashboard = () => {
                             <CreditCard size={16} /> {t('nav.cards')}
                         </button>
                     </div>
-                </motion.div>
+                </div>
             </div>
 
 
@@ -538,11 +534,8 @@ const Dashboard = () => {
 
                 <div className="flex overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4 snap-x hide-scrollbar">
                     {accounts.map((acc, idx) => (
-                        <motion.div
+                        <div
                             key={acc.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1 }}
                             onClick={() => router.push('/transactions')}
                             className={`min-w-[85vw] md:min-w-0 snap-center p-6 rounded-3xl border-2 transition-all cursor-pointer h-full relative overflow-hidden group hover:-translate-y-2 ${acc.type === 'checking' ? 'border-gray-100 bg-white shadow-2xl shadow-red-200/50' : 'border-gray-100 bg-white hover:border-gray-200 shadow-xl shadow-gray-200/30'}`}
                         >
@@ -564,11 +557,9 @@ const Dashboard = () => {
 
                                     {/* Dropdown Menu */}
                                     {activeMenu === acc.id && (
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                                            className="absolute right-0 top-12 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-[40] overflow-hidden"
-                                        >
+                                        <div
+                                             className="absolute right-0 top-12 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-[40] overflow-hidden"
+                                         >
 
                                             <button
                                                 onClick={(e) => {
@@ -596,7 +587,7 @@ const Dashboard = () => {
                                                 <Trash2 size={16} />
                                                 {t('dashboard.deleteAccount')}
                                             </button>
-                                        </motion.div>
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -606,7 +597,7 @@ const Dashboard = () => {
                             </p>
                             <div className="flex flex-col">
                                 <h4 className="text-[#1D3557] font-black text-4xl tracking-tighter mb-1">
-                                    <CountUp value={cv(parseFloat(acc.balance), acc.currency)} suffix={` ${cs(acc.currency)}`} decimals={2} />
+                                    {cv(parseFloat(acc.balance), acc.currency).toFixed(2)} {cs(acc.currency)}
                                 </h4>
                                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{acc.name}</p>
                             </div>
@@ -615,7 +606,7 @@ const Dashboard = () => {
                                 {acc.type === 'checking' && <Wallet size={100} strokeWidth={2.5} />}
                                 {acc.type === 'savings' && <PiggyBank size={100} strokeWidth={2.5} />}
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
 
                     {/* Add Account Placeholder */}
@@ -756,11 +747,9 @@ const Dashboard = () => {
 
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                             {/* main Chart - Smooth Curves */}
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="lg:col-span-12 bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-200/20 p-8"
-                            >
+                            <div
+                                 className="lg:col-span-12 bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-200/20 p-8"
+                             >
                                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
                                     <div>
                                         <h3 className="text-lg font-black text-[#1D3557]">{t('dashboard.dailyCashFlow')}</h3>
@@ -829,7 +818,7 @@ const Dashboard = () => {
                                         </AreaChart>
                                     </ResponsiveContainer>
                                 </div>
-                            </motion.div>
+                            </div>
 
 
                         </div>
@@ -856,13 +845,10 @@ const Dashboard = () => {
                 <div className="bg-white rounded-3xl border border-gray-100 shadow-2xl shadow-gray-200/40 overflow-hidden divide-y divide-gray-50">
                     {transactions.length > 0 ? (
                         transactions.map((item, i) => (
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                key={item.id}
-                                className="p-5 hover:bg-gray-50/80 transition-all flex items-center justify-between group cursor-pointer"
-                            >
+                            <div
+                                 key={item.id}
+                                 className="p-5 hover:bg-gray-50/80 transition-all flex items-center justify-between group cursor-pointer"
+                             >
                                 <div className="flex items-center gap-5">
                                     <div className={`w-12 h-12 rounded-2xl ${getTransactionColor(item.category, item.amount)} flex items-center justify-center group-hover:scale-110 shadow-sm transition-all`}>
                                         {React.createElement(getTransactionIcon(item.category), { size: 20 })}
@@ -881,7 +867,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className="text-right">
                                     <p className={`text-lg font-black tracking-tight ${parseFloat(item.amount) > 0 ? 'text-green-600' : 'text-[--color-primary-red]'}`}>
-                                        <CountUp value={parseFloat(item.amount)} suffix={` ${cs(item.currency || item.account?.currency || profile?.preferred_currency)}`} decimals={2} prefix={parseFloat(item.amount) > 0 ? '+' : ''} />
+                                        {parseFloat(item.amount) > 0 ? '+' : ''}{(parseFloat(item.amount)).toFixed(2)} {cs(item.currency || item.account?.currency || profile?.preferred_currency)}
                                     </p>
                                     <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-300">
                                         {item.status === 'completed' ? t('transactions.completed') :
@@ -889,7 +875,7 @@ const Dashboard = () => {
                                                 item.status === 'failed' ? t('common.failed') : t('transactions.completed')}
                                     </span>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))
                     ) : (
                         <div className="p-12 text-center">
@@ -904,16 +890,11 @@ const Dashboard = () => {
             {
                 isAddModalOpen && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                        <div
                             onClick={() => setIsAddModalOpen(false)}
                             className="absolute inset-0 bg-[#1D3557]/60 backdrop-blur-sm"
                         />
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                        <div
                             className="bg-white rounded-[2rem] p-8 shadow-2xl relative z-10 w-full max-w-md border border-gray-100"
                         >
                             <button
@@ -964,7 +945,7 @@ const Dashboard = () => {
                                     </span>
                                 </button>
                             </form>
-                        </motion.div>
+                        </div>
                     </div>
                 )
             }
@@ -973,16 +954,11 @@ const Dashboard = () => {
             {
                 isEditModalOpen && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                        <div
                             onClick={() => setIsEditModalOpen(false)}
                             className="absolute inset-0 bg-[#1D3557]/60 backdrop-blur-sm"
                         />
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                        <div
                             className="bg-white rounded-[2rem] p-8 shadow-2xl relative z-10 w-full max-w-md border border-gray-100"
                         >
                             <button
@@ -1027,7 +1003,7 @@ const Dashboard = () => {
                                     )}
                                 </button>
                             </form>
-                        </motion.div>
+                        </div>
                     </div>
                 )
             }
