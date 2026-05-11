@@ -71,10 +71,10 @@ const Loans = () => {
     const hasSubmittedBefore = myLoans.length > 0;
 
     const loanTypes = [
-        { id: 'personal', label: t('loans.personalLoan'), icon: Users, rate: 0.02, color: 'text-blue-600', bg: 'bg-blue-50' },
-        { id: 'mortgage', label: t('loans.mortgageLoan'), icon: Home, rate: 0.02, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-        { id: 'auto', label: t('loans.autoLoan'), icon: Car, rate: 0.02, color: 'text-orange-600', bg: 'bg-orange-50' },
-        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.02, color: 'text-indigo-600', bg: 'bg-indigo-50' }
+        { id: 'personal', label: t('loans.personalLoan'), icon: Users, rate: 0.045, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { id: 'mortgage', label: t('loans.mortgageLoan'), icon: Home, rate: 0.032, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+        { id: 'auto', label: t('loans.autoLoan'), icon: Car, rate: 0.038, color: 'text-orange-600', bg: 'bg-orange-50' },
+        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.055, color: 'text-indigo-600', bg: 'bg-indigo-50' }
     ];
 
     useEffect(() => {
@@ -540,14 +540,10 @@ const Loans = () => {
                                                 <p className="text-lg font-bold text-[#1D3557]">{(currentRate * 100).toFixed(2)}%</p>
                                             </div>
                                             <div className="p-4 rounded-xl bg-gray-50 flex flex-col justify-center">
-                                                <p className="text-[10px] font-bold text-gray-600 uppercase">{t('loans.apr') || 'TAEG'}</p>
-                                                <p className="text-lg font-bold text-green-700">{(currentRate * 1.1 * 100).toFixed(2)}%</p>
-                                            </div>
-                                            <div className="p-4 bg-gray-50 rounded-2xl">
-                                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t('loans.desiredAmount')}</p>
+                                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">{t('loans.desiredAmount')}</p>
                                                 <span className="text-xl font-black text-[#E63746]">{fc(amount, loanCurrency)}</span>
                                             </div>
-                                            <div className="p-4 bg-gray-50 rounded-2xl">
+                                            <div className="p-4 rounded-xl bg-gray-50 flex flex-col justify-center">
                                                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">{t('loans.totalAmount')}</p>
                                                 <span className="text-xl font-black text-[#1D3557]">{fc(totalRepayment, loanCurrency)}</span>
                                             </div>
