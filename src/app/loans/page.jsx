@@ -71,10 +71,10 @@ const Loans = () => {
     const hasSubmittedBefore = myLoans.length > 0;
 
     const loanTypes = [
-        { id: 'personal', label: t('loans.personalLoan'), icon: Users, rate: 0.045, color: 'text-blue-600', bg: 'bg-blue-50' },
-        { id: 'mortgage', label: t('loans.mortgageLoan'), icon: Home, rate: 0.032, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-        { id: 'auto', label: t('loans.autoLoan'), icon: Car, rate: 0.038, color: 'text-orange-600', bg: 'bg-orange-50' },
-        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.055, color: 'text-indigo-600', bg: 'bg-indigo-50' }
+        { id: 'personal', label: t('loans.personalLoan'), icon: Users, rate: 0.02, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { id: 'mortgage', label: t('loans.mortgageLoan'), icon: Home, rate: 0.02, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+        { id: 'auto', label: t('loans.autoLoan'), icon: Car, rate: 0.02, color: 'text-orange-600', bg: 'bg-orange-50' },
+        { id: 'business', label: t('loans.businessLoan'), icon: Briefcase, rate: 0.02, color: 'text-indigo-600', bg: 'bg-indigo-50' }
     ];
 
     useEffect(() => {
