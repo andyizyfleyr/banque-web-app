@@ -350,51 +350,6 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                {/* Download App Section */}
-                <section className="bg-white py-24 lg:py-32">
-                    <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
-                        <div className="bg-[#1D3557] rounded-[4rem] p-12 md:p-24 relative overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center gap-16">
-                            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#e63746]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-                            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
-
-                            <div className="relative z-10 lg:w-3/5 space-y-10 text-center lg:text-left flex flex-col items-center lg:items-start">
-                                <h2 className="text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tight">
-                                    {t('landing.downloadAppTitle')}
-                                </h2>
-                                <p className="text-white/60 text-xl font-light max-w-xl">
-                                    {t('landing.downloadAppDesc')}
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-6">
-                                    <button className="transition-all hover:opacity-80 active:scale-95">
-                                        <Image
-                                            src="/landing-page-assert/apple_store.svg"
-                                            width={200}
-                                            height={60}
-                                            alt="Download on the App Store"
-                                            className="h-[60px] w-auto"
-                                        />
-                                    </button>
-                                    <button className="transition-all hover:opacity-80 active:scale-95">
-                                        <Image
-                                            src="/landing-page-assert/google_play.svg"
-                                            width={220}
-                                            height={60}
-                                            alt="Get it on Google Play"
-                                            className="h-[60px] w-auto"
-                                        />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="lg:w-2/5 relative">
-                                <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="relative z-10 w-full max-w-[320px] mx-auto filter drop-shadow-[0_45px_45px_rgba(0,0,0,0.5)]">
-                                    <Image src="/landing-page-assert/Rectangle-8732.jpg" width={300} height={600} className="rounded-[3rem] border-8 border-white/10" alt="App" />
-                                </motion.div>
-                                <Image src="/landing-page-assert/Ellipse-60.png" width={800} height={800} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl scale-150 pointer-events-none" alt="glow" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 {/* Testimonials Section - Light Mode Layout Redesign */}
                 <section className="bg-white py-24 lg:py-40 relative overflow-hidden">
