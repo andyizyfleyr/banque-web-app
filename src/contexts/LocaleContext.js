@@ -15,8 +15,9 @@ import pt from '@/translations/pt.json';
 import el from '@/translations/el.json';
 import ky from '@/translations/ky.json';
 import sv from '@/translations/sv.json';
+import sk from '@/translations/sk.json';
 
-const translations = { fr, en, es, de, it, ro, pl, pt, el, ky, sv };
+const translations = { fr, en, es, de, it, ro, pl, pt, el, ky, sv, sk };
 
 const LocaleContext = createContext(null);
 
@@ -142,7 +143,8 @@ export const LocaleProvider = ({ children }) => {
                         language === 'de' ? 'de-DE' :
                             language === 'it' ? 'it-IT' :
                                 language === 'ky' ? 'ky-KG' :
-                                    language === 'sv' ? 'sv-SE' : language;
+                                    language === 'sv' ? 'sv-SE' :
+                                        language === 'sk' ? 'sk-SK' : language;
             return new Date(date).toLocaleDateString(localeStr, {
                 day: '2-digit',
                 month: 'short',

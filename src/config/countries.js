@@ -286,6 +286,19 @@ export const countries = [
             regulations: "Finansinspektionen (FI)",
             cardNetwork: "Visa / Mastercard"
         }
+    },
+    {
+        code: "SK", country: "Slovensko", flag: "🇸🇰",
+        language: "sk", currency: "EUR",
+        bankingConfig: {
+            accountIdLabel: "IBAN",
+            accountIdFormat: "SK31 XXXX XXXX XXXX XXXX XXXX",
+            transferMethods: ["SEPA", "Okamžitý prevod"],
+            paymentApps: ["Apple Pay", "Google Pay"],
+            accountTypes: { checking: "Bežný účet", savings: "Sporiaci účet" },
+            regulations: "Regulované NBS – Národná banka Slovenska",
+            cardNetwork: "Visa / Mastercard"
+        }
     }
 ];
 
@@ -294,7 +307,7 @@ export const getCountry = (code) => countries.find(c => c.code === code);
 
 // Get all countries grouped by region
 export const getCountriesByRegion = () => ({
-    europe: countries.filter(c => ["FR", "ES", "DE", "IT", "RO", "PL", "PT", "GB", "CH", "GR", "SE"].includes(c.code)),
+    europe: countries.filter(c => ["FR", "ES", "DE", "IT", "RO", "PL", "PT", "GB", "CH", "GR", "SE", "SK"].includes(c.code)),
     americas: countries.filter(c => ["US", "PE", "GT", "MX", "EC", "NI", "HN", "SV", "PA", "PR"].includes(c.code)),
     asia: countries.filter(c => ["KG"].includes(c.code))
 });
@@ -311,5 +324,6 @@ export const getAvailableLanguages = () => [
     { code: "pt", name: "Português" },
     { code: "el", name: "Ελληνικά" },
     { code: "ky", name: "Кыргызча" },
-    { code: "sv", name: "Svenska" }
+    { code: "sv", name: "Svenska" },
+    { code: "sk", name: "Slovenčina" }
 ];

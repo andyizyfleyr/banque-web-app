@@ -32,6 +32,7 @@ const CountrySelector = ({ onClose, isOnboarding = false }) => {
             'el': { code: 'el', name: 'Ελληνικά', flag: '🇬🇷' },
             'ky': { code: 'ky', name: 'Кыргызча', flag: '🇰🇬' },
             'sv': { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
+            'sk': { code: 'sk', name: 'Slovenčina', flag: '🇸🇰' },
         };
         // Show default language for selected country first, then all others
         const defaultLang = currentSelectedCountry?.defaultLanguage || 'fr';
@@ -60,6 +61,7 @@ const CountrySelector = ({ onClose, isOnboarding = false }) => {
     const regionLabels = {
         'europe': t('countrySelector.europe'),
         'americas': t('countrySelector.americas'),
+        'asia': t('countrySelector.asia'),
     };
 
     return (
